@@ -1,0 +1,9 @@
+.card {
+	background-image: url(../assets/cardbackground.svg);
+}
+.card-title {
+	color: #1c3d30;
+	font-weight: 48;
+}
+.cart-text {
+}
