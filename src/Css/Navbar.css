@@ -51,7 +51,7 @@
     transition: all 0.5s ease-in-out;
   }
   .center ul.active {
-    transform: translateX(100%);
+    transform: translateX(125%);
   }
   .nav-container .center ul > li {
     padding: 10px 15px;
@@ -64,5 +64,10 @@
   }
   .menu-bar {
     display: block;
+    padding: 5px 5px;
+  }
+  .menu-bar:active {
+    background-color: rgba(94, 204, 92, 0.456);
+    border-radius: 50%;
   }
 }
