@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../Css/Navbar.css";
 import "../App.css";
-import { MdMenu } from "react-icons/md";
+import { MdMenu, MdClose } from "react-icons/md";
 import { useState } from "react";
 const Navbar = () => {
   const [popMenu, setPopMenu] = useState(false);
@@ -33,37 +33,62 @@ const Navbar = () => {
           }`}
         >
           <li className=" text-decoration-none">
-            <Link to="/" className="text-decoration-none" style={{}}>
+            <Link
+              to="/"
+              className="text-decoration-none"
+              style={{}}
+              onClick={() => showMenu()}
+            >
               Home
             </Link>
           </li>
           <li className="c">
-            <Link to="/services" className="text-decoration-none" style={{}}>
+            <Link
+              to="/services"
+              className="text-decoration-none"
+              style={{}}
+              onClick={() => showMenu()}
+            >
               Services
             </Link>
           </li>
           <li className="c">
-            <Link to="/products" className="text-decoration-none" style={{}}>
+            <Link
+              to="/products"
+              className="text-decoration-none"
+              style={{}}
+              onClick={() => showMenu()}
+            >
               Products
             </Link>
           </li>
           <li className="c">
-            <Link to="/team" className="text-decoration-none" style={{}}>
+            <Link
+              to="/team"
+              className="text-decoration-none"
+              style={{}}
+              onClick={() => showMenu()}
+            >
               Team
             </Link>
           </li>
           <li className="c">
-            <Link to="/blogs" className="text-decoration-none" style={{}}>
+            <Link
+              to="/blogs"
+              className="text-decoration-none"
+              style={{}}
+              onClick={() => showMenu()}
+            >
               Blogs
             </Link>
           </li>
         </ul>
       </div>
       <div className="menu-bar " onClick={() => showMenu()}>
-        <MdMenu size={30} />
+        {popMenu ? <MdClose size={30} /> : <MdMenu size={30} />}
       </div>
       <div className="cta d-lg-flex gap login-btn-wrapper d-none ">
-        <button className="buttonlightgreen }">Login</button>
+        <button className="buttonlightgreen ">Login</button>
         <button className="buttongreen">Sign Up</button>
       </div>
     </Container>
