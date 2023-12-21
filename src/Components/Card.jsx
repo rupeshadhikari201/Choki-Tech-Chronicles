@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import "../App.css";
-import "../Css/Card.Css";
+import "../Css/Card.css";
 function BasicExample() {
   return (
     <Card style={{ width: "18rem" }} className="card">
