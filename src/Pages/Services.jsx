@@ -12,15 +12,14 @@ const Sevices = () => {
         >
           Our Services
         </h1>
-        <div className="">
+        <div className="d-none d-md-block">
           <img alt="research" src={research} />
         </div>
       </div>
       <div
         className={`card-holder
 	 d-flex gap-3
-	 justify-content-center
-	 flex-wrap
+	 justify-content-start justify-content-md-center
 	  `}
       >
         <Cards
