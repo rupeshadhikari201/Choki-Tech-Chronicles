@@ -1,3 +1,4 @@
+import TeamCard from "../Components/TeamCard";
 import "../Css/ourteam.css";
 
 const OurTeam = () => {
@@ -7,27 +8,43 @@ const OurTeam = () => {
       <p className="text-center">
         Get to Know talented individuals behind our company
       </p>
-      <div className="team-card-holder d-flex justify-content-center">
-        <div className="card-3">
-          <div className="card-3-img mb-4">
-            <img
-              src={
-                "https://images.pexels.com/photos/19554104/pexels-photo-19554104/free-photo-of-a-man-taking-a-photo-of-the-sunset-on-the-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
-              alt="team-member"
-            />
-          </div>
-          <div className="card-3-body">
-            <h1>Choki Dorgi</h1>
-            <h6 className="mb-3">Founder and CEO</h6>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s
-            </p>
-          </div>
-          <div className="cont"></div>
-        </div>
+      <div className="team-card-holder d-flex justify-content-start gap-4">
+        <TeamCard
+          name={"Choki Dorgi"}
+          position={"Founder and CEO of"}
+          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.`}
+          img={
+            "https://images.pexels.com/photos/19554104/pexels-photo-19554104/free-photo-of-a-man-taking-a-photo-of-the-sunset-on-the-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+        />
+        <TeamCard
+          name={"Rupesh"}
+          position={"Designer and Developer"}
+          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry.`}
+          img={
+            "https://images.pexels.com/photos/7957285/pexels-photo-7957285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+        />
+        <TeamCard
+          name={"Diviya"}
+          position={"Social Media Manager"}
+          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. `}
+          img={
+            "https://images.pexels.com/photos/18573858/pexels-photo-18573858/free-photo-of-bus-near-building-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+        />
+        <TeamCard
+          name={"Yared"}
+          position={"Designer and Developer"}
+          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. `}
+          img={
+            "https://images.pexels.com/photos/19510932/pexels-photo-19510932/free-photo-of-a-woman-in-a-red-scarf-is-standing-in-the-snow.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          }
+        />
       </div>
     </section>
   );
