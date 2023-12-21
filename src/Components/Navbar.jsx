@@ -12,7 +12,7 @@ const Navbar = () => {
     console.log("clicked");
   };
   return (
-    <Container className="nav-container ">
+    <Container className="nav-container">
       <div className="logo" style={{ position: "relative" }}>
         <p className="fw-bolder logo ">
           <span
