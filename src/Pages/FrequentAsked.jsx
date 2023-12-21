@@ -25,9 +25,7 @@ const FrequentAsked = () => {
               data-bs-parent="#accordionFlushExample"
             >
               <div className="accordion-body">
-                Placeholder content for this accordion, which is intended to
-                demonstrate the <code>.accordion-flush</code> class. This is the
-                first item&apos;s accordion body.
+                content for the question asked, answer provided by
               </div>
             </div>
           </div>
