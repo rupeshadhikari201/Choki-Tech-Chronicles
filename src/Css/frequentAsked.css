@@ -1,0 +1,15 @@
+.section-frequently {
+  background-color: var(--light-green);
+}
+.quesiton-list {
+  max-width: 600px;
+  margin: 10px auto;
+}
+.section-frequently .accordion {
+  background-color: var(--light-green) !important;
+  --bs-accordion-active-bg: var(--light-lime);
+  --bs-accordion-bg: var(--light-lime);
+}
+.section-frequently .accordion-item {
+  background-color: var(--light-lime) !important;
+}
