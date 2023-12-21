@@ -45,6 +45,14 @@
   font-weight: bolder;
   margin-bottom: 50px;
 }
+.typer-text {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bolder;
+  margin-bottom: 50px;
+  text-align: center;
+}
 .btn-custom {
   display: flex;
   align-items: center;
