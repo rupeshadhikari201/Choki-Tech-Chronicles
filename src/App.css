@@ -6,11 +6,17 @@
   padding: 0;
   margin: 0;
 }
+:root {
+  --light-green: rgb(191, 235, 190);
+  --primary-green: #5ecc5c;
+  --green-hover: rgba(94, 204, 92, 0.456);
+  --light-lime: rgb(158, 224, 157);
+}
 body {
   font-family: "Inter", sans-serif;
 }
 .buttongreen {
-  background-color: #5ecc5c;
+  background-color: var(--primary-green);
   outline: none;
   border: none;
   border-radius: 20px;
@@ -23,8 +29,7 @@ body {
   flex-shrink: 0;
 }
 .buttongreencard {
-  background-color: #5ecc5c;
-  background-color: #5ecc5c;
+  background-color: var(--primary-green);
   outline: none;
   border: none;
   border-radius: 20px;
@@ -37,7 +42,7 @@ body {
   /* flex-shrink: 0; */
 }
 .buttonlightgreen {
-  background-color: #9ee09d;
+  background-color: var(--light-green);
   outline: none;
   border: none;
   border-radius: 20px;
