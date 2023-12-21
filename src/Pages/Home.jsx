@@ -7,6 +7,7 @@ import Services from "./Services.jsx";
 import { TypeAnimation } from "react-type-animation";
 import Testimonial from "./Testimonial.jsx";
 import FrequentAsked from "./FrequentAsked.jsx";
+import OurTeam from "./OurTeam.jsx";
 
 const Home = () => {
   return (
@@ -75,6 +76,7 @@ const Home = () => {
       <Services />
       <Testimonial />
       <FrequentAsked />
+      <OurTeam />
     </>
   );
 };
