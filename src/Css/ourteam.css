@@ -1,0 +1,7 @@
+.our-team {
+  background-color: var(--light-green);
+}
+.team-card-holder {
+  border: 1px solid black;
+  width: 300px;
+}

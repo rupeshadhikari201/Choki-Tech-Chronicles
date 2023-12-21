@@ -1,8 +1,12 @@
-const OutTeam = () => {
+import "../Css/ourteam.css";
+
+const OurTeam = () => {
   return (
-    <div>
-      <h1>Meet Our Team</h1>
-      <p>gGet to Know talented individuals behind our company</p>
+    <section className="our-team">
+      <h1 className="text-center">Meet Our Team</h1>
+      <p className="text-center">
+        Get to Know talented individuals behind our company
+      </p>
       <div className="team-card-holder">
         <div className="card-3">
           <div>
@@ -15,8 +19,8 @@ const OutTeam = () => {
           <div className="cont"></div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default OutTeam;
+export default OurTeam;
