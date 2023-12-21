@@ -1,14 +1,14 @@
 import "../Css/testimonial.css";
-import img1 from "../assets/logo1.jpg";
+
 const Testimonial = () => {
   return (
-    <section className="testimonial-section px-3">
-      <div className="p-2 mb-4">
+    <section className="testimonial-section pb-3">
+      <div className="p-2 pt-1 mb-4">
         <h1 className="text-center">Testimonial</h1>
       </div>
       <div
-        className="testimonial-container
-      d-flex justify-content-center justify-content-sm-between 
+        className="testimonial-container px-3
+      d-flex justify-content-center justify-content-sm-around justify-content-md-around justify-content-lg-between 
       align-items-center
       "
       >
