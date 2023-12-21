@@ -1,8 +1,7 @@
 import Card from "react-bootstrap/Card";
 import "../App.css";
 import "../Css/Card.css";
-
-function BasicExample({ imgPath, title, description, goto }) {
+function BasicExample() {
   return (
     <Card style={{ width: "18rem" }} className="card">
       <Card.Img variant="top" src={imgPath} />
