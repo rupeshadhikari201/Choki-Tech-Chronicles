@@ -34,7 +34,7 @@ const Navbar = () => {
         >
           <li className=" text-decoration-none">
             <Link
-              to="/"
+              to="./"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -42,9 +42,9 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className="c">
+          <li className="">
             <Link
-              to="/services"
+              to="./services"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -52,9 +52,9 @@ const Navbar = () => {
               Services
             </Link>
           </li>
-          <li className="c">
+          <li className="">
             <Link
-              to="/products"
+              to="./products"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -62,9 +62,9 @@ const Navbar = () => {
               Products
             </Link>
           </li>
-          <li className="c">
+          <li className="">
             <Link
-              to="/team"
+              to="./team"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -72,9 +72,9 @@ const Navbar = () => {
               Team
             </Link>
           </li>
-          <li className="c">
+          <li className="">
             <Link
-              to="/blogs"
+              to="./blogs"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -87,7 +87,7 @@ const Navbar = () => {
       <div className="menu-bar " onClick={() => showMenu()}>
         {popMenu ? <MdClose size={30} /> : <MdMenu size={30} />}
       </div>
-      <div className="cta d-lg-flex gap login-btn-wrapper d-none ">
+      <div className="cta d-lg-flex gap login-btn-wrapper d-none gap-4 ">
         <button className="buttonlightgreen ">Login</button>
         <button className="buttongreen">Sign Up</button>
       </div>
