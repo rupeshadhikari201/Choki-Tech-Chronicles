@@ -2,7 +2,7 @@ import "../Css/testimonial.css";
 
 const Testimonial = () => {
   return (
-    <section className="testimonial-section pb-3">
+    <section className="testimonial-section pb-4">
       <div className="p-2 pt-1 mb-4">
         <h1 className="text-center">Testimonial</h1>
       </div>
