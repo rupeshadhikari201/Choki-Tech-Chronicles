@@ -1,9 +1,10 @@
 .card {
-	background-image: url(../assets/cardbackground.svg);
+  background-image: url(../assets/cardbackground.svg);
+  min-width: 250px !important;
 }
 .card-title {
-	color: #1c3d30;
-	font-weight: 48;
+  color: #1c3d30;
+  font-weight: 48;
 }
 .cart-text {
 }
