@@ -1,4 +1,15 @@
 .service-section {
-  background-color: rgb(191, 235, 190);
+  background-color: var(--light-green);
   min-height: 100vh;
+}
+.card-holder {
+  overflow-x: scroll;
+}
+.card-holder::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+}
+@media screen and (max-width: 800px) {
+  .card-holder {
+  }
 }
