@@ -11,7 +11,7 @@
   margin-top: 10px;
   width: 4px;
   height: 5px;
-  background-color: white;
+  background-color: var(--light-green);
 }
 .team-card-holder::-webkit-scrollbar-thumb {
   background: var(--light-lime);
