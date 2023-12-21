@@ -3,6 +3,8 @@ import heroImg from "../assets/hero_img.png";
 import heroBackground from "../assets/hero_background.png";
 import Navbar from "../Components/Navbar.jsx";
 import { MdArrowForward } from "react-icons/md";
+import Services from "./Services.jsx";
+
 const Home = () => {
   return (
     <>
@@ -41,6 +43,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Services />
     </>
   );
 };
