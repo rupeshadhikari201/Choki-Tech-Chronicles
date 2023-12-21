@@ -1,6 +1,5 @@
 .service-section {
   background-color: var(--light-green);
-  min-height: 100vh;
 }
 .card-holder {
   overflow-x: scroll;

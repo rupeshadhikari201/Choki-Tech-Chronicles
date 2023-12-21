@@ -3,7 +3,7 @@ import "../Css/service.css";
 import research from "../assets/scientific-research.png";
 const Sevices = () => {
   return (
-    <div className="service-section pb-1 pb-md-5 pt-3">
+    <div className="service-section pb-4 pb-md-5 pt-3">
       <div className="d-flex justify-content-center align-items-center">
         <h1 className="text-center p-3">Our Services</h1>
         <div className="d-none d-md-block">
