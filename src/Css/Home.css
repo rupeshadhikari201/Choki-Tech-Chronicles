@@ -64,7 +64,7 @@
   padding: 20px 25px;
   border-radius: 30px;
   margin: 100px auto;
-  background-color: #5ecc5c;
+  background-color: var(--primary-green);
   outline: none;
   border: none;
   color: #eff0e1;
@@ -85,7 +85,7 @@
   background-color: #ffffff;
   outline: none;
   border: none;
-  color: #5ffc57;
+  color: var(--primary-green);
   font-weight: bold;
   cursor: pointer;
 }
