@@ -1,19 +1,22 @@
 import Card from "react-bootstrap/Card";
 import "../App.css";
-import "../Css/Card.Css";
-function BasicExample() {
+import "../Css/Card.css";
+
+function BasicExample({ imgPath, title, description, goto }) {
   return (
     <Card style={{ width: "18rem" }} className="card">
-      <Card.Img variant="top" src="../assets/cardone.svg" />
+      <Card.Img variant="top" src={imgPath} />
       <Card.Body>
-        <Card.Title className="card-title">Web Development</Card.Title>
-        <Card.Text className="card-text">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-          ever since the 1500s
-        </Card.Text>
+        <Card.Title className="card-title">{title}</Card.Title>
+        <Card.Text className="card-text">{description}</Card.Text>
 
-        <button className="buttongreencard"> Click</button>
+        <button
+          className="buttongreencard"
+          onClick={() => console.log("clicked")}
+        >
+          {" "}
+          Click
+        </button>
       </Card.Body>
     </Card>
   );
