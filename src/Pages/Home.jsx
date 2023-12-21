@@ -5,6 +5,8 @@ import Navbar from "../Components/Navbar.jsx";
 import { MdArrowForward } from "react-icons/md";
 import Services from "./Services.jsx";
 import { TypeAnimation } from "react-type-animation";
+import Testimonial from "./Testimonial.jsx";
+import FrequentAsked from "./FrequentAsked.jsx";
 
 const Home = () => {
   return (
@@ -71,6 +73,8 @@ const Home = () => {
         </div> */}
       </div>
       <Services />
+      <Testimonial />
+      <FrequentAsked />
     </>
   );
 };
