@@ -2,9 +2,23 @@
   background-color: var(--light-green);
 }
 .team-card-holder {
+  max-width: 900px;
+  margin: 10px auto;
+  overflow-x: scroll;
+  padding-bottom: 10px;
+}
+.team-card-holder::-webkit-scrollbar {
+  margin-top: 10px;
+  width: 4px;
+  height: 5px;
+  background-color: white;
+}
+.team-card-holder::-webkit-scrollbar-thumb {
+  background: var(--light-lime);
 }
 .card-3 {
-  width: 300px;
+  width: 250px;
+  flex-shrink: 0;
 }
 .card-3-img {
   height: 200px;
@@ -17,4 +31,19 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+.card-3-icon-wrapper {
+  max-width: 200px;
+  background-color: var(--light-lime);
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+.card-3-icon-wrapper .icon {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 890px) {
+  .team-card-holder {
+    width: 80%;
+  }
 }
