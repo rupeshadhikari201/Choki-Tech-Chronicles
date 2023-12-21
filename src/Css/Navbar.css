@@ -42,6 +42,7 @@
   .nav-container .center ul {
     display: flex;
     position: fixed;
+    z-index: 100;
     flex-direction: column;
     left: -100%;
     top: 0;
