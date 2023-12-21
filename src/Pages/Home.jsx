@@ -4,6 +4,7 @@ import heroBackground from "../assets/hero_background.png";
 import Navbar from "../Components/Navbar.jsx";
 import { MdArrowForward } from "react-icons/md";
 import Services from "./Services.jsx";
+import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   return (
@@ -11,15 +12,41 @@ const Home = () => {
       <div className="home">
         <Navbar />
         <div className="hero d-flex ">
-          <div>
+          <div className="mx-4">
             <p
               className="hero-text
 			 text-center 
 			
 			"
             >
-              Woriried About your Education Chors? Your are at the right place
+              Looking for a place where you can make Education easy
             </p>
+            <div className="typer-text">
+              <TypeAnimation
+                sequence={[
+                  // Same substring at the start will only be typed out once, initially
+                  "Worried ",
+                  1000, // wait 1s before replacing "Mice" with "Hamsters"
+                  "Worried About your",
+                  1000,
+                  "Worried About your Eduction",
+                  1000,
+                  "Your are",
+                  1000,
+                  "Your are at the",
+                  1000,
+                  "Your are at the right place",
+                  1000,
+                ]}
+                wrapper="span"
+                speed={1}
+                style={{
+                  fontSize: "2em",
+                  display: "inline-block",
+                }}
+                repeat={Infinity}
+              />
+            </div>
             <div className="btn-custom-white ">
               <p>Let&apos;s Start</p>
               <MdArrowForward size={30} />
@@ -36,12 +63,12 @@ const Home = () => {
             />
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="btn-custom ">
             <p>Let&apos;s Start</p>
             <MdArrowForward size={30} />
           </div>
-        </div>
+        </div> */}
       </div>
       <Services />
     </>
