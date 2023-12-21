@@ -1,4 +1,4 @@
-import Card from "../Components/Card.jsx";
+import Cards from "../Components/Card.jsx";
 import "../Css/service.css";
 const Sevices = () => {
   return (
@@ -11,21 +11,21 @@ const Sevices = () => {
 	 flex-wrap
 	  `}
       >
-        <Card
+        <Cards
           title={"Web Development"}
           description={`Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry&apos;s standard dummy text
           ever since the 1500s`}
           imgPath={"./cardone.png"}
         />
-        <Card
+        <Cards
           title={"Web Development"}
           description={`Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry&apos;s standard dummy text
           ever since the 1500s`}
           imgPath={"./cardtwo.svg"}
         />
-        <Card
+        <Cards
           title={"Web Development"}
           description={`Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry&apos;s standard dummy text
