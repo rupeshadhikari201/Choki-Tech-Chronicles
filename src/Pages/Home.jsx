@@ -8,6 +8,7 @@ import { TypeAnimation } from "react-type-animation";
 import Testimonial from "./Testimonial.jsx";
 import FrequentAsked from "./FrequentAsked.jsx";
 import OurTeam from "./OurTeam.jsx";
+import Footer from "./Footer.jsx";
 
 const Home = () => {
   return (
@@ -77,6 +78,7 @@ const Home = () => {
       <Testimonial />
       <FrequentAsked />
       <OurTeam />
+      <Footer />
     </>
   );
 };
