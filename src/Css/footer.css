@@ -1,0 +1,23 @@
+.footer-section {
+  /* background-color: var(--light-green); */
+  background: linear-gradient(0deg, rgb(0, 191, 111), rgb(11, 209, 109) 90%);
+}
+
+.footer-nav ul {
+  list-style-type: none;
+}
+.footer-nav ul li {
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  font-size: 20px;
+  padding: 5px;
+  color: rgb(28, 61, 48);
+  font-weight: bold;
+}
+.footer-section {
+  padding-top: 50px;
+}
+.footer-get-in-touch .icons {
+  max-width: 300px;
+  margin: 0px auto;
+}
