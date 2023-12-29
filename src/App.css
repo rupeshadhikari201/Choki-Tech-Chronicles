@@ -87,3 +87,19 @@ body {
   /* inset: 0;
 	margin-top: auto; */
 }
+.cursor-pointer {
+  cursor: pointer;
+}
+.link {
+  color: var(--text-white-variant-1);
+  text-decoration: none;
+}
+.text-md {
+  font-size: var(--text-md);
+}
+
+@media screen and (max-width: 512px) {
+  :root {
+    --text-md: 18px;
+  }
+}

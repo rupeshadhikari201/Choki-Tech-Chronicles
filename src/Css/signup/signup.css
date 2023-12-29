@@ -29,10 +29,8 @@
 .input-form-control:active {
   border: 1px solid var(--green-variant-2);
 }
-.btn-signup {
-  text-transform: uppercase;
+.font-500 {
   font-weight: 500;
-  margin: 30px auto;
 }
 
 .green-varient-2 {

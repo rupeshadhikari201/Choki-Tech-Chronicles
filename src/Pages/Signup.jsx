@@ -9,6 +9,7 @@ import {
 import "../Css/signup/signup.css";
 import TextField from "../Components/text_input/textField";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Signup = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -46,15 +47,35 @@ const Signup = () => {
       <div
         className="bg-white
       d-flex 
-      
+      rounded 
       "
         style={{
           maxWidth: "90%",
         }}
       >
-        <div className="signup-right-side col p-4 d-none d-md-block">
+        <div
+          className="signup-right-side col p-4 d-none d-md-flex flex-column justify-content-center
+        align-items-center"
+        >
           <h1>Welcome To CIT!</h1>
           <p>place where you can find solutions related to accademic work</p>
+          <div
+            className="
+          btn-custom
+          height-xsm
+          text-md
+          bg-transparent
+          border
+          cursor-pointer
+          mt-4
+          green-varient-2-hover
+          mb-2
+          "
+          >
+            <Link className="link" to="./signin">
+              SIGN IN{" "}
+            </Link>
+          </div>
         </div>
 
         {/* SIGN UP LEFT SIDE */}
@@ -69,6 +90,7 @@ const Signup = () => {
               textAlign: "center",
               fontWeight: "bolder",
             }}
+            className="mb-4"
           >
             {" "}
             SIGN UP
@@ -181,11 +203,15 @@ const Signup = () => {
             style={{
               fontSize: "var(--text-md)",
             }}
-            className="btn-custom btn-signup
+            className="btn-custom 
+            font-500
             green-varient-2
             green-varient-2-hover
             height-xsm
             mb-2
+            mt-3
+            text-md
+            text-uppercase
             "
           >
             signup
@@ -201,17 +227,23 @@ const Signup = () => {
             Or
           </div>
           <div
-            className="btn-custom btn-signup dark-green
+            className="btn-custom  dark-green
             dark-green-hover
           height-xsm
-          cursor-na
           mt-2
+          mb-4
+         d-flex
+         align-items-center
+          text-md
+           align-items-center
+           justify-content-around
           "
           >
             <FaGoogle />
             <p
+              className="font-500 mb-1 p-0"
               style={{
-                fontSize: "var(--text-md)",
+                marginBlockStart: "0px",
               }}
             >
               sign up with Google
