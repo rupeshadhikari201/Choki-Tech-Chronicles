@@ -54,7 +54,7 @@ const Navbar = () => {
           </li>
           <li className="">
             <Link
-              to="./products"
+              to="./"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -64,7 +64,7 @@ const Navbar = () => {
           </li>
           <li className="">
             <Link
-              to="./team"
+              to="#team"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -72,7 +72,7 @@ const Navbar = () => {
               Team
             </Link>
           </li>
-          <li className="">
+          <li className="blogs">
             <Link
               to="./blogs"
               className="text-decoration-none"
@@ -88,8 +88,17 @@ const Navbar = () => {
         {popMenu ? <MdClose size={30} /> : <MdMenu size={30} />}
       </div>
       <div className="cta d-lg-flex gap login-btn-wrapper d-none gap-4 ">
-        <button className="buttonlightgreen ">Login</button>
-        <button className="buttongreen">Sign Up</button>
+        <Link
+          to={"./signin"}
+          className="buttonlightgreen link
+        text-black-variant-1
+        "
+        >
+          Login
+        </Link>
+        <Link to={"./signup"} className="buttongreen link">
+          Sign Up
+        </Link>
       </div>
     </Container>
   );
