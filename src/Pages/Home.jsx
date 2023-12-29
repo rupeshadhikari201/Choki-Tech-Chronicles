@@ -9,7 +9,12 @@ import Testimonial from "../Components/home/Testimonial.jsx";
 import FrequentAsked from "../Components/home/FrequentAsked.jsx";
 import OurTeam from "../Components/home/OurTeam.jsx";
 import Footer from "../Components/home/Footer.jsx";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const navigate = useNavigate();
+  const change = () => {
+    navigate("./signup");
+  };
   return (
     <>
       <div className="home">
@@ -27,9 +32,8 @@ const Home = () => {
             <div className="typer-text">
               <TypeAnimation
                 sequence={[
-                  // Same substring at the start will only be typed out once, initially
                   "Worried ",
-                  1000, // wait 1s before replacing "Mice" with "Hamsters"
+                  1000,
                   "Worried About your",
                   1000,
                   "Worried About your Eduction",
@@ -50,7 +54,7 @@ const Home = () => {
                 repeat={Infinity}
               />
             </div>
-            <div className="btn-custom-white ">
+            <div className="btn-custom-white " onClick={() => change()}>
               <p>Let&apos;s Start</p>
               <MdArrowForward size={30} />
             </div>
