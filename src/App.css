@@ -11,6 +11,10 @@
   --primary-green: #5ecc5c;
   --green-hover: rgba(94, 204, 92, 0.456);
   --light-lime: rgb(158, 224, 157);
+  --green-variant-2: rgb(58, 193, 101);
+  --green-variant-3: rgb(0, 191, 111);
+  --dark-green: rgb(28, 61, 48);
+  --green-secondry: rgb(0, 191, 111);
 }
 body {
   font-family: "Inter", sans-serif;
