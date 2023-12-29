@@ -1,0 +1,34 @@
+.signup-right-side {
+  background: linear-gradient(
+    to top,
+    var(--green-variant-2),
+    var(--green-variant-3)
+  );
+  color: white;
+}
+
+.signup-left-side {
+}
+.custom-input {
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+.input-form-control {
+  border: 0.2px solid var(--light-green);
+  border-radius: 5px;
+  overflow: hidden;
+  padding-left: 5px;
+}
+
+.input-form-control:active {
+  border: 1px solid var(--green-variant-2);
+}
+.btn-signup {
+  height: 50px;
+  background-color: var(--green-variant-2);
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 25px;
+  margin: 30px auto;
+}
