@@ -20,7 +20,7 @@ const OurTeam = () => {
       </p>
       <div className="team-card-holder d-flex justify-content-start gap-4">
         <TeamCard
-          name={"Choki Dorgi"}
+          name={"Choki Dorji"}
           position={"Founder and CEO of"}
           description={` Lorem Ipsum is simply dummy text of the printing and typesetting
           industry.`}
