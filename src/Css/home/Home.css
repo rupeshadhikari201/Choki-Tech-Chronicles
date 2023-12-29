@@ -1,5 +1,5 @@
 .home {
-  background-image: url("../../assets/background2.svg");
+  background: var(--home-background);
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;

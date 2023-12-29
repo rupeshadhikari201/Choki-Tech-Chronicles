@@ -5,7 +5,7 @@ const Sevices = () => {
   return (
     <div className="service-section pb-4 pb-md-5 pt-3">
       <div className="d-flex justify-content-center align-items-center">
-        <h1 className="text-center p-3">Our Services</h1>
+        <h1 className="text-center p-3 text-black-variant-1">Our Services</h1>
         <div className="d-none d-md-block">
           <img alt="research" src={research} />
         </div>

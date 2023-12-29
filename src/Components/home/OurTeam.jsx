@@ -4,8 +4,18 @@ import "../../Css/home/ourteam.css";
 const OurTeam = () => {
   return (
     <section className="our-team px-3 pb-3">
-      <h1 className="text-center">Meet Our Team</h1>
-      <p className="text-center">
+      <h1
+        className="text-center
+      text-black-variant-1
+      "
+      >
+        Meet Our Team
+      </h1>
+      <p
+        className="text-center
+      text-black-variant-2
+      "
+      >
         Get to Know talented individuals behind our company
       </p>
       <div className="team-card-holder d-flex justify-content-start gap-4">

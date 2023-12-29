@@ -7,9 +7,15 @@ const TeamCard = ({ name, position, description, img }) => {
         <img src={img} alt="team-member" />
       </div>
       <div className="card-3-body">
-        <h1>{name}</h1>
-        <h6 className="mb-3">{position}</h6>
-        <p>{description}</p>
+        <h1 className="text-black-variant-1">{name}</h1>
+        <h6
+          className="mb-3
+        text-black-variant-1
+        "
+        >
+          {position}
+        </h6>
+        <p className="text-black-variant-2">{description}</p>
       </div>
       <div className="card-3-icon-wrapper d-flex justify-content-around">
         <FaGithub className="icon" size={30} />

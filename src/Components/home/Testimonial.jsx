@@ -4,7 +4,13 @@ const Testimonial = () => {
   return (
     <section className="testimonial-section pb-4">
       <div className="p-2 pt-1 mb-4">
-        <h1 className="text-center">Testimonial</h1>
+        <h1
+          className="text-center
+        text-black-variant-1
+        "
+        >
+          Testimonial
+        </h1>
       </div>
       <div
         className="testimonial-container px-3

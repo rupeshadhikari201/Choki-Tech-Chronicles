@@ -24,12 +24,16 @@ const Home = () => {
             <p
               className="hero-text
 			 text-center 
-			
+			 text-black-variant-1
 			"
             >
               Looking for a place where you can make Education easy
             </p>
-            <div className="typer-text">
+            <div
+              className="typer-text
+            text-black-variant-2
+            "
+            >
               <TypeAnimation
                 sequence={[
                   "Worried ",

@@ -2,7 +2,13 @@ import "../../Css/home/frequentAsked.css";
 const FrequentAsked = () => {
   return (
     <section className="section-frequently p-2 pb-4">
-      <h1 className="text-center mb-4">Frequently Asked Quesiton</h1>
+      <h1
+        className="text-center mb-4
+      text-black-variant-1
+      "
+      >
+        Frequently Asked Quesiton
+      </h1>
       <div className="quesiton-list">
         <div className="accordion accordion-flush" id="accordionFlushExample">
           <div className="accordion-item">

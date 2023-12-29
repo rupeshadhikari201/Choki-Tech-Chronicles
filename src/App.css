@@ -7,6 +7,7 @@
   margin: 0;
 }
 :root {
+  --home-background: url("./assets/background2.svg");
   --light-green: rgb(191, 235, 190);
   --light-green-border: rgb(191, 235, 190);
   --primary-green: #5ecc5c;
@@ -22,7 +23,9 @@
   --text-md: 20px;
   --text-lg: 25px;
   --text-xlg: 30px;
+  --text-xxlg: 40px;
   --text-black-variant-1: rgb(0, 0, 0);
+  --text-black-varaint-2: rgb(0, 0, 0);
   --text-white-variant-1: rgb(255, 255, 255);
   --height-xsm: 50px;
   --height-sm: 70px;
@@ -33,11 +36,13 @@
   --gray-200: rgb(255, 255, 255);
 }
 .dark-theme {
+  --home-background: rgb(23, 48, 38);
   --light-green: var(--dark-green);
   --white-variant-1: var(--black-variant-2);
   --light-green-border: var(--gray-200);
   --text-black-variant-1: rgb(218, 218, 218);
-  --text-white-variant-1: rgb(57, 57, 57);
+  --text-white-variant-1: rgb(31, 31, 31);
+  --text-black-variant-2: rgb(194, 194, 194);
 }
 body {
   font-family: "Inter", sans-serif;
@@ -96,6 +101,12 @@ body {
 }
 .text-md {
   font-size: var(--text-md);
+}
+.text-black-variant-2 {
+  color: var(--text-black-variant-2);
+}
+.text-black-variant-1 {
+  color: var(--text-black-variant-1);
 }
 
 @media screen and (max-width: 512px) {

@@ -58,7 +58,13 @@ const Signup = () => {
         align-items-center"
         >
           <h1>Welcome To CIT!</h1>
-          <p>place where you can find solutions related to accademic work</p>
+          <p
+            style={{
+              fontWeight: "500",
+            }}
+          >
+            place where you can find solutions related to accademic work
+          </p>
           <div
             className="
           btn-custom
