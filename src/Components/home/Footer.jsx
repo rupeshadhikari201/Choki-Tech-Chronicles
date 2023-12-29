@@ -4,7 +4,7 @@ import {
   FaLinkedin,
   FaYoutube,
 } from "react-icons/fa6";
-import "../Css/footer.css";
+import "../../Css/home/footer.css";
 
 const Footer = () => {
   return (

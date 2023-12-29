@@ -1,15 +1,14 @@
-import "../Css/Home.css";
+import "../Css/home/Home.css";
 import heroImg from "../assets/hero_img.png";
 import heroBackground from "../assets/hero_background.png";
 import Navbar from "../Components/Navbar.jsx";
 import { MdArrowForward } from "react-icons/md";
-import Services from "./Services.jsx";
 import { TypeAnimation } from "react-type-animation";
-import Testimonial from "./Testimonial.jsx";
-import FrequentAsked from "./FrequentAsked.jsx";
-import OurTeam from "./OurTeam.jsx";
-import Footer from "./Footer.jsx";
-
+import Services from "../Components/home/Services.jsx";
+import Testimonial from "../Components/home/Testimonial.jsx";
+import FrequentAsked from "../Components/home/FrequentAsked.jsx";
+import OurTeam from "../Components/home/OurTeam.jsx";
+import Footer from "../Components/home/Footer.jsx";
 const Home = () => {
   return (
     <>

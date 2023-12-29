@@ -1,4 +1,4 @@
-import "../Css/frequentAsked.css";
+import "../../Css/home/frequentAsked.css";
 const FrequentAsked = () => {
   return (
     <section className="section-frequently p-2 pb-4">

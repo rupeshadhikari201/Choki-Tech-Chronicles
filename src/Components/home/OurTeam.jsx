@@ -1,5 +1,5 @@
-import TeamCard from "../Components/TeamCard";
-import "../Css/ourteam.css";
+import TeamCard from "../TeamCard";
+import "../../Css/home/ourteam.css";
 
 const OurTeam = () => {
   return (

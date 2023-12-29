@@ -1,6 +1,6 @@
-import Cards from "../Components/Card.jsx";
-import "../Css/service.css";
-import research from "../assets/scientific-research.png";
+import Cards from "../Card.jsx";
+import "../../Css/home/service.css";
+import research from "../../assets/scientific-research.png";
 const Sevices = () => {
   return (
     <div className="service-section pb-4 pb-md-5 pt-3">
