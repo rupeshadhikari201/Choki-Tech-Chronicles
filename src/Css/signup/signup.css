@@ -4,19 +4,22 @@
     var(--green-variant-2),
     var(--green-variant-3)
   );
-  color: white;
+  color: var(--text-white-variant-1);
 }
 
 .signup-left-side {
+  background-color: var(--white-variant-1);
 }
 .custom-input {
   border: none;
   outline: none;
   padding: 10px;
   width: 100%;
+  background-color: transparent;
+  color: var(--text-black-variant-1);
 }
 .input-form-control {
-  border: 0.2px solid var(--light-green);
+  border: 0.2px solid var(--light-green-border);
   border-radius: 5px;
   overflow: hidden;
   padding-left: 5px;
@@ -35,8 +38,14 @@
 .green-varient-2 {
   background-color: var(--green-variant-2);
 }
+.green-varient-2-hover:hover {
+  background-color: var(--green-variant-2-hover);
+}
 .dark-green {
   background-color: var(--dark-green);
+}
+.dark-green-hover:hover {
+  background-color: var(--dark-green-hover);
 }
 .height-xsm {
   height: var(--height-xsm);

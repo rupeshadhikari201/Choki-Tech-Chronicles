@@ -8,19 +8,36 @@
 }
 :root {
   --light-green: rgb(191, 235, 190);
+  --light-green-border: rgb(191, 235, 190);
   --primary-green: #5ecc5c;
   --green-hover: rgba(94, 204, 92, 0.456);
   --light-lime: rgb(158, 224, 157);
   --green-variant-2: rgb(58, 193, 101);
+  --green-variant-2-hover: rgb(48, 153, 81);
   --green-variant-3: rgb(0, 191, 111);
   --dark-green: rgb(28, 61, 48);
+  --dark-green-hover: rgb(18, 40, 31);
   --green-secondry: rgb(0, 191, 111);
   --text-sm: 16px;
   --text-md: 20px;
   --text-lg: 25px;
   --text-xlg: 30px;
+  --text-black-variant-1: rgb(0, 0, 0);
+  --text-white-variant-1: rgb(255, 255, 255);
   --height-xsm: 50px;
   --height-sm: 70px;
+  --white-variant-1: rgb(255, 255, 255);
+  --black-variant-1: rgb(0, 0, 0);
+  --black-variant-2: rgb(32, 32, 32);
+
+  --gray-200: rgb(255, 255, 255);
+}
+.dark-theme {
+  --light-green: var(--dark-green);
+  --white-variant-1: var(--black-variant-2);
+  --light-green-border: var(--gray-200);
+  --text-black-variant-1: rgb(218, 218, 218);
+  --text-white-variant-1: rgb(57, 57, 57);
 }
 body {
   font-family: "Inter", sans-serif;

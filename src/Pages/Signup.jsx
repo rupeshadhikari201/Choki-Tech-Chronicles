@@ -167,7 +167,11 @@ const Signup = () => {
             gap-2"
             >
               <input type="checkbox" />
-              <label>
+              <label
+                style={{
+                  color: "var(--text-black-variant-1)",
+                }}
+              >
                 {" "}
                 i agree <a>term & condition</a>
               </label>
@@ -179,6 +183,7 @@ const Signup = () => {
             }}
             className="btn-custom btn-signup
             green-varient-2
+            green-varient-2-hover
             height-xsm
             mb-2
             "
@@ -189,12 +194,17 @@ const Signup = () => {
             className="d-flex
           justify-content-center
           "
+            style={{
+              color: "var(--text-black-variant-1)",
+            }}
           >
             Or
           </div>
           <div
             className="btn-custom btn-signup dark-green
+            dark-green-hover
           height-xsm
+          cursor-na
           mt-2
           "
           >

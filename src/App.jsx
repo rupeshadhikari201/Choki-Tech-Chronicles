@@ -3,9 +3,20 @@ import Home from "./Pages/Home.jsx";
 import Services from "./Components/home/Services.jsx";
 import "bootstrap/dist/js/bootstrap.esm.js";
 import Signup from "./Pages/Signup.jsx";
+import { useEffect, useState } from "react";
 const App = () => {
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setIsDark(true);
+      console.log("is dark mode! true");
+    } else {
+      setIsDark(false);
+      console.log("is dark mode false");
+    }
+  }, []);
   return (
-    <div>
+    <div className={isDark ? "dark-theme" : "light-theme"}>
       <BrowserRouter>
         <Routes>
           <Route path="Choki-Tech-Chronicles/" element={<Home />} />
