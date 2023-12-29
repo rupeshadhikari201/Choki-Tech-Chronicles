@@ -15,6 +15,12 @@
   --green-variant-3: rgb(0, 191, 111);
   --dark-green: rgb(28, 61, 48);
   --green-secondry: rgb(0, 191, 111);
+  --text-sm: 16px;
+  --text-md: 20px;
+  --text-lg: 25px;
+  --text-xlg: 30px;
+  --height-xsm: 50px;
+  --height-sm: 70px;
 }
 body {
   font-family: "Inter", sans-serif;
