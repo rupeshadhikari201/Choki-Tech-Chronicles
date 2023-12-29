@@ -1,7 +1,19 @@
-import { FaEnvelope, FaKey, FaPerson, FaUser } from "react-icons/fa6";
+import {
+  FaEnvelope,
+  FaEye,
+  FaEyeSlash,
+  FaGoogle,
+  FaKey,
+  FaUser,
+} from "react-icons/fa6";
 import "../Css/signup/signup.css";
+import TextField from "../Components/text_input/textField";
+import { useState } from "react";
 const Signup = () => {
   const icon_color = "#87A781";
+  const [inputData, setInputData] = useState({});
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const input_list = [
     {
       placeHolder: "Email",
@@ -11,11 +23,13 @@ const Signup = () => {
     {
       placeHolder: "Password",
       icon: <FaKey color={icon_color} />,
+      surfix_icon: <FaEye color={icon_color} />,
       type: "password",
     },
     {
       placeHolder: "Confirm Password",
       icon: <FaKey color={icon_color} />,
+      surfix_icon: <FaEye color={icon_color} />,
       type: "password",
     },
   ];
@@ -94,23 +108,60 @@ const Signup = () => {
               </div>
             </div>
             {/* End of first and last name */}
-            {input_list.map((item, index) => (
-              <div key={index}>
-                <div
-                  className="d-flex
-              align-items-center
-              input-form-control
-              "
-                >
-                  {item.icon}
-                  <input
-                    type={item.type}
-                    placeholder={item.placeHolder}
-                    className="custom-input"
+            <TextField
+              type={"email"}
+              surfix_icon={""}
+              prefix_icon={<FaEnvelope color={icon_color} />}
+              placeHolder={"Email"}
+              onChange={(e) =>
+                setInputData({ ...inputData, [e.target.name]: e.target.value })
+              }
+              name={"email"}
+            />
+            <TextField
+              type={showPassword ? "text" : "password"}
+              surfix_icon={
+                showPassword ? (
+                  <FaEye
+                    color={icon_color}
+                    onClick={() => setShowPassword(!showPassword)}
                   />
-                </div>
-              </div>
-            ))}
+                ) : (
+                  <FaEyeSlash
+                    onClick={() => setShowPassword(!showPassword)}
+                    color={icon_color}
+                  />
+                )
+              }
+              placeHolder={"Password"}
+              prefix_icon={<FaKey color={icon_color} />}
+              name={"password"}
+              onChange={(e) =>
+                setInputData({ ...inputData, [e.target.name]: e.target.value })
+              }
+            />
+            <TextField
+              type={showConfirm ? "text" : "password"}
+              surfix_icon={
+                showConfirm ? (
+                  <FaEye
+                    color={icon_color}
+                    onClick={() => setShowConfirm(!showConfirm)}
+                  />
+                ) : (
+                  <FaEyeSlash
+                    onClick={() => setShowConfirm(!showConfirm)}
+                    color={icon_color}
+                  />
+                )
+              }
+              placeHolder={"Confirm Password"}
+              prefix_icon={<FaKey color={icon_color} />}
+              name={"confirmPassword"}
+              onChange={(e) =>
+                setInputData({ ...inputData, [e.target.name]: e.target.value })
+              }
+            />
             <div
               className="d-flex align-items-center
             gap-2"
@@ -122,12 +173,40 @@ const Signup = () => {
               </label>
             </div>
           </div>
-          <button className="btn-custom btn-signup">signup</button>
+          <button
+            style={{
+              fontSize: "var(--text-md)",
+            }}
+            className="btn-custom btn-signup
+            green-varient-2
+            height-xsm
+            mb-2
+            "
+          >
+            signup
+          </button>
           <div
             className="d-flex
           justify-content-center
           "
-          ></div>
+          >
+            Or
+          </div>
+          <div
+            className="btn-custom btn-signup dark-green
+          height-xsm
+          mt-2
+          "
+          >
+            <FaGoogle />
+            <p
+              style={{
+                fontSize: "var(--text-md)",
+              }}
+            >
+              sign up with Google
+            </p>
+          </div>
         </div>
 
         {/* END OF LEFT SIDE */}
