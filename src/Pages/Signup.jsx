@@ -52,8 +52,12 @@ const Signup = () => {
     if (!isPasswordStrong(userData.password)) {
       setValidPassword(false);
       valid = false;
-    } else setValidEmail(true);
+    } else setValidPassword(true);
     //
+    if (!userData.password || userData.confirmPassword != userData.password) {
+      setValidConfirm(false);
+      valid = false;
+    } else setValidConfirm(true);
     if (valid) {
       console.log("Authenticaiton is valid");
     }
