@@ -5,14 +5,34 @@ import {
   FaGoogle,
   FaKey,
 } from "react-icons/fa6";
-import "../Css/signup/signup.css";
+import "../Css/auth/signup.css";
 import TextField from "../Components/text_input/textField";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  isEmailValid,
+  isPasswordStrong,
+  path_to_signup,
+} from "../helper/helper";
 const Signin = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [validEmail, setValidEmail] = useState(true);
+  const [validPassword, setValidPassword] = useState(true);
+  const onSubmit = () => {
+    validate(inputData);
+  };
+
+  const validate = (userData) => {
+    if (!isEmailValid(userData.email)) {
+      setValidEmail(false);
+    } else setValidEmail(true);
+    if (!isPasswordStrong(userData.password)) {
+      setValidPassword(false);
+    } else setValidPassword(true);
+  };
+
   return (
     <div
       style={{
@@ -27,10 +47,8 @@ const Signin = () => {
         className="bg-white
         d-flex 
         rounded 
+        sign-wrapper
         "
-        style={{
-          maxWidth: "90%",
-        }}
       >
         <div
           className="signup-right-side col p-4 d-none d-md-flex flex-column justify-content-center
@@ -57,15 +75,15 @@ const Signin = () => {
              green-varient-2-hover
              mb-2
             "
-            to="/Choki-Tech-Chronicles/signup"
+            to={path_to_signup}
           >
             SIGN UP{" "}
           </Link>
         </div>
 
-        {/* SIGN UP LEFT SIDE */}
+        {/* SIGN IN LEFT SIDE */}
         <div
-          className="signup-left-side col p-4
+          className="signin-left-side col p-4
           
           "
         >
@@ -94,6 +112,8 @@ const Signin = () => {
                 setInputData({ ...inputData, [e.target.name]: e.target.value })
               }
               name={"email"}
+              isValid={validEmail}
+              errorMessage={"Inavalid Email"}
             />
             <TextField
               type={showPassword ? "text" : "password"}
@@ -116,12 +136,14 @@ const Signin = () => {
               onChange={(e) =>
                 setInputData({ ...inputData, [e.target.name]: e.target.value })
               }
+              isValid={validPassword}
+              errorMessage={"incorrect password"}
             />
           </div>
+          <span className="d-block d-md-none mt-1 text-end text-black-variant-1">
+            create new account?<Link to={path_to_signup}>sign up here</Link>
+          </span>
           <button
-            style={{
-              fontSize: "var(--text-md)",
-            }}
             className="btn-custom 
               font-500
               green-varient-2
@@ -129,11 +151,12 @@ const Signin = () => {
               height-xsm
               mb-2
               mt-3
-              text-md
+              text-sm
               text-uppercase
               "
+            onClick={onSubmit}
           >
-            signup
+            sign in
           </button>
           <div
             className="d-flex
@@ -152,10 +175,10 @@ const Signin = () => {
             mt-2
             mb-4
            d-flex
-           align-items-center
-            text-md
+            text-sm
              align-items-center
-             justify-content-around
+             justify-content-center
+             gap-2
             "
           >
             <FaGoogle />
