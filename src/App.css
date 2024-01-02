@@ -19,6 +19,7 @@
   --dark-green: rgb(28, 61, 48);
   --dark-green-hover: rgb(18, 40, 31);
   --green-secondry: rgb(0, 191, 111);
+  --text-xsm: 12px;
   --text-sm: 16px;
   --text-md: 20px;
   --text-lg: 25px;
@@ -102,13 +103,24 @@ body {
 .text-md {
   font-size: var(--text-md);
 }
+.text-sm {
+  font-size: var(--text-sm);
+}
 .text-black-variant-2 {
   color: var(--text-black-variant-2);
 }
 .text-black-variant-1 {
   color: var(--text-black-variant-1);
 }
-
+.text-error {
+  color: rgb(206, 4, 4);
+}
+.text-xsm {
+  font-size: var(--text-xsm);
+}
+.red-border {
+  border-color: rgb(206, 4, 4) !important;
+}
 @media screen and (max-width: 512px) {
   :root {
     --text-md: 18px;
