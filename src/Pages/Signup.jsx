@@ -6,10 +6,16 @@ import {
   FaKey,
   FaUser,
 } from "react-icons/fa6";
-import "../Css/signup/signup.css";
+import "../Css/auth/signup.css";
 import TextField from "../Components/text_input/textField";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  isEmailValid,
+  isNameValid,
+  isPasswordStrong,
+  path_to_signin,
+} from "../helper/helper";
 const Signup = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -52,19 +58,7 @@ const Signup = () => {
       console.log("Authenticaiton is valid");
     }
   };
-  const isPasswordStrong = (password) => {
-    if (!password) return false;
-    return true;
-  };
-  const isEmailValid = (email) => {
-    if (!email) return false;
-    return true;
-  };
-  const isNameValid = (name) => {
-    if (!name || name.length < 2) return false;
 
-    return true;
-  };
   return (
     <div
       style={{
@@ -109,7 +103,7 @@ const Signup = () => {
              green-varient-2-hover
              mb-2
             "
-            to="/Choki-Tech-Chronicles/signin"
+            to={path_to_signin}
           >
             SIGN IN{" "}
           </Link>
@@ -292,6 +286,9 @@ const Signup = () => {
               </label>
             </div>
           </div>
+          <span className="d-block d-md-none text-end text-black-variant-1">
+            already created <Link to={path_to_signin}>sign in here</Link>{" "}
+          </span>
           <button
             className="btn-custom 
             font-500
