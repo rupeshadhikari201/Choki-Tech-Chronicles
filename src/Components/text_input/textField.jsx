@@ -5,14 +5,24 @@ const TextField = ({
   type,
   onChange,
   name,
+  isValid,
+  errorMessage,
 }) => {
   return (
-    <div>
+    <div
+      className="d-flex 
+      flex-column
+    align-items-start
+    
+    "
+    >
       <div
-        className="d-flex
+        className={`d-flex
 align-items-center
 input-form-control
-"
+w-100
+${isValid ? "" : "red-border"}
+`}
       >
         {prefix_icon}
         <input
@@ -24,6 +34,7 @@ input-form-control
         />
         {surfix_icon ?? ""}
       </div>
+      {!isValid && <span className="text-error text-xsm">{errorMessage}</span>}
     </div>
   );
 };
