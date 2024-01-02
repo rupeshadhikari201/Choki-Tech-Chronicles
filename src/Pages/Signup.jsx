@@ -15,25 +15,56 @@ const Signup = () => {
   const [inputData, setInputData] = useState({});
   const [showConfirm, setShowConfirm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const input_list = [
-    {
-      placeHolder: "Email",
-      icon: <FaEnvelope color={icon_color} />,
-      type: "email",
-    },
-    {
-      placeHolder: "Password",
-      icon: <FaKey color={icon_color} />,
-      surfix_icon: <FaEye color={icon_color} />,
-      type: "password",
-    },
-    {
-      placeHolder: "Confirm Password",
-      icon: <FaKey color={icon_color} />,
-      surfix_icon: <FaEye color={icon_color} />,
-      type: "password",
-    },
-  ];
+  const [validFirstName, setValidFirstName] = useState(true);
+  const [validLastName, setValidLastName] = useState(true);
+  const [validEmail, setValidEmail] = useState(true);
+  const [validPassword, setValidPassword] = useState(true);
+  const [validConfirm, setValidConfirm] = useState(true);
+
+  const onSumbit = () => {
+    validateInput(inputData);
+  };
+
+  //Checking validity
+  const validateInput = (userData) => {
+    let valid = true;
+    if (!isNameValid(userData.firstName)) {
+      setValidFirstName(false);
+      valid = false;
+    } else setValidFirstName(true);
+    //
+    if (!isNameValid(userData.lastName)) {
+      setValidLastName(false);
+    } else setValidLastName(true);
+
+    if (!isEmailValid(userData.email)) {
+      setValidEmail(false);
+      valid = false;
+    } else setValidEmail(true);
+    //
+
+    if (!isPasswordStrong(userData.password)) {
+      setValidPassword(false);
+      valid = false;
+    } else setValidEmail(true);
+    //
+    if (valid) {
+      console.log("Authenticaiton is valid");
+    }
+  };
+  const isPasswordStrong = (password) => {
+    if (!password) return false;
+    return true;
+  };
+  const isEmailValid = (email) => {
+    if (!email) return false;
+    return true;
+  };
+  const isNameValid = (name) => {
+    if (!name || name.length < 2) return false;
+
+    return true;
+  };
   return (
     <div
       style={{
@@ -65,23 +96,23 @@ const Signup = () => {
           >
             place where you can find solutions related to accademic work
           </p>
-          <div
-            className="
-          btn-custom
-          height-xsm
-          text-md
-          bg-transparent
-          border
-          cursor-pointer
-          mt-4
-          green-varient-2-hover
-          mb-2
-          "
+
+          <Link
+            className="link
+             btn-custom
+             height-xsm
+             text-md
+             bg-transparent
+             border
+             cursor-pointer
+             mt-4
+             green-varient-2-hover
+             mb-2
+            "
+            to="/Choki-Tech-Chronicles/signin"
           >
-            <Link className="link" to="./signin">
-              SIGN IN{" "}
-            </Link>
-          </div>
+            SIGN IN{" "}
+          </Link>
         </div>
 
         {/* SIGN UP LEFT SIDE */}
@@ -90,7 +121,7 @@ const Signup = () => {
         
         "
         >
-          <h1
+          <h2
             style={{
               color: "var(--primary-green)",
               textAlign: "center",
@@ -100,7 +131,7 @@ const Signup = () => {
           >
             {" "}
             SIGN UP
-          </h1>
+          </h2>
           <div
             className="input-wrapper
           d-flex flex-column gap-3
@@ -109,30 +140,80 @@ const Signup = () => {
             {/* First and Last Name */}
             <div className="d-flex gap-2">
               <div
-                className="d-flex
-              align-items-center
-              input-form-control
+                className="d-flex flex-column
+              align-items-start
+           
               "
               >
-                <FaUser color={icon_color} />
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  className="custom-input"
-                />
+                <div
+                  className={`d-flex
+              align-items-center
+              input-form-control
+              ${validFirstName ? "" : "red-border"}
+              `}
+                >
+                  <FaUser color={icon_color} />
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    name="firstName"
+                    className="custom-input"
+                    onChange={(e) =>
+                      setInputData({
+                        ...inputData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+
+                {!validFirstName && (
+                  <span
+                    className={`
+               
+             text-error text-xsm  mb-0`}
+                  >
+                    Invalid name
+                  </span>
+                )}
               </div>
+              {/* Last Name */}
               <div
-                className="d-flex
-              align-items-center
-              input-form-control
+                className="d-flex flex-column
+              align-items-start
+              
               "
               >
-                <FaUser color={icon_color} />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  className="custom-input"
-                />
+                <div
+                  className={`d-flex
+              align-items-center
+              input-form-control
+                ${validLastName ? "" : "red-border"}
+              `}
+                >
+                  <FaUser color={icon_color} />
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    className="custom-input"
+                    name="lastName"
+                    onChange={(e) =>
+                      setInputData({
+                        ...inputData,
+                        [e.target.name]: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+                {!validLastName && (
+                  <span
+                    className={`
+               
+             text-error text-xsm  mb-0`}
+                  >
+                    Invalid name
+                  </span>
+                )}
               </div>
             </div>
             {/* End of first and last name */}
@@ -145,6 +226,8 @@ const Signup = () => {
                 setInputData({ ...inputData, [e.target.name]: e.target.value })
               }
               name={"email"}
+              errorMessage={"Invalid Email"}
+              isValid={validEmail}
             />
             <TextField
               type={showPassword ? "text" : "password"}
@@ -167,6 +250,8 @@ const Signup = () => {
               onChange={(e) =>
                 setInputData({ ...inputData, [e.target.name]: e.target.value })
               }
+              isValid={validPassword}
+              errorMessage={"Invalid Passowrd"}
             />
             <TextField
               type={showConfirm ? "text" : "password"}
@@ -189,6 +274,8 @@ const Signup = () => {
               onChange={(e) =>
                 setInputData({ ...inputData, [e.target.name]: e.target.value })
               }
+              isValid={validConfirm}
+              errorMessage={"Password don't match"}
             />
             <div
               className="d-flex align-items-center
@@ -206,9 +293,6 @@ const Signup = () => {
             </div>
           </div>
           <button
-            style={{
-              fontSize: "var(--text-md)",
-            }}
             className="btn-custom 
             font-500
             green-varient-2
@@ -216,9 +300,10 @@ const Signup = () => {
             height-xsm
             mb-2
             mt-3
-            text-md
+            text-sm
             text-uppercase
             "
+            onClick={() => onSumbit()}
           >
             signup
           </button>
@@ -240,14 +325,17 @@ const Signup = () => {
           mb-4
          d-flex
          align-items-center
+         justify-content-center
+         gap-2
           text-md
-           align-items-center
-           justify-content-around
+           
           "
           >
             <FaGoogle />
             <p
-              className="font-500 mb-1 p-0"
+              className="font-500 mb-1 p-0
+              text-sm
+              "
               style={{
                 marginBlockStart: "0px",
               }}
