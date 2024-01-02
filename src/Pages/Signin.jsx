@@ -44,23 +44,23 @@ const Signin = () => {
           >
             place where you can find solutions related to accademic work
           </p>
-          <div
-            className="
-            btn-custom
-            height-xsm
-            text-md
-            bg-transparent
-            border
-            cursor-pointer
-            mt-4
-            green-varient-2-hover
-            mb-2
+
+          <Link
+            className="link
+             btn-custom
+             height-xsm
+             text-md
+             bg-transparent
+             border
+             cursor-pointer
+             mt-4
+             green-varient-2-hover
+             mb-2
             "
+            to="/Choki-Tech-Chronicles/signup"
           >
-            <Link className="link" to="/Choki-Tech-Chronicles/signup">
-              SIGN UP{" "}
-            </Link>
-          </div>
+            SIGN UP{" "}
+          </Link>
         </div>
 
         {/* SIGN UP LEFT SIDE */}
@@ -160,7 +160,9 @@ const Signin = () => {
           >
             <FaGoogle />
             <p
-              className="font-500 mb-1 p-0"
+              className="font-500 mb-1 p-0
+              
+              "
               style={{
                 marginBlockStart: "0px",
               }}
