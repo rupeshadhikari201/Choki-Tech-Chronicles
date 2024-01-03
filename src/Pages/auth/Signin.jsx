@@ -7,9 +7,10 @@ import {
 } from "react-icons/fa6";
 import "../../Css/auth/auth.css";
 import TextField from "../../Components/text_input/textField";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { path_to_signup, validateSignInInput } from "../../utils/auth/helper";
+import { AuthContext } from "../../utils/context/auth";
 const Signin = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -22,7 +23,10 @@ const Signin = () => {
       setValidPassword,
     });
   };
-
+  const { state } = useContext(AuthContext);
+  useEffect(() => {
+    console.log(state);
+  }, []);
   return (
     <div
       style={{
@@ -103,7 +107,7 @@ const Signin = () => {
               }
               name={"email"}
               isValid={validEmail}
-              errorMessage={"Inavalid Email"}
+              errorMessage={"Invalid Email"}
             />
             <TextField
               type={showPassword ? "text" : "password"}

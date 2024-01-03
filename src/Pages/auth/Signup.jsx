@@ -8,10 +8,13 @@ import {
 } from "react-icons/fa6";
 import "../../Css/auth/auth.css";
 import TextField from "../../Components/text_input/textField";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { path_to_signin, validateSignUpInput } from "../../utils/auth/helper";
 import { ToastContainer } from "react-toastify";
+import { AuthContext } from "../../utils/context/auth";
+import { ACTION_TYPE } from "../../reducer/action/action";
+import { commonPath } from "../../utils/constants/path";
 const Signup = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -22,15 +25,22 @@ const Signup = () => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [validConfirm, setValidConfirm] = useState(true);
+  const { _, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
   //Checking validity
   const onSumbit = () => {
-    validateSignUpInput(inputData, {
+    const valid = validateSignUpInput(inputData, {
       setValidFirstName,
       setValidLastName,
       setValidEmail,
       setValidPassword,
       setValidConfirm,
     });
+
+    if (valid) {
+      dispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
+      navigate(`/${commonPath}/onboard`);
+    }
   };
 
   return (
