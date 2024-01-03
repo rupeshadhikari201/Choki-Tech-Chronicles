@@ -6,16 +6,12 @@ import {
   FaKey,
   FaUser,
 } from "react-icons/fa6";
-import "../Css/auth/signup.css";
-import TextField from "../Components/text_input/textField";
+import "../../Css/auth/auth.css";
+import TextField from "../../Components/text_input/textField";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  isEmailValid,
-  isNameValid,
-  isPasswordStrong,
-  path_to_signin,
-} from "../helper/helper";
+import { path_to_signin, validateSignUpInput } from "../../utils/auth/helper";
+import { ToastContainer } from "react-toastify";
 const Signup = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -26,41 +22,15 @@ const Signup = () => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [validConfirm, setValidConfirm] = useState(true);
-
-  const onSumbit = () => {
-    validateInput(inputData);
-  };
-
   //Checking validity
-  const validateInput = (userData) => {
-    let valid = true;
-    if (!isNameValid(userData.firstName)) {
-      setValidFirstName(false);
-      valid = false;
-    } else setValidFirstName(true);
-    //
-    if (!isNameValid(userData.lastName)) {
-      setValidLastName(false);
-    } else setValidLastName(true);
-
-    if (!isEmailValid(userData.email)) {
-      setValidEmail(false);
-      valid = false;
-    } else setValidEmail(true);
-    //
-
-    if (!isPasswordStrong(userData.password)) {
-      setValidPassword(false);
-      valid = false;
-    } else setValidPassword(true);
-    //
-    if (!userData.password || userData.confirmPassword != userData.password) {
-      setValidConfirm(false);
-      valid = false;
-    } else setValidConfirm(true);
-    if (valid) {
-      console.log("Authenticaiton is valid");
-    }
+  const onSumbit = () => {
+    validateSignUpInput(inputData, {
+      setValidFirstName,
+      setValidLastName,
+      setValidEmail,
+      setValidPassword,
+      setValidConfirm,
+    });
   };
 
   return (
@@ -73,6 +43,7 @@ const Signup = () => {
       align-items-center justify-content-center
       "
     >
+      <ToastContainer />
       <div
         className="bg-white
       d-flex 

@@ -1,7 +1,6 @@
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "../Css/Navbar.css";
-import "../App.css";
+import "../../Css/navbar/navbar.css";
 import { MdMenu, MdClose } from "react-icons/md";
 import { useState } from "react";
 const Navbar = () => {

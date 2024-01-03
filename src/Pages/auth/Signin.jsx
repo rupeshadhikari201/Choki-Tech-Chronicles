@@ -5,15 +5,11 @@ import {
   FaGoogle,
   FaKey,
 } from "react-icons/fa6";
-import "../Css/auth/signup.css";
-import TextField from "../Components/text_input/textField";
+import "../../Css/auth/auth.css";
+import TextField from "../../Components/text_input/textField";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  isEmailValid,
-  isPasswordStrong,
-  path_to_signup,
-} from "../helper/helper";
+import { path_to_signup, validateSignInInput } from "../../utils/auth/helper";
 const Signin = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -21,16 +17,10 @@ const Signin = () => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const onSubmit = () => {
-    validate(inputData);
-  };
-
-  const validate = (userData) => {
-    if (!isEmailValid(userData.email)) {
-      setValidEmail(false);
-    } else setValidEmail(true);
-    if (!isPasswordStrong(userData.password)) {
-      setValidPassword(false);
-    } else setValidPassword(true);
+    validateSignInInput(inputData, {
+      setValidEmail,
+      setValidPassword,
+    });
   };
 
   return (

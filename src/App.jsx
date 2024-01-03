@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home.jsx";
+import Home from "./Pages/home/Home.jsx";
 import Services from "./Components/home/Services.jsx";
 import "bootstrap/dist/js/bootstrap.esm.js";
-import Signup from "./Pages/Signup.jsx";
+import Signup from "./Pages/auth/Signup.jsx";
 import { useEffect, useState } from "react";
-import Signin from "./Pages/Signin.jsx";
+import Signin from "./Pages/auth/Signin.jsx";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 const App = () => {
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {

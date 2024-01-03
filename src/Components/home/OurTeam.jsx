@@ -1,4 +1,4 @@
-import TeamCard from "../TeamCard";
+import TeamCard from "../card/TeamCard";
 import "../../Css/home/ourteam.css";
 
 const OurTeam = () => {

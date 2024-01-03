@@ -1,4 +1,4 @@
-import Cards from "../Card.jsx";
+import Cards from "../card/Card.jsx";
 import "../../Css/home/service.css";
 import research from "../../assets/scientific-research.png";
 const Sevices = () => {

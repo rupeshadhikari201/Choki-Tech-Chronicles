@@ -1,14 +1,14 @@
-import "../Css/home/Home.css";
-import heroImg from "../assets/hero_img.png";
-import heroBackground from "../assets/hero_background.png";
-import Navbar from "../Components/Navbar.jsx";
+import "../../Css/home/home.css";
+import heroImg from "../../assets/hero_img.png";
+import heroBackground from "../../assets/hero_background.png";
+import Navbar from "../../Components/navbar/Navbar.jsx";
 import { MdArrowForward } from "react-icons/md";
 import { TypeAnimation } from "react-type-animation";
-import Services from "../Components/home/Services.jsx";
-import Testimonial from "../Components/home/Testimonial.jsx";
-import FrequentAsked from "../Components/home/FrequentAsked.jsx";
-import OurTeam from "../Components/home/OurTeam.jsx";
-import Footer from "../Components/home/Footer.jsx";
+import Services from "../../Components/home/Services.jsx";
+import Testimonial from "../../Components/home/Testimonial.jsx";
+import FrequentAsked from "../../Components/home/FrequentAsked.jsx";
+import OurTeam from "../../Components/home/OurTeam.jsx";
+import Footer from "../../Components/home/Footer.jsx";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
