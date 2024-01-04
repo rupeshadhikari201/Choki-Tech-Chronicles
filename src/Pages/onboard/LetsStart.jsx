@@ -24,8 +24,14 @@ const LetsStart = () => {
         align-items-center
         "
       >
-        <h1>Hello, {state.user?.firstName}</h1>
-        <h4 className="text-md">let&apos;s know more about you</h4>
+        <h1 className="text-black-variant-1">Hello, {state.user?.firstName}</h1>
+        <h4
+          className="text-md
+        text-black-variant-2
+        "
+        >
+          let&apos;s know more about you
+        </h4>
         <button
           className="
          btn-custom

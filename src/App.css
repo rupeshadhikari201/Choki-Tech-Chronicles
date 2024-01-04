@@ -138,7 +138,7 @@ body {
   border: 1px solid var(--primary-green);
 }
 .border-primary-green:hover {
-  background: var(--primary-green);
+  background: var(--light-green);
 }
 @media screen and (max-width: 512px) {
   :root {
