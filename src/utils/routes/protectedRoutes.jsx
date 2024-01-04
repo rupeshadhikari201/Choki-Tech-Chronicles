@@ -1,19 +1,15 @@
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../context/auth";
 import { Navigate, Outlet } from "react-router-dom";
 import { commonPath } from "../constants/path";
+import { getUserFromLocal } from "../../reducer/local/local";
+import { useEffect } from "react";
 
 const ProtectedRoutes = () => {
-  const { state } = useContext(AuthContext);
+  const { user } = getUserFromLocal({});
   useEffect(() => {
-    console.log("protected", state);
+    console.log("protected");
   }, []);
 
-  return state?.user?.auth ? (
-    <Outlet />
-  ) : (
-    <Navigate to={`/${commonPath}/signin`} />
-  );
+  return user?.auth ? <Outlet /> : <Navigate to={`/${commonPath}/signin`} />;
 };
 
 export default ProtectedRoutes;
