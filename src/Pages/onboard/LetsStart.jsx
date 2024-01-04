@@ -1,11 +1,48 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../utils/context/auth";
 import "../../Css/onboarding/onboarding.css";
+import ProgressIndicator from "./progressIndicator";
+import { STATUS } from "../../utils/constants/status";
 const LetsStart = () => {
   const { state } = useContext(AuthContext);
+  const [progressState, setProgressState] = useState([
+    {
+      status: STATUS.PENDING,
+      label: "First",
+    },
+    {
+      status: STATUS.DEFAULT,
+      label: "About",
+    },
+    {
+      status: STATUS.DEFAULT,
+      label: "Finish",
+    },
+  ]);
+  const pages = [
+    {
+      page: (onClick) => <UserPreference onClick={onClick} />,
+    },
+    {
+      page: (onClick) => <UserExperiance onClick={onClick} />,
+    },
+    {
+      page: (onClick) => <UserSomething onClick={onClick} />,
+    },
+  ];
+  const [currentPage, setCurrentPage] = useState(0);
   useEffect(() => {
     console.log(state);
+    console.log(pages[currentPage]);
   }, []);
+  const onClick = () => {
+    setCurrentPage((c) => c + 1);
+    let progress = progressState;
+    progress[currentPage].status = STATUS.CHECKED;
+    if (currentPage + 1 < pages.length)
+      progress[currentPage + 1].status = STATUS.PENDING;
+    setProgressState(progress);
+  };
   return (
     <div
       className="bg-light-green
@@ -32,8 +69,25 @@ const LetsStart = () => {
         >
           let&apos;s know more about you
         </h4>
-        <button
-          className="
+
+        <ProgressIndicator
+          numberOfProgress={progressState.length}
+          progress={progressState}
+        />
+
+        {<div className="w-100">{pages[currentPage]?.page(onClick)}</div>}
+      </div>
+    </div>
+  );
+};
+
+export default LetsStart;
+
+const UserPreference = ({ onClick }) => {
+  return (
+    <>
+      <button
+        className="
          btn-custom
          transparent
          text-black-variant-1
@@ -42,11 +96,12 @@ const LetsStart = () => {
          mb-0
          text-md
          "
-        >
-          I am here to hire
-        </button>
-        <button
-          className="
+        onClick={onClick}
+      >
+        I am here to hire
+      </button>
+      <button
+        className="
          btn-custom
          transparent
          text-black-variant-1
@@ -55,12 +110,17 @@ const LetsStart = () => {
          mb-4
          text-md
          "
-        >
-          Work as agent
-        </button>
-      </div>
-    </div>
+      >
+        Work as agent
+      </button>
+    </>
   );
 };
 
-export default LetsStart;
+const UserExperiance = ({ onClick }) => {
+  return <div className="text-black-variant-1">User Experiance</div>;
+};
+
+const UserSomething = ({ onClick }) => {
+  return <div>User Something</div>;
+};
