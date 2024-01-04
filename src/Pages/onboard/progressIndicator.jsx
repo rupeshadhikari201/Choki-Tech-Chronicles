@@ -7,17 +7,18 @@ const ProgressIndicator = ({ numberOfProgress, progress }) => {
     <>
       <div className="d-flex gap-1 gap-md-3 align-items-center">
         {progress.map((item, index) => (
-          <>
+          <div key={index} className="d-flex gap-1 gap-md-3 align-items-center">
             <CircularCheck
+              key={item.label}
               status={item.status}
               label={item.label}
               checkColor={"white"}
             />
 
             {index !== numberOfProgress - 1 && (
-              <span className="bg-green-primary dash-line" />
+              <span className="bg-green-primary dash-line" key={index} />
             )}
-          </>
+          </div>
         ))}
       </div>
     </>

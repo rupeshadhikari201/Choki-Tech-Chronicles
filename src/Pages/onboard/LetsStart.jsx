@@ -3,6 +3,7 @@ import { AuthContext } from "../../utils/context/auth";
 import "../../Css/onboarding/onboarding.css";
 import ProgressIndicator from "./progressIndicator";
 import { STATUS } from "../../utils/constants/status";
+import selectstyle from "../../Css/comment/select.module.css";
 const LetsStart = () => {
   const { state } = useContext(AuthContext);
   const [progressState, setProgressState] = useState([
@@ -43,6 +44,11 @@ const LetsStart = () => {
       progress[currentPage + 1].status = STATUS.PENDING;
     setProgressState(progress);
   };
+  const previousPage = () => {
+    setCurrentPage((c) => c - 1);
+    let progress = progressState;
+    progress[currentPage - 1].status = STATUS.PENDING;
+  };
   return (
     <div
       className="bg-light-green
@@ -57,30 +63,53 @@ const LetsStart = () => {
         bg-white-variant-2
         p-4
         rounded
-        d-flex flex-column
-        align-items-center
+        
         "
       >
-        <h1 className="text-black-variant-1">
-          Hello,
-          <span className="text-green-secondary text-capitalize">
-            {state.user?.firstName}
-          </span>{" "}
-        </h1>
-        <h4
-          className="text-md
+        <div
+          className="
+      d-flex flex-column
+        align-items-center
+      "
+        >
+          <h1 className="text-black-variant-1">
+            Hello,
+            <span className="text-green-secondary text-capitalize">
+              {state.user?.firstName}
+            </span>{" "}
+          </h1>
+          <h4
+            className="text-md
         text-black-variant-2
         "
-        >
-          let&apos;s know more about you
-        </h4>
+          >
+            let&apos;s know more about you
+          </h4>
 
-        <ProgressIndicator
-          numberOfProgress={progressState.length}
-          progress={progressState}
-        />
+          <ProgressIndicator
+            numberOfProgress={progressState.length}
+            progress={progressState}
+          />
 
-        {<div className="w-100">{pages[currentPage]?.page(onClick)}</div>}
+          {<div className="w-100">{pages[currentPage]?.page(onClick)}</div>}
+        </div>
+        {/* previous button */}
+        {currentPage > 0 && (
+          <button
+            className="
+          text-black-variant-1
+          bg-transparent
+          border-green-variant-3
+          rounded
+          p-1
+          mt-4
+          "
+            style={{}}
+            onClick={previousPage}
+          >
+            Previous
+          </button>
+        )}
       </div>
     </div>
   );
@@ -93,13 +122,14 @@ const UserPreference = ({ onClick }) => {
     <>
       <button
         className="
-         btn-custom
+        
          transparent
          text-black-variant-1
          border-primary-green
          mt-3
          mb-0
          text-md
+         btn-custom
          "
         onClick={onClick}
       >
@@ -115,6 +145,7 @@ const UserPreference = ({ onClick }) => {
          mb-4
          text-md
          "
+        onClick={onClick}
       >
         Work as agent
       </button>
@@ -123,7 +154,58 @@ const UserPreference = ({ onClick }) => {
 };
 
 const UserExperiance = ({ onClick }) => {
-  return <div className="text-black-variant-1">User Experiance</div>;
+  return (
+    <div className="text-black-variant-1">
+      {/* What is your profession */}
+      <div
+        className="d-flex 
+        mt-3
+      flex-column 
+      align-items-center"
+      >
+        <p className="text-center">What is your profession?</p>
+        <select
+          className={`${selectstyle.custom} ${selectstyle.max_width_500}
+      p-2
+      rounded
+      border-green-primary
+      border-green-variant-3
+      text-black-variant-1
+      bg-white-variant-2
+      `}
+        >
+          <option className="">Select</option>
+          <option className="Student">Student</option>
+          <option className="teacher">teacher</option>
+          <option className="other">other</option>
+        </select>
+      </div>
+      {/* skills you have */}
+      <div
+        className="d-flex 
+        mt-3
+      flex-column 
+      align-items-center"
+      >
+        <p className="text-center">Skills you have?</p>
+        <select
+          className={`${selectstyle.custom} ${selectstyle.max_width_500}
+      p-2
+      rounded
+      border-green-primary
+      border-green-variant-3
+      text-black-variant-1
+      bg-white-variant-2
+      `}
+        >
+          <option className="">Select</option>
+          <option className="Student">Design</option>
+          <option className="teacher">Research</option>
+          <option className="other">other</option>
+        </select>
+      </div>
+    </div>
+  );
 };
 
 const UserSomething = ({ onClick }) => {
