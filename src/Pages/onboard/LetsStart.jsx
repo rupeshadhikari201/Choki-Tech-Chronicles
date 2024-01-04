@@ -4,6 +4,8 @@ import "../../Css/onboarding/onboarding.css";
 import ProgressIndicator from "./progressIndicator";
 import { STATUS } from "../../utils/constants/status";
 import selectstyle from "../../Css/comment/select.module.css";
+import { useNavigate } from "react-router-dom";
+import { commonPath } from "../../utils/constants/path";
 const LetsStart = () => {
   const { state } = useContext(AuthContext);
   const [progressState, setProgressState] = useState([
@@ -204,10 +206,50 @@ const UserExperiance = ({ onClick }) => {
           <option className="other">other</option>
         </select>
       </div>
+      <button
+        className="
+          text-black-variant-1
+          bg-transparent
+          border-green-variant-3
+          rounded
+          d-block
+          p-1
+          mt-4
+          ms-auto
+          "
+        style={{}}
+        onClick={onClick}
+      >
+        Next
+      </button>
     </div>
   );
 };
 
 const UserSomething = ({ onClick }) => {
-  return <div>User Something</div>;
+  const naviagte = useNavigate();
+  return (
+    <div className="text-black-variant-1">
+      <h2 className="text-center">Thank you for choosing us</h2>
+      <button
+        className="
+          text-black-variant-1
+          bg-transparent
+          border-green-variant-3
+          rounded
+          d-block
+          p-1
+          mt-4
+          mx-auto
+          w-50
+          "
+        onClick={() => {
+          onClick();
+          naviagte(`/${commonPath}/dashboard`);
+        }}
+      >
+        Finish
+      </button>
+    </div>
+  );
 };
