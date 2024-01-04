@@ -33,17 +33,18 @@
   --white-variant-1: rgb(255, 255, 255);
   --black-variant-1: rgb(0, 0, 0);
   --black-variant-2: rgb(32, 32, 32);
-
+  --white-variant-2: rgb(255, 255, 255);
   --gray-200: rgb(255, 255, 255);
 }
 .dark-theme {
   --home-background: rgb(23, 48, 38);
   --light-green: var(--dark-green);
   --white-variant-1: var(--black-variant-2);
+  --white-variant-2: rgb(40, 40, 40);
   --light-green-border: var(--gray-200);
   --text-black-variant-1: rgb(218, 218, 218);
-  --text-white-variant-1: rgb(31, 31, 31);
   --text-black-variant-2: rgb(194, 194, 194);
+  --text-white-variant-1: rgb(31, 31, 31);
 }
 body {
   font-family: "Inter", sans-serif;
@@ -93,6 +94,12 @@ body {
   /* inset: 0;
 	margin-top: auto; */
 }
+.bg-white-variant-2 {
+  background-color: var(--white-variant-2);
+}
+.bg-light-green {
+  background-color: var(--light-green);
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -120,6 +127,18 @@ body {
 }
 .red-border {
   border-color: rgb(206, 4, 4) !important;
+}
+.min-height-100vh {
+  min-height: 100vh;
+}
+.transparent {
+  background-color: transparent;
+}
+.border-primary-green {
+  border: 1px solid var(--primary-green);
+}
+.border-primary-green:hover {
+  background: var(--primary-green);
 }
 @media screen and (max-width: 512px) {
   :root {
