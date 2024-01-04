@@ -100,6 +100,9 @@ body {
 .bg-light-green {
   background-color: var(--light-green);
 }
+.bg-green-primary {
+  background-color: var(--primary-green);
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -139,6 +142,9 @@ body {
 }
 .border-primary-green:hover {
   background: var(--light-green);
+}
+.border-green-variant-1 {
+  border: 1px solid var(--primary-green);
 }
 @media screen and (max-width: 512px) {
   :root {
