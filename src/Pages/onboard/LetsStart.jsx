@@ -61,7 +61,12 @@ const LetsStart = () => {
         align-items-center
         "
       >
-        <h1 className="text-black-variant-1">Hello, {state.user?.firstName}</h1>
+        <h1 className="text-black-variant-1">
+          Hello,
+          <span className="text-green-secondary text-capitalize">
+            {state.user?.firstName}
+          </span>{" "}
+        </h1>
         <h4
           className="text-md
         text-black-variant-2
