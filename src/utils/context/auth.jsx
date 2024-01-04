@@ -8,6 +8,7 @@ const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     //cheking if there is a user in the local storage
     dispatch({ type: ACTION_TYPE.LOCAL_STORAGE_EXTRACTOIN });
+    console.log(" auth context effect called");
   }, []);
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
