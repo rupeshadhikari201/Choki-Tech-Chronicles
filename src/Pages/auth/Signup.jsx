@@ -55,7 +55,7 @@ const Signup = () => {
     >
       <ToastContainer />
       <div
-        className="bg-white
+        className="bg-white-variant-2
       d-flex 
       rounded 
       "
