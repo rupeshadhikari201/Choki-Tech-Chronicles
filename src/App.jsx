@@ -11,12 +11,14 @@ import "./App.css";
 import LetsStart from "./Pages/onboard/LetsStart.jsx";
 import AuthContextProvider from "./utils/context/auth.jsx";
 import ProtectedRoutes from "./utils/routes/protectedRoutes.jsx";
+import DashBoardRoute from "./utils/routes/dashboard_route.jsx";
+import DashBoard from "./Pages/dashboard/dashboard.jsx";
 const App = () => {
   const commonPath = "Choki-Tech-Chronicles";
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setIsDark(true);
+      setIsDark(false);
       console.log("is dark mode! true");
     } else {
       setIsDark(false);
@@ -35,6 +37,9 @@ const App = () => {
             <Route path={`${commonPath}/signin`} element={<Signin />} />
             <Route element={<ProtectedRoutes />}>
               <Route path={`${commonPath}/onboard`} element={<LetsStart />} />
+            </Route>
+            <Route element={<DashBoardRoute />}>
+              <Route path={`${commonPath}/dashboard`} element={<DashBoard />} />
             </Route>
           </Routes>
         </BrowserRouter>
