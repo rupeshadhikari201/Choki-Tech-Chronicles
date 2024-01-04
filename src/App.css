@@ -13,13 +13,17 @@
   --primary-green: #5ecc5c;
   --green-hover: rgba(94, 204, 92, 0.456);
   --light-lime: rgb(158, 224, 157);
+  --light-lime-secondary: rgb(158, 224, 157);
   --green-variant-2: rgb(58, 193, 101);
   --green-variant-2-hover: rgb(48, 153, 81);
   --green-variant-3: rgb(0, 191, 111);
   --green-variant-4: rgb(0, 191, 111);
+  --green-variant-5: var(--primary-green);
+  --green-variant-6: var(--green-variant-2);
   --dark-green: rgb(28, 61, 48);
   --dark-green-hover: rgb(18, 40, 31);
   --green-secondary: rgb(0, 191, 111);
+  --dark-blue: rgb(46, 55, 69);
   --text-xsm: 12px;
   --text-sm: 16px;
   --text-md: 20px;
@@ -48,6 +52,9 @@
   --text-white-variant-1: rgb(31, 31, 31);
   --green-secondary: rgb(0, 191, 111);
   --green-variant-3: white;
+  --green-variant-5: var(--black-variant-2);
+  --green-variant-6: var(--black-variant-2);
+  --light-lime-secondary: rgb(40, 40, 40);
 }
 body {
   font-family: "Inter", sans-serif;
@@ -67,6 +74,21 @@ body {
 }
 .bg-green-primary {
   background-color: var(--primary-green);
+}
+/* for left dash board nav */
+.bg-linear-green-variant-1 {
+  background: linear-gradient(
+    to top,
+    var(--green-variant-5),
+    var(--green-variant-6)
+  );
+}
+.bg-light-lime {
+  background-color: var(--light-lime);
+}
+/* for dark lime */
+.bg-light-lime-secondary {
+  background-color: var(--light-lime-secondary);
 }
 .cursor-pointer {
   cursor: pointer;
@@ -121,8 +143,24 @@ body {
 .border-green-variant-3 {
   border: 1px solid var(--green-variant-3);
 }
+.w-0 {
+  width: 0% !important;
+}
+.visible-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.translate-x {
+  transform: translateX(-100%);
+}
+.margin-right-300 {
+  margin-right: 300px;
+}
 @media screen and (max-width: 512px) {
   :root {
     --text-md: 18px;
+  }
+  .margin-right-300 {
+    margin-right: 0px;
   }
 }
