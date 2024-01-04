@@ -1,0 +1,48 @@
+import "../../Css/onboarding/progressindicator.css";
+import CircularCheck from "../../Components/commen/circularCheck";
+import { STATUS } from "../../utils/constants/status";
+import "../../Css/comment/circular-check.css";
+const ProgressIndicator = ({ numberOfProgress, progress }) => {
+  return (
+    <>
+      <div className="d-flex gap-1 gap-md-3 align-items-center">
+        {progress.map((item, index) => (
+          <>
+            <CircularCheck
+              status={item.status}
+              label={item.label}
+              checkColor={"white"}
+            />
+
+            {index !== numberOfProgress - 1 && (
+              <span className="bg-green-primary dash-line" />
+            )}
+          </>
+        ))}
+      </div>
+    </>
+  );
+  //   return (
+  //     <div className="d-flex gap-1 gap-md-3 align-items-center">
+  //       <CircularCheck
+  //         status={STATUS.PENDING}
+  //         label={"First step"}
+  //         checkColor={"white"}
+  //       />
+  //       <span className="bg-green-primary dash-line" />
+  //       <CircularCheck
+  //         status={STATUS.DEFAULT}
+  //         label={"About"}
+  //         checkColor={"white"}
+  //       />
+  //       <span className="bg-green-primary dash-line" />
+  //       <CircularCheck
+  //         status={STATUS.DEFAULT}
+  //         label={"finish"}
+  //         checkColor={"white"}
+  //       />
+  //     </div>
+  //   );
+};
+
+export default ProgressIndicator;

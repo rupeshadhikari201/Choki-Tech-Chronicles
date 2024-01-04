@@ -1,0 +1,5 @@
+export const STATUS = {
+  DEFAULT: "DEFAULT",
+  CHECKED: "CHECKED",
+  PENDING: "PENDING",
+};

@@ -1,0 +1,11 @@
+.dash-line {
+  width: 80px;
+  height: 4px;
+}
+
+@media screen and (max-width: 512px) {
+  .dash-line {
+    width: 30px;
+    height: 2px;
+  }
+}

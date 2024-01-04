@@ -1,0 +1,8 @@
+.circular-default {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.bg-gray {
+  background-color: gray;
+}
