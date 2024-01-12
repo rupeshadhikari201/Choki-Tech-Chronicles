@@ -12,6 +12,7 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
       style={{
         transition: "all 0.5s linear",
         left: 0,
+        zIndex: "100",
       }}
     >
       <div
