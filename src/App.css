@@ -156,11 +156,18 @@ body {
 .margin-right-300 {
   margin-right: 300px;
 }
+@media screen and (max-width: 1060px) {
+  .margin-right-300 {
+    margin-right: 0px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .margin-right-300 {
+    margin-right: 0px;
+  }
+}
 @media screen and (max-width: 512px) {
   :root {
     --text-md: 18px;
-  }
-  .margin-right-300 {
-    margin-right: 0px;
   }
 }
