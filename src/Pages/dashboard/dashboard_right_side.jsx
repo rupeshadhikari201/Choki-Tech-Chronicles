@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../utils/context/auth";
 import { FaBars } from "react-icons/fa6";
+import CircularBar from "../../Components/commen/circular-bar";
 
 const DashBoardRight = ({ showNav, setShowNav }) => {
   const { state } = useContext(AuthContext);
@@ -36,14 +37,17 @@ const DashBoardRight = ({ showNav, setShowNav }) => {
           </div>
         )}
         <div>
-          <h2 className="text-black-variant-1 mb-0">{state.user?.firstName}</h2>
-          <h4
+          <h2 className="text-black-variant-1 mb-0">
+            Hello {state.user?.firstName}!
+          </h2>
+          <h6
             className="mt-1
           text-black-variant-2
+          mb-0
           "
           >
-            Profession
-          </h4>
+            Designer
+          </h6>
         </div>
       </div>
 
@@ -64,6 +68,7 @@ const DashBoardRight = ({ showNav, setShowNav }) => {
           <div
             className="
       circular-progress-wrapper
+      p-2
       bg-light-lime-secondary
       col
       text-black-variant-1
@@ -73,7 +78,12 @@ const DashBoardRight = ({ showNav, setShowNav }) => {
               height: "300px",
             }}
           >
-            <p>Circular bar</p>
+            <p>Project Progress</p>
+            <CircularBar />
+            <ul>
+              <li>Completed 10%</li>
+              <li>Remaining 10%</li>
+            </ul>
           </div>
           {/* Activity */}
           <div
@@ -82,18 +92,39 @@ const DashBoardRight = ({ showNav, setShowNav }) => {
         dashboard-activity
         bg-light-lime-secondary
         col
-        
+        p-2
         "
             style={{
               minHeight: "300px",
             }}
           >
             <p>Activity</p>
+            <Activity />
           </div>
         </div>
       </div>
     </div>
   );
 };
+function Activity() {
+  return (
+    <div>
+      <div>
+        <p className="font-weight-bold">Recent Activity</p>
+        <div
+          className="ps-2
+        mb-2
+        "
+        >
+          <p className="m-0">Project 4 finished</p>
 
+          <p className="m-0">No recent activity</p>
+        </div>
+      </div>
+      <div>
+        <h5>Invitations</h5>
+      </div>
+    </div>
+  );
+}
 export default DashBoardRight;
