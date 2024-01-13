@@ -6,7 +6,6 @@ import Signup from "./Pages/auth/Signup.jsx";
 import { useEffect, useState } from "react";
 import Signin from "./Pages/auth/Signin.jsx";
 import "react-toastify/dist/ReactToastify.css";
-
 import "./App.css";
 import LetsStart from "./Pages/onboard/LetsStart.jsx";
 import AuthContextProvider from "./utils/context/auth.jsx";
@@ -18,7 +17,7 @@ const App = () => {
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setIsDark(false);
+      setIsDark(true);
       console.log("is dark mode! true");
     } else {
       setIsDark(false);

@@ -241,8 +241,6 @@ const UserPreference = ({ setGotoNext, setUserInfo }) => {
     <>
       <button
         className={`
-         
-        
          text-black-variant-1
          mt-3
          mb-0
@@ -257,7 +255,6 @@ const UserPreference = ({ setGotoNext, setUserInfo }) => {
       </button>
       <button
         className={`
-         
          text-black-variant-1
          mt-3
          mb-4
