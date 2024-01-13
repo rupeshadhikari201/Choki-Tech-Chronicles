@@ -20,6 +20,7 @@
   --green-variant-4: rgb(0, 191, 111);
   --green-variant-5: var(--primary-green);
   --green-variant-6: var(--green-variant-2);
+  --green-variant-7: #024f29;
   --dark-green: rgb(28, 61, 48);
   --dark-green-hover: rgb(18, 40, 31);
   --green-secondary: rgb(0, 191, 111);
@@ -59,7 +60,10 @@
 body {
   font-family: "Inter", sans-serif;
 }
-
+input {
+  border: none;
+  outline: none;
+}
 .logo {
   margin-left: 30px;
   font-size: 1.5rem;
@@ -83,12 +87,18 @@ body {
     var(--green-variant-6)
   );
 }
+.bg-green-variant-4 {
+  background-color: var(--green-variant-4);
+}
 .bg-light-lime {
   background-color: var(--light-lime);
 }
 /* for dark lime */
 .bg-light-lime-secondary {
   background-color: var(--light-lime-secondary);
+}
+.bg-gray {
+  background-color: gray;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -115,6 +125,12 @@ body {
 
 .text-error {
   color: rgb(206, 4, 4);
+}
+.text-gray {
+  color: gray;
+}
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 .text-xsm {
   font-size: var(--text-xsm);
