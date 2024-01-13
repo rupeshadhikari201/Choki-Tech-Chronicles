@@ -1,6 +1,4 @@
-import "../../Css/onboarding/progressindicator.css";
 import CircularCheck from "../../Components/commen/circularCheck";
-import { STATUS } from "../../utils/constants/status";
 import "../../Css/comment/circular-check.css";
 const ProgressIndicator = ({ numberOfProgress, progress }) => {
   return (

@@ -18,7 +18,7 @@ const CircularCheck = ({ status, bgColor, checkColor, label }) => {
                 bg-green-primary
                 `}
         >
-          <FaCheck color={checkColor} size={20} />
+          <FaCheck color={checkColor} size={20} className="icon-check" />
         </div>
         <label className="text-black-variant-2 text-xsm">{label}</label>
       </div>

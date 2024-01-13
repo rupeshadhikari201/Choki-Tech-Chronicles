@@ -3,7 +3,6 @@ import { AuthContext } from "../../utils/context/auth";
 import "../../Css/onboarding/onboarding.css";
 import ProgressIndicator from "./progressIndicator";
 import { STATUS } from "../../utils/constants/status";
-import selectstyle from "../../Css/comment/select.module.css";
 import { useNavigate } from "react-router-dom";
 import { commonPath } from "../../utils/constants/path";
 import { FaArrowLeft, FaArrowRight, FaClosedCaptioning } from "react-icons/fa6";
@@ -25,6 +24,14 @@ const LetsStart = () => {
       status: STATUS.DEFAULT,
       label: "Finish",
     },
+    {
+      status: STATUS.DEFAULT,
+      label: "why",
+    },
+    {
+      status: STATUS.DEFAULT,
+      label: "resume",
+    },
   ]);
   const pages = [
     {
@@ -34,7 +41,10 @@ const LetsStart = () => {
     },
     {
       page: (setGotoNext, setUserInfo) => (
-        <UserExperiance setGotoNext={setGotoNext} setUserInfo={setUserInfo} />
+        <UserProfessionAndSkill
+          setGotoNext={setGotoNext}
+          setUserInfo={setUserInfo}
+        />
       ),
     },
     {
@@ -264,7 +274,7 @@ const UserPreference = ({ setGotoNext, setUserInfo }) => {
   );
 };
 
-const UserExperiance = ({ setGotoNext, setUserInfo }) => {
+const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
   const [showSkillList, setShowSkillList] = useState(false);
   const [personalSkills, setPersonalSkills] = useState([]);
   const [skills, setSkills] = useState(skillsList);
@@ -304,7 +314,7 @@ const UserExperiance = ({ setGotoNext, setUserInfo }) => {
       >
         <p className="text-center">What is your profession?</p>
         <select
-          className={`${selectstyle.custom} ${selectstyle.max_width_500}
+          className={`
       p-2
       rounded
       border-green-variant-3
@@ -445,7 +455,6 @@ const UserExperiance = ({ setGotoNext, setUserInfo }) => {
                       onClick={() => {
                         setPersonalSkills([...personalSkills, skill.name]);
                         skills[index].isSelected = true;
-
                         setSkills(skillsList);
                       }}
                     >
