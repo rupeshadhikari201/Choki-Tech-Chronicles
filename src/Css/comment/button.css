@@ -1,7 +1,9 @@
-.buttongreen {
-  background-color: var(--primary-green);
+button {
   outline: none;
   border: none;
+}
+.buttongreen {
+  background-color: var(--primary-green);
   border-radius: 20px;
   color: #eff0e1;
   display: flex;
@@ -13,8 +15,6 @@
 }
 .buttongreencard {
   background-color: var(--primary-green);
-  outline: none;
-  border: none;
   border-radius: 20px;
   color: #eff0e1;
   display: flex;
@@ -26,8 +26,6 @@
 }
 .buttonlightgreen {
   background-color: var(--light-green);
-  outline: none;
-  border: none;
   border-radius: 20px;
   color: #387a37;
   display: flex;
@@ -47,10 +45,8 @@
   width: 80%;
   padding: 20px 25px;
   border-radius: 30px;
-  margin: 100px auto;
+  margin: 20px auto;
   background-color: var(--primary-green);
-  outline: none;
-  border: none;
   color: #eff0e1;
   font-weight: bold;
 }
@@ -67,14 +63,46 @@
   margin: 10px auto;
   margin-top: 40px;
   background-color: #ffffff;
-  outline: none;
-  border: none;
   color: var(--primary-green);
   font-weight: bold;
   cursor: pointer;
 }
 .btn-custom-white:hover {
   background-color: #c8ffc0;
+}
+.btn-custom-secondary {
+  display: block;
+  border: 1px solid gray;
+  width: 80%;
+  max-width: 300px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin: 10px auto;
+  margin-top: 40px;
+  background-color: #ffffff;
+  color: var(--primary-green);
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+  transition: background 0.3s ease-in-out;
+}
+.btn-custom-circular {
+  display: block;
+  height: 50px;
+  width: 50px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  background-color: var(--green-variant-7);
+  color: var(--primary-green);
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+  transition: background 0.3s ease-in-out;
+}
+.btn-custom-secondary:hover {
+  background-color: var(--green-variant-4);
 }
 @media screen and (max-width: 992px) {
   .btn-custom {
