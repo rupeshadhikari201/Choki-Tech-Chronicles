@@ -30,11 +30,12 @@
   margin: 10px auto;
   top: 100px;
 }
-.profession {
+.max-width-400-center {
   max-width: 400px;
   margin: 0 auto;
 }
-.skills-list {
+.skills-list,
+.language-list {
   position: absolute;
   top: 35px;
   list-style-type: none;
@@ -48,18 +49,31 @@
   display: none;
   z-index: 50;
 }
-.skills-list.active {
+.skills-list.active,
+.language-list.active {
   display: block;
 }
-.skills-list li {
+.skills-list li,
+.language-list li {
   display: block;
   padding: 5px 10px;
   margin-inline-start: 0;
   background-color: var(--light-green);
   cursor: pointer;
+  border-bottom: 1px solid gray;
 }
-.skills-list li:hover {
+.skills-list li:hover,
+.language-list li:hover {
   background-color: var(--green-variant-4);
+}
+.textarea-about {
+  overflow-y: scroll;
+}
+.textarea-about:focus {
+  outline: none;
+}
+.textarea-about::placeholder {
+  font-size: 13px;
 }
 @media screen and (max-width: 921px) {
   .wrapper {
