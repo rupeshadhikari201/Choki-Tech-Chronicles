@@ -38,6 +38,13 @@ const LetsStart = () => {
       label: "Finish",
     },
   ]);
+  const headerSubtitles = [
+    "let's know more about you",
+    "Your skill and profession",
+    "Your legacy",
+    "Your resume help us to know more",
+    "Starting your new journey",
+  ];
   const pages = [
     {
       page: (setGotoNext, setUserInfo) => (
@@ -147,7 +154,7 @@ const LetsStart = () => {
       "
           >
             <h1 className="text-black-variant-1">
-              Hello,
+              <span className={`font-weight-300`}>Hello,</span>
               <span className="text-green-secondary text-capitalize">
                 {state.user?.firstName}
               </span>{" "}
@@ -155,9 +162,10 @@ const LetsStart = () => {
             <h4
               className="text-md
         text-black-variant-2
+        font-weight-400
         "
             >
-              let&apos;s know more about you
+              {headerSubtitles[currentPage]}
             </h4>
 
             <ProgressIndicator
@@ -680,7 +688,7 @@ const UserSummary = ({ setGotoNext, setUserInfo }) => {
           className={`w-100 
         textarea-about
         border-0
-      
+        transparent
         p-2 text-black-variant-2`}
           placeholder={`eg. With expertise in web designing and development using React.js and Node, I am well-equipped to deliver innovative and robust solutions. My commitment to clear and proactive communication ensures a smooth collaboration, making me the ideal candidate for your project
         `}
@@ -694,7 +702,9 @@ const UserSummary = ({ setGotoNext, setUserInfo }) => {
             if (value.split(" ").length > 50) setGotoNext(true);
           }}
         />
-        <span className={`text-xsm p-1`}>{summary.split(" ").length - 1}</span>
+        <span className={`text-xsm p-1 text-black-variant-1`}>
+          {summary.split(" ").length - 1}
+        </span>
       </div>
     </div>
   );
