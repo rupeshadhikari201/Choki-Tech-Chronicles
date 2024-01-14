@@ -5,7 +5,12 @@ import ProgressIndicator from "./progressIndicator";
 import { STATUS } from "../../utils/constants/status";
 import { useNavigate } from "react-router-dom";
 import { commonPath } from "../../utils/constants/path";
-import { FaArrowLeft, FaArrowRight, FaClosedCaptioning } from "react-icons/fa6";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaClosedCaptioning,
+  FaFile,
+} from "react-icons/fa6";
 import { skillsList } from "../../utils/constants/skillsList";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -22,15 +27,15 @@ const LetsStart = () => {
     },
     {
       status: STATUS.DEFAULT,
+      label: "Why",
+    },
+    {
+      status: STATUS.DEFAULT,
+      label: "Resume",
+    },
+    {
+      status: STATUS.DEFAULT,
       label: "Finish",
-    },
-    {
-      status: STATUS.DEFAULT,
-      label: "why",
-    },
-    {
-      status: STATUS.DEFAULT,
-      label: "resume",
     },
   ]);
   const pages = [
@@ -49,7 +54,20 @@ const LetsStart = () => {
     },
     {
       page: (setGotoNext, setUserInfo) => (
-        <UserSomething setGotoNext={setGotoNext} setUserInfo={setUserInfo} />
+        <WhyAndWhere setGotoNext={setGotoNext} setUserInfo={setUserInfo} />
+      ),
+    },
+    {
+      page: (setGotoNext, setUserInfo) => (
+        <ResumeAndLanguage
+          setGotoNext={setGotoNext}
+          setUserInfo={setUserInfo}
+        />
+      ),
+    },
+    {
+      page: (setGotoNext, setUserInfo) => (
+        <UserSummary setGotoNext={setGotoNext} setUserInfo={setUserInfo} />
       ),
     },
   ];
@@ -62,12 +80,12 @@ const LetsStart = () => {
     console.log(pages[currentPage]);
   }, []);
   const onNextPage = () => {
+    console.log("user info ==> ", userInfo);
     if (!gotoNext) {
       toast("please compelet all", {});
-      console.log("toast");
     }
     if (gotoNext && currentPage == pages.length - 1) {
-      navigator(`${commonPath}/dashboard`);
+      navigator(`/${commonPath}/dashboard`);
     } else if (gotoNext && currentPage != pages.length - 1) {
       setCurrentPage((c) => c + 1);
       let progress = progressState;
@@ -242,7 +260,7 @@ const UserPreference = ({ setGotoNext, setUserInfo }) => {
       <button
         className={`
          text-black-variant-1
-         mt-3
+         mt-5
          mb-0
          text-md
          btn-custom-secondary
@@ -306,7 +324,7 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
         mt-3
       flex-column 
       align-items-center
-      profession
+      max-width-400-center
       "
       >
         <p className="text-center">What is your profession?</p>
@@ -440,7 +458,7 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
             <ul
               className={`
           skills-list
-          bg-white
+          
           ${showSkillList ? "active" : ""}
           `}
             >
@@ -470,10 +488,214 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
   );
 };
 
-const UserSomething = ({ setGotoNext, setUserInfo }) => {
+const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
+  const [whyFreelance, setWhyFreelance] = useState("");
+  const [hearedAboutUs, setHeardAboutUs] = useState("");
+  useEffect(() => {
+    if (whyFreelance && whyFreelance.length > 3 && hearedAboutUs)
+      setGotoNext(true);
+    else setGotoNext(false);
+  }, [whyFreelance, hearedAboutUs]);
+
   return (
     <div className="text-black-variant-1">
-      <h2 className="text-center">Thank you for choosing us</h2>
+      <div>
+        <div
+          className={`
+       
+        mt-3
+      flex-column 
+      max-width-400-center
+     
+        `}
+        >
+          <p className={`text-center`}>Why do you want start freelancing</p>
+          <input
+            placeholder="why"
+            className={`
+      w-100
+      p-2
+      rounded
+      border-green-variant-3
+      transparent
+      text-black-variant-2
+          `}
+            onChange={(e) => setWhyFreelance(e.target.value)}
+          />
+        </div>
+        <div
+          className="d-flex 
+        mt-3
+      flex-column 
+      align-items-center
+      max-width-400-center
+      "
+        >
+          <p className="text-center">Where did you heard about us?</p>
+          <select
+            className={`
+      p-2
+      rounded
+      border-green-variant-3
+      text-black-variant-1
+      bg-white-variant-2
+      w-100
+      `}
+            name="where"
+            onChange={(e) => setHeardAboutUs(e.target.value)}
+          >
+            <option value="">Select</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Youtube">Youtube</option>
+            <option value="Friends">Friends</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
+  const [resume, setResume] = useState("");
+  const [userLanguage, setUserLanguage] = useState([
+    {
+      language: "English",
+      level: "good",
+    },
+  ]);
+  const [showLanguageList, setShowLanguageList] = useState(false);
+  useEffect(() => {}, []);
+  useEffect(() => {
+    const size = resume?.size / 1000_000 ?? null;
+    if (size && size > 2) toast(`Resume size ${size}MB greater than 2MB`);
+    if (size && size <= 2) setGotoNext(true);
+  }, [resume]);
+  return (
+    <div>
+      <div className={`max-width-400-center mt-4`}>
+        <p className={`text-center  text-black-variant-1`}>
+          Upload Your Resume
+        </p>
+        <div
+          className={`
+        border-green-variant-3
+        p-1
+        rounded
+        d-flex
+        align-items-center
+        justify-content-between
+        `}
+        >
+          <input
+            type="file"
+            id="resume"
+            placeholder="max(2 mb)"
+            accept=".pdf,.doc,.docx"
+            className={`d-none border`}
+            onChange={(e) => setResume(e.target.files[0])}
+          />
+          <label htmlFor="resume" className={`text-gray cursor-pointer`}>
+            {resume ? resume.name : "Resume max(2 Mb)"}
+          </label>
+
+          <label htmlFor="resume" className="cursor-pointer p-1 ">
+            <FaFile color="green" />
+          </label>
+        </div>
+      </div>
+      {/*Language  */}
+      <div className={`max-width-400-center mt-3`}>
+        <p className={`text-black-variant-1 text-center`}>Language</p>
+        <div className={`d-flex align-items-center justify-content-between`}>
+          <div className={`position-relative text-black-variant-2`}>
+            <div className={`rounded border-green-variant-3`}>
+              <input
+                type="text"
+                id="0"
+                className={`p-1 rounded  bg-white-variant-2 text-black-variant-2`}
+                placeholder="Language"
+                defaultValue={userLanguage[0]?.language}
+                onFocus={() => setShowLanguageList(true)}
+              />
+              {showLanguageList && (
+                <span
+                  className={`cursor-pointer p-1`}
+                  onClick={() => setShowLanguageList(false)}
+                >
+                  X
+                </span>
+              )}
+              <ul
+                className={`language-list ${showLanguageList ? "active" : ""}`}
+              >
+                <li>English</li>
+                <li>1</li>
+                <li>2</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <select
+              className={`
+      p-1
+      rounded
+      border-green-variant-3
+      text-black-variant-1
+      bg-white-variant-2
+      
+      `}
+              name="level"
+              onChange={(e) => {}}
+              defaultValue={userLanguage[0].level}
+            >
+              <option value="good">Good</option>
+              <option value="excellent">Excellent</option>
+              <option value="native">Native</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const UserSummary = ({ setGotoNext, setUserInfo }) => {
+  const [summary, setSummary] = useState("");
+  return (
+    <div
+      className={`mt-4 
+    max-width-400-center
+    `}
+    >
+      <p className={`text-center`}>
+        About You
+        <span className={`text-gray text-xsm`}> min (50 words)</span>
+      </p>
+      <div
+        className={`border-green-variant-3 rounded overflow-hidden
+      p-1
+      `}
+      >
+        <textarea
+          className={`w-100 
+        textarea-about
+        border-0
+      
+        p-2 text-black-variant-2`}
+          placeholder={`eg. With expertise in web designing and development using React.js and Node, I am well-equipped to deliver innovative and robust solutions. My commitment to clear and proactive communication ensures a smooth collaboration, making me the ideal candidate for your project
+        `}
+          rows={4}
+          style={{
+            textAlign: "justify",
+          }}
+          onChange={(e) => {
+            const { value } = e.target;
+            setSummary(e.target.value);
+            if (value.split(" ").length > 50) setGotoNext(true);
+          }}
+        />
+        <span className={`text-xsm p-1`}>{summary.split(" ").length - 1}</span>
+      </div>
     </div>
   );
 };
