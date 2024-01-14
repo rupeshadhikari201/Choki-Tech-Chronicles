@@ -1,9 +1,60 @@
 .dashboard-left {
   max-width: 300px;
 }
+.dashboard-left .nav-list {
+  list-style-type: none;
+  margin-block-start: 0;
+  padding: 0;
+  margin-top: 10%;
+  width: 100%;
+}
+.border-bottom-primary {
+  border-bottom: 1px solid var(--black-variant-3);
+}
+.dashboard-left .nav-list a {
+  color: var(--text-gray-secondary);
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  width: 100%;
+}
+.dashboard-left .nav-list a:hover {
+  color: var(--text-black-varaint-1);
+}
+.dashboard-menu-bar span {
+  transition: all 0.3s linear;
+}
+.hover-nav:hover {
+  color: var(--text-black-varaint-1);
+}
+
+.translate-x {
+  transform: translateX(-100%);
+}
+/* top navigation */
+.dashboard-right .menu-bar > span {
+  transition: all 0.3s linear;
+}
 .circular-progress-wrapper {
   max-width: 500px;
 }
 .dashboard-activity {
   max-width: 900px;
+}
+
+.margin-right-300 {
+  margin-right: 300px;
+}
+.margin-left-300 {
+  margin-left: 300px;
+}
+@media screen and (max-width: 1060px) {
+  .margin-right-300 {
+    margin-right: 0px;
+  }
+}
+@media screen and (max-width: 769px) {
+  .margin-right-300 {
+    margin-right: 0px;
+  }
 }
