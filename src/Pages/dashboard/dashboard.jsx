@@ -11,7 +11,6 @@ const DashBoard = () => {
   min-height-100vh
   bg-light-green
   d-flex
-
   "
     >
       {/* LeftSide */}

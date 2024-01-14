@@ -1,9 +1,57 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { commonPath } from "../../utils/constants/path";
+import { MdLogout } from "react-icons/md";
 
 const DashBoardLeft = ({ setShowNav, showNav }) => {
   const closeWindow = () => {
     setShowNav(!showNav);
   };
+  const navList = [
+    {
+      title: "DashBoard",
+      to: `${commonPath}/dashboard/`,
+      child: [
+        {
+          title: "home",
+          to: `${commonPath}/dashboard/`,
+        },
+      ],
+    },
+    {
+      title: "Projects",
+      to: `${commonPath}/dashboard/`,
+      child: [
+        {
+          title: "All Projects",
+          to: `${commonPath}/dashboard/`,
+        },
+      ],
+    },
+    {
+      title: "Account",
+      to: `${commonPath}/dashboard/`,
+      child: [
+        {
+          title: "Profile",
+          to: `${commonPath}/dashboard/`,
+        },
+        {
+          title: "Invoice",
+          to: `${commonPath}/dashboard/`,
+        },
+      ],
+    },
+    {
+      title: "Help Line",
+      to: `${commonPath}/dashboard/`,
+      child: [
+        {
+          title: "support",
+          to: `${commonPath}/dashboard/`,
+        },
+      ],
+    },
+  ];
   return (
     <div
       className={`${showNav ? "margin-right-300" : ""}
@@ -24,7 +72,7 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
       text-center
       h-100
       w-100
-  visible
+      
   ${!showNav ? "translate-x" : ""}
   `}
         style={{
@@ -32,19 +80,75 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
           left: 0,
         }}
       >
-        navigation
-        <button
-          className="
-      btn-custom
+        <h3
+          className={`font-weight-400
+        text-uppercase p-1
+        pb-3
+        border-bottom-primary
+        `}
+        >
+          choki Ino Tech
+        </h3>
+        <div
+          className={`
+        d-flex
+      flex-column
+      align-items-start
+      h-100
+      
+      `}
+        >
+          <ul className="nav-list">
+            {navList.map((link, index) => (
+              <li key={index} className="border-bottom-primary mb-3 pb-3">
+                <div className="px-2">
+                  <p className="text-gray-secondary font-weight-var-300 text-start mb-0">
+                    {link.title}
+                  </p>
+                  {link.child.map((item, index) => (
+                    <Link
+                      key={index}
+                      className={`text-start 
+                    font-weight-var-normal
+                    `}
+                    >
+                      {item.title}
+                    </Link>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div
+            className={`
+          hover-nav
+          mt-3
+          pb-3
+          text-start
+          text-gray-secondary
+          border-bottom-primary
+          w-100
+          cursor-pointer
+          `}
+          >
+            <span className={`px-3`}>
+              <MdLogout /> Log out{" "}
+            </span>
+          </div>
+          <button
+            className="
+      btn-custom-variant-3
       p-1
       text-md
       border-green-variant-3
       transparent
+      text-black-variant-2
       "
-          onClick={closeWindow}
-        >
-          close
-        </button>
+            onClick={closeWindow}
+          >
+            close
+          </button>
+        </div>
       </div>
     </div>
   );
