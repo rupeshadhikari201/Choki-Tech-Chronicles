@@ -104,6 +104,22 @@ button {
 .btn-custom-secondary:hover {
   background-color: var(--green-variant-4);
 }
+.btn-custom-variant-3 {
+  display: block;
+  border: 1px solid gray;
+  width: 80%;
+  max-width: 300px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin: 10px auto;
+  margin-top: 40px;
+  background-color: #ffffff;
+  font-weight: 400;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+  transition: background 0.3s ease-in-out;
+}
 @media screen and (max-width: 992px) {
   .btn-custom {
     font-size: 30px;
