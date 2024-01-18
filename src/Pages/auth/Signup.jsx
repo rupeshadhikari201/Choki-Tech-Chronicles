@@ -25,7 +25,7 @@ const Signup = () => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [validConfirm, setValidConfirm] = useState(true);
-  const { _, dispatch } = useContext(AuthContext);
+  const { userdispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   //Checking validity
   const onSumbit = () => {
@@ -38,7 +38,7 @@ const Signup = () => {
     });
 
     if (valid) {
-      dispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
+      userdispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
       navigate(`/${commonPath}/onboard`);
     }
   };
