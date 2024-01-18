@@ -22,7 +22,7 @@ const Profile = () => {
         <CircularAvatar
           size={160}
           img={""}
-          text={userState?.user?.firstName.slice(0, 2)}
+          text={userState?.user?.firstName?.slice(0, 2)}
           fontSize={5}
           bgcolor="bg-gray-secondary"
         />
