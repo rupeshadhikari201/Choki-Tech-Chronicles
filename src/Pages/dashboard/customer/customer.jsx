@@ -14,6 +14,7 @@ const CustomerDashBoard = () => {
       flex-column
      gap-4
      px-3
+     pb-3 pb-md-0
     "
         style={{
           maxWidth: "1200px",
@@ -32,9 +33,11 @@ const CustomerDashBoard = () => {
         w-auto
         text-xsm
         rounded
+        position-static
         `}
           style={{
             padding: "4px 10px",
+            zIndex: "unset",
           }}
         >
           New project
