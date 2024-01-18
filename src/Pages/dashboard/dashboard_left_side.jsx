@@ -23,7 +23,7 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
       child: [
         {
           title: "All Projects",
-          to: `${commonPath}/dashboard/`,
+          to: `${commonPath}/projects`,
         },
       ],
     },
@@ -33,7 +33,7 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
       child: [
         {
           title: "Profile",
-          to: `${commonPath}/dashboard/`,
+          to: `${commonPath}/profile`,
         },
         {
           title: "Invoice",
@@ -54,11 +54,12 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
   ];
   return (
     <div
-      className={`${showNav ? "margin-right-300" : ""}
+      className={`${showNav ? "margin-right-?" : ""}
     position-relative
+    margin-right-300
     `}
       style={{
-        transition: "all 0.5s linear",
+        transition: "all 0.3s linear",
         left: 0,
         zIndex: "100",
       }}
@@ -73,11 +74,13 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
       h-100
       w-100
       
-  ${!showNav ? "translate-x" : ""}
+  ${showNav ? "translate-x" : ""}
+ 
   `}
         style={{
-          transition: "all 0.5s linear",
+          transition: "all 0.3s ease-in",
           left: 0,
+          overflowY: "scroll",
         }}
       >
         <h3
@@ -101,7 +104,7 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
           <ul className="nav-list">
             {navList.map((link, index) => (
               <li key={index} className="border-bottom-primary mb-3 pb-3">
-                <div className="px-2">
+                <div className="px-2 ps-4">
                   <p className="text-gray-secondary font-weight-var-300 text-start mb-0">
                     {link.title}
                   </p>
@@ -111,6 +114,10 @@ const DashBoardLeft = ({ setShowNav, showNav }) => {
                       className={`text-start 
                     font-weight-var-normal
                     `}
+                      to={item.to}
+                      onClick={() => {
+                        setShowNav(false);
+                      }}
                     >
                       {item.title}
                     </Link>
