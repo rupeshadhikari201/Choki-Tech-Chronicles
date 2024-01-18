@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa6";
 import { skillsList } from "../../utils/constants/skillsList";
 import { toast, ToastContainer } from "react-toastify";
+import { Languages } from "../../utils/constants/languageList";
 
 const LetsStart = () => {
   const { userState } = useContext(AuthContext);
@@ -636,9 +637,14 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
               <ul
                 className={`language-list ${showLanguageList ? "active" : ""}`}
               >
-                <li>English</li>
-                <li>1</li>
-                <li>2</li>
+                {Languages.map(
+                  (skill, index) =>
+                    !skill.isSelected && (
+                      <li key={index} onClick={() => {}}>
+                        {skill.name}
+                      </li>
+                    )
+                )}
               </ul>
             </div>
           </div>
