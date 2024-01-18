@@ -11,7 +11,9 @@ import LetsStart from "./Pages/onboard/LetsStart.jsx";
 import AuthContextProvider from "./utils/context/auth.jsx";
 import ProtectedRoutes from "./utils/routes/protectedRoutes.jsx";
 import DashBoardRoute from "./utils/routes/dashboard_route.jsx";
-import DashBoard from "./Pages/dashboard/dashboard.jsx";
+import CustomerDashBoard from "./Pages/dashboard/customer/customer.jsx";
+import Profile from "./Pages/profile/profile.jsx";
+import Projects from "./Pages/projects/projects.jsx";
 const App = () => {
   const commonPath = "Choki-Tech-Chronicles";
   const [isDark, setIsDark] = useState(false);
@@ -38,7 +40,12 @@ const App = () => {
               <Route path={`${commonPath}/onboard`} element={<LetsStart />} />
             </Route>
             <Route element={<DashBoardRoute />}>
-              <Route path={`${commonPath}/dashboard`} element={<DashBoard />} />
+              <Route
+                path={`${commonPath}/dashboard`}
+                element={<CustomerDashBoard />}
+              />
+              <Route path={`${commonPath}/profile`} element={<Profile />} />
+              <Route path={`${commonPath}/projects`} element={<Projects />} />
             </Route>
           </Routes>
         </BrowserRouter>
