@@ -1,5 +1,14 @@
 .dashboard-left {
   max-width: 300px;
+  top: 0px;
+  transform: translateX(0);
+}
+.dashboard-left::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.dashboard-left::-webkit-scrollbar-thumb {
+  background: var(--green-secondary);
 }
 .dashboard-left .nav-list {
   list-style-type: none;
@@ -8,6 +17,7 @@
   margin-top: 10%;
   width: 100%;
 }
+/* left dashboard */
 .border-bottom-primary {
   border-bottom: 1px solid var(--black-variant-3);
 }
@@ -29,12 +39,19 @@
 }
 
 .translate-x {
-  transform: translateX(-100%);
+  transform: translateX(0);
 }
 /* top navigation */
 .dashboard-right .menu-bar > span {
   transition: all 0.3s linear;
 }
+.dash-board-top-nav {
+  width: calc(100% - 300px);
+}
+.dashboard-top-search {
+  max-width: 400px;
+}
+
 .circular-progress-wrapper {
   max-width: 500px;
 }
@@ -45,16 +62,67 @@
 .margin-right-300 {
   margin-right: 300px;
 }
-.margin-left-300 {
+/* .margin-left-300 {
   margin-left: 300px;
+} */
+.icon-wrapper-primary {
+  /* background-color: var(--gray-secondary); */
+  border: 1px solid var(--gray-400);
+  padding: 2px 10px;
+}
+.dashboard-card {
+  max-width: 220px;
+}
+
+.dash-board-top-notification .notification-wrapper {
+  transform: translateY(-100%);
+  z-index: -1;
+  visibility: hidden;
+}
+.dash-board-top-notification:hover .notification-wrapper {
+  transform: translateX(0);
+  visibility: visible;
+  z-index: 20;
+}
+.dash-board-top-profile .profile-wrapper {
+  transform: translateY(-100%);
+  z-index: -1;
+  visibility: hidden;
+}
+.dash-board-top-profile:hover .profile-wrapper {
+  transform: translateY(0);
+  visibility: visible;
+  z-index: 20;
 }
 @media screen and (max-width: 1060px) {
   .margin-right-300 {
-    margin-right: 0px;
+    margin-right: 300px;
+  }
+
+  .translate-x {
+    transform: translateX(0);
   }
 }
 @media screen and (max-width: 769px) {
+  .dashboard-left {
+    top: 55px;
+    transform: translateX(-100%);
+  }
+  .dash-board-top-nav {
+    width: 100%;
+  }
   .margin-right-300 {
     margin-right: 0px;
+  }
+  .dashboard-top-search input {
+    width: 100%;
+  }
+  .translate-x {
+    transform: translateX(0);
+  }
+}
+@media screen and (max-width: 512px) {
+  .dashboard-card {
+    max-width: 90%;
   }
 }
