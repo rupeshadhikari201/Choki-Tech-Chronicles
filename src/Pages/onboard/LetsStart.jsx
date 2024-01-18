@@ -15,7 +15,7 @@ import { skillsList } from "../../utils/constants/skillsList";
 import { toast, ToastContainer } from "react-toastify";
 
 const LetsStart = () => {
-  const { state } = useContext(AuthContext);
+  const { userState } = useContext(AuthContext);
   const [progressState, setProgressState] = useState([
     {
       status: STATUS.PENDING,
@@ -83,7 +83,7 @@ const LetsStart = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [gotoNext, setGotoNext] = useState(false);
   useEffect(() => {
-    console.log(state);
+    console.log(userState);
     console.log(pages[currentPage]);
   }, []);
   const onNextPage = () => {
@@ -156,7 +156,7 @@ const LetsStart = () => {
             <h1 className="text-black-variant-1">
               <span className={`font-weight-300`}>Hello,</span>
               <span className="text-green-secondary text-capitalize">
-                {state.user?.firstName}
+                {userState.user?.firstName}
               </span>{" "}
             </h1>
             <h4
