@@ -14,7 +14,7 @@ const DashBoardTopbar = () => {
       className=" p-2
    d-flex align-items-start position-fixed dash-board-top-nav
 gap-2  flex-column
-
+bg-white
 "
     >
       <div
@@ -65,6 +65,11 @@ gap-2  flex-column
   </div>
 )} */}
           <div>
+            {/* Greeting */}
+            <h4 className="text-blue-variant-1 mb-0 text-capitalize font-weight-400">
+              {userState.user?.firstName}'s
+            </h4>
+
             <h6
               className="
   text-black-variant-2
