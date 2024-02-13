@@ -1,21 +1,27 @@
 import { CreativeCommons } from "iconsax-react";
 
-const DashboardCard = ({ title, number, icon }) => {
+const DashboardCard = ({ title, number, icon, background }) => {
   return (
     <div
-      className={`d-flex border-green-variant-3 flex-column justify-content-between p-2 pb-1 
-      text-blue-variant-1
-      rounded col dashboard-card`}
-      style={{ minWidth: "200px", height: "120px" }}
+      className={`d-flex flex-column justify-content-between p-3 pb-1 
+      rounded col dashboard-card
+      `}
+      style={{
+        color: "white",
+        maxWidth: "300px",
+        width: "100%",
+        height: "150px",
+        background: `${
+          background ? background : "linear-gradient(to right,#F46D6D,#BA3E3E)"
+        }`,
+      }}
     >
       {/* Title */}
       <h5 className={`font-weight-400 text-md `}>{title}</h5>
       {/* Number and Icon */}
-      <div className={`d-flex justify-content-between align-items-center`}>
-        <h2 className={`text-xxlg font-weight-400 text-blue-variant-1`}>
-          {number}
-        </h2>{" "}
+      <div className={`d-flex justify-content-between align-items-center pe-3`}>
         {icon}
+        <h2 className={`text-xxlg font-weight-300 `}>{number}</h2>{" "}
       </div>
     </div>
   );
