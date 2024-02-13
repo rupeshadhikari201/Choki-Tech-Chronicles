@@ -15,10 +15,10 @@ const CircularAvatar = ({
             icon-wrapper-primary ${className}
             `}
         style={{
-          width: `${size}px`,
-          height: `${size}px`,
+          width: `${size || 20}px`,
+          height: `${size || 20}px`,
           borderRadius: "50%",
-          fontSize: `${fontSize}rem`,
+          fontSize: `${fontSize || 1}rem`,
         }}
       >
         {img ? (
