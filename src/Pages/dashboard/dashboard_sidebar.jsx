@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { commonPath } from "../../utils/constants/path";
 import { MdLogout, MdSupportAgent } from "react-icons/md";
 import { Box, Home, Money, User } from "iconsax-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SideNavContext } from "../../utils/context/sidenav";
+import { ACTION_TYPE } from "../../reducer/action/action";
 
 const SideBar = () => {
+  const { sideNavState, navDispatch } = useContext(SideNavContext);
   const [activeLink, setActiveLink] = useState("home");
   const navList = [
     {
@@ -140,7 +143,13 @@ position-relative
                 font-weight-300
                 `}
                         to={`/${item.to}`}
-                        onClick={() => setActiveLink(link.title)}
+                        onClick={() => {
+                          setActiveLink(item.title);
+                          navDispatch({
+                            type: ACTION_TYPE.CHANGE_SIDE_NAV,
+                            payload: item.title,
+                          });
+                        }}
                       >
                         {item.title}
                       </Link>
@@ -182,6 +191,5 @@ position-relative
     </div>
   );
 };
-
 
 export default SideBar;
