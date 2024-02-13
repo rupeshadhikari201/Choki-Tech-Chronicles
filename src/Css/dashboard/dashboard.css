@@ -5,10 +5,11 @@
 }
 .dashboard-left::-webkit-scrollbar {
   width: 5px;
-  height: 5px;
+  height: 3px;
+  border-radius: 10px;
 }
 .dashboard-left::-webkit-scrollbar-thumb {
-  background: var(--green-secondary);
+  background: var(--white-variant-1);
 }
 .dashboard-left .nav-list {
   list-style-type: none;
