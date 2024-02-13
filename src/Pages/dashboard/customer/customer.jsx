@@ -1,49 +1,25 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../utils/context/auth";
-import { Link } from "react-router-dom";
 import DashboardCard from "../../../Components/card/dashboardCards";
 import { Edit2, Money, TickCircle } from "iconsax-react";
+import CircularAvatar from "../../../Components/commen/circular_avatar";
+import BudgetChart from "../../../Components/chart/budget_chart";
 
 const CustomerDashBoard = () => {
   const { userState } = useContext(AuthContext);
 
   return (
-    <div className="">
+    <div className={`d-flex dashboard-content`}>
       <div
         className="d-flex
       flex-column
      gap-4
      px-3
      pb-3 pb-md-0
+     col
+     left-side
     "
-        style={{
-          maxWidth: "1200px",
-        }}
       >
-        {/* Greeting */}
-        <h2 className="text-blue-variant-1 mb-0 text-capitalize font-weight-400">
-          Hello {userState.user?.firstName}!
-        </h2>
-        <Link
-          className={` bg-light-lime-secondary
-          text-black-variant-2
-          btn-custom-variant-3
-        my-0
-        ms-0
-        w-auto
-        text-xsm
-        rounded
-        position-static
-        `}
-          style={{
-            padding: "4px 10px",
-            zIndex: "unset",
-          }}
-        >
-          New project
-        </Link>
-
-        {/*  */}
         <div
           className={`d-flex justify-content-center justify-content-sm-between flex-wrap gap-2 `}
           style={{ maxWidth: "900px" }}
@@ -57,30 +33,75 @@ const CustomerDashBoard = () => {
             title={"Compeleted Project"}
             number={2}
             icon={<TickCircle size={25} />}
+            background={"linear-gradient(to right,#09CA62,#24995A)"}
           />
           <DashboardCard
             title={"Investment"}
             number={300}
             icon={<Money size={25} color="green" />}
+            background={"linear-gradient(to right,#793FF5,#56349D)"}
           />
+          {/* Budget Chart */}
+        </div>
+        <div className={`d-flex `}>
+          <div className={`col-8`} style={{ height: "300px" }}>
+            <BudgetChart />
+          </div>
+          <div className={`col-4`}></div>
         </div>
         {/* Activity */}
         <Activity />
         {/* Invitation */}
         <Invitation />
       </div>
+      {/* customer simple porfile */}
+      <div
+        className="d-flex flex-column align-items-center gap-2"
+        style={{
+          flexGrow: "1",
+        }}
+      >
+        <div
+          className={`d-flex flex-column align-items-center border  rounded`}
+          style={{
+            width: "100%",
+            height: "200px",
+          }}
+        >
+          <CircularAvatar
+            size={150}
+            text="YA"
+            fontSize={2}
+            bgcolor="bg-gray"
+            className={""}
+          />
+          <span>{userState.user?.email}</span>
+        </div>
+
+        <div
+          className={`width-100 border d-flex flex-column`}
+          style={{
+            width: "100%",
+            height: "200px",
+          }}
+        >
+          <span>Max Budget</span>
+          <span>Min Budget</span>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default CustomerDashBoard;
+
 function Activity() {
   return (
     <div
       className="
     text-black-variant-2
     dashboard-activity
-    bg-light-lime-secondary
+   
     col
     p-2
     "
@@ -107,7 +128,7 @@ function Invitation() {
       className="
 text-black-variant-2
 dashboard-activity
-bg-light-lime-secondary
+
 col
 p-2
 "
