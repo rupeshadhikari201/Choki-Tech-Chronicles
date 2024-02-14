@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Bar } from "react-chartjs-2"; // Import from chart.js
 import "chart.js/auto"; // Include necessary Chart.js elements
+import { ThemeContext } from "../../App";
 
 const HorizontalBarChart = ({ chartData, chartOptions }) => {
   const [data, setData] = useState({
@@ -13,7 +14,7 @@ const HorizontalBarChart = ({ chartData, chartOptions }) => {
       },
     ],
   }); // Store chart data
-
+  const { isDark } = useContext(ThemeContext);
   useEffect(() => {
     // Process incoming data to match Chart.js format
     const formattedData = {
@@ -39,12 +40,18 @@ const HorizontalBarChart = ({ chartData, chartOptions }) => {
         grid: {
           color: "transparent", // Remove horizontal grid lines
         },
+        ticks: {
+          color: isDark ? "#BCBCBC" : "#333", // Set the color of the labels inside the chart
+        },
       },
       y: {
         beginAtZero: true, // Start axis at 0
         title: {
           display: true,
           text: "Amount Spent", // Label the Y-axis
+        },
+        ticks: {
+          color: isDark ? "#BCBCBC" : "#333", // Set the color of the labels inside the chart
         },
       },
     },
