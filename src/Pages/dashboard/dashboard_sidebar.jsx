@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { SideNavContext } from "../../utils/context/sidenav";
 import { ACTION_TYPE } from "../../reducer/action/action";
 
-const SideBar = () => {
+const SideBar = ({ showNav, setShowNav }) => {
   const { sideNavState, navDispatch } = useContext(SideNavContext);
   const [activeLink, setActiveLink] = useState("home");
   const navList = [
@@ -59,25 +59,26 @@ const SideBar = () => {
   return (
     <div
       className={`
-position-relative
-
-`}
+      dashboard-left
+      position-relative
+      bg-dark-blue
+      ${showNav ? "" : "translate-x"}
+      `}
       style={{
+        width: "200px",
         transition: "all 0.3s linear",
-        left: 0,
         zIndex: "100",
       }}
     >
       <div
         className={`
-  dashboard-left
-  position-fixed
-  //bg-linear-green-variant-1
-  text-black-variant-1
-  text-center
-  h-100
-  w-100
-`}
+          
+          position-fixed
+          text-black-variant-1
+          text-center
+          h-100
+          w-100
+        `}
         style={{
           maxWidth: "200px",
           transition: "all 0.3s ease-in",
@@ -87,9 +88,9 @@ position-relative
       >
         <h2
           className={`font-weight-400
-    text-uppercase p-1
-    pb-3
-    border-bottom-primary
+          text-uppercase p-1
+          pb-3
+          border-bottom-primary
     `}
           style={{
             borderBottom: "1px solid rgb(77,92,108)",
