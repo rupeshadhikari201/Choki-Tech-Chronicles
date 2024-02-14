@@ -8,7 +8,6 @@ const DashboardCard = ({ title, number, icon, background }) => {
       `}
       style={{
         color: "white",
-        maxWidth: "300px",
         width: "100%",
         height: "150px",
         background: `${
