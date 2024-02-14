@@ -1,5 +1,5 @@
 import "../../Css/home/home.css";
-import "../../Css/comment/button.css";
+import "../../Css/commen/button.css";
 import heroImg from "../../assets/hero_img.png";
 import heroBackground from "../../assets/hero_background.png";
 import Navbar from "../../Components/navbar/Navbar.jsx";
