@@ -41,10 +41,17 @@ const CreatedProjectTable = () => {
   };
 
   return (
-    <div className="responsive-table-container text-black-variant-1 bg-white-variant-4 p-1 rounded">
+    <div
+      className="text-black-variant-1 bg-white-variant-4 p-1 rounded w-100"
+      style={{ overflow: "auto" }}
+    >
       {" "}
       {/* Wrapper for responsiveness */}
-      <table {...getTableProps()} className="w-100">
+      <table
+        {...getTableProps()}
+        className="w-100"
+        style={{ minWidth: "500px" }}
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr
