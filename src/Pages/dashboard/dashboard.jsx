@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "../../Css/dashboard/dashboard.css";
 import SideBar from "./dashboard_sidebar";
 import DashBoardTopbar from "./dashboard_topbar";
 const DashBoard = ({ children }) => {
+  const [showNav, setShowNav] = useState(true);
   return (
     <div
       className="
@@ -9,35 +11,28 @@ const DashBoard = ({ children }) => {
   bg-dark-blue
   d-flex
   "
+      style={{
+        overflow: "hidden",
+      }}
     >
       {/* Leftside */}
-      <SideBar />
+      <SideBar showNav={showNav} setShowNav={setShowNav} />
       {/* Right side */}
       <div
         className={`
+        bg-white-variant-3
       position-fixed
-      bg-blue
-      border border-3
-      p-2
-      bg-white
+      dashboard-main-container
+      px-2
       rounded
       `}
-        style={{
-          top: "20px",
-          bottom: "20px",
-          left: "200px",
-          right: "20px",
-          overflowY: "scroll",
-        }}
       >
         <div
-          className={`position-relative w-100 mb-2 mb-md-0`}
-          style={{ height: "60px", backgroundColor: "#FAFAFA" }}
+          className={`position-relative w-100 mb-2 `}
+          style={{ height: "70px" }}
         >
           {/* TopBar */}
-          <DashBoardTopbar />
-
-          {/* end of top fixed */}
+          <DashBoardTopbar showNav={showNav} setShowNav={setShowNav} />
         </div>
         {children}
       </div>
