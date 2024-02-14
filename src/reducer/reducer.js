@@ -19,3 +19,12 @@ export function authReducer(state, action) {
       return state;
   }
 }
+
+export function sideNavReducer(state, action) {
+  switch (action.type) {
+    case ACTION_TYPE.CHANGE_SIDE_NAV:
+      return { ...state, active: action.payload };
+    default:
+      return state;
+  }
+}
