@@ -20,7 +20,7 @@ const DashBoard = ({ children }) => {
       {/* Right side */}
       <div
         className={`
-        bg-white-variant-3
+      bg-white-variant-3
       position-fixed
       dashboard-main-container
       px-2
