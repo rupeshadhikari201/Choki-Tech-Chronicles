@@ -69,9 +69,6 @@
   border: 1px solid var(--gray-400);
   padding: 2px 8px;
 }
-.dashboard-card {
-  max-width: 220px;
-}
 
 .dash-board-top-notification .notification-wrapper {
   transform: translateY(-100%);
@@ -129,8 +126,18 @@
     transform: translateX(0);
   }
 }
-@media screen and (max-width: 512px) {
+@media screen and (max-width: 576px) {
   .dashboard-card {
     max-width: 90%;
+  }
+  .dashboard-content .left-side {
+    overflow: hidden;
+  }
+  .dashboard-main-container {
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow-y: scroll;
   }
 }
