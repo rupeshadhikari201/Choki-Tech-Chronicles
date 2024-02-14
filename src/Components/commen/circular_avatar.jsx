@@ -24,7 +24,7 @@ const CircularAvatar = ({
         {img ? (
           <img alt="img" src="" />
         ) : (
-          <span className="text-uppercase">{text}</span>
+          <span className="text-uppercase text-white">{text}</span>
         )}
       </div>
     </div>
