@@ -22,7 +22,7 @@ const CustomerDashBoard = () => {
       >
         <div
           className={`d-flex justify-content-center justify-content-sm-between flex-wrap gap-2 `}
-          style={{ maxWidth: "900px" }}
+          style={{}}
         >
           <DashboardCard
             title={"Posted Project"}
@@ -43,11 +43,17 @@ const CustomerDashBoard = () => {
           />
           {/* Budget Chart */}
         </div>
-        <div className={`d-flex `}>
-          <div className={`col-8`} style={{ height: "300px" }}>
+        <div className={`d-flex gap-2 `}>
+          <div
+            className={`col-8 bg-white-variant-4 p-2 rounded`}
+            style={{ height: "300px" }}
+          >
             <BudgetChart />
           </div>
-          <div className={`col-4`}></div>
+          <div
+            className={`col-4 bg-white-variant-4 rounded`}
+            style={{ height: "100%" }}
+          ></div>
         </div>
         {/* Activity */}
         <Activity />
@@ -56,37 +62,45 @@ const CustomerDashBoard = () => {
       </div>
       {/* customer simple porfile */}
       <div
-        className="d-flex flex-column align-items-center gap-2"
+        className="d-none flex-column align-items-center gap-2 text-black-variant-1 d-lg-flex "
         style={{
           flexGrow: "1",
         }}
       >
         <div
-          className={`d-flex flex-column align-items-center border  rounded`}
+          className={`d-flex flex-column gap-2 align-items-center rounded bg-white-variant-4 pt-2`}
           style={{
             width: "100%",
             height: "200px",
           }}
         >
           <CircularAvatar
-            size={150}
+            size={130}
             text="YA"
-            fontSize={2}
-            bgcolor="bg-gray"
+            fontSize={2.5}
+            bgcolor="bg-light-violet"
             className={""}
           />
           <span>{userState.user?.email}</span>
         </div>
 
         <div
-          className={`width-100 border d-flex flex-column`}
+          className={`width-100 d-flex flex-column bg-white-variant-4 p-3`}
           style={{
             width: "100%",
             height: "200px",
           }}
         >
-          <span>Max Budget</span>
-          <span>Min Budget</span>
+          <div className="col d-flex flex-column justify-content-center">
+            <span>Max Budget</span>
+            <h2 className={`text-center font-weight-400`}>
+              2000<span className="h5">Rs</span>
+            </h2>
+          </div>
+          <div className="col col d-flex flex-column justify-content-center">
+            <span>Min Budget</span>
+            <h2 className={`text-center font-weight-400`}>500</h2>
+          </div>
         </div>
       </div>
     </div>
