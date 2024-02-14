@@ -1,15 +1,13 @@
 .dashboard-left {
-  max-width: 300px;
-  top: 0px;
-  transform: translateX(0);
+  /* transform: translateX(0); */
+  transition: all 0.5s ease-in-out;
 }
-.dashboard-left::-webkit-scrollbar {
-  width: 5px;
+.dashboard-left > div::-webkit-scrollbar {
+  width: 0px;
   height: 3px;
-  border-radius: 10px;
 }
-.dashboard-left::-webkit-scrollbar-thumb {
-  background: var(--white-variant-1);
+.dashboard-left > div::-webkit-scrollbar-thumb {
+  width: 0;
 }
 .dashboard-left .nav-list {
   list-style-type: none;
@@ -39,25 +37,25 @@
   color: var(--text-black-varaint-1);
 }
 
-.translate-x {
-  transform: translateX(0);
-}
 /* top navigation */
 .dashboard-right .menu-bar > span {
   transition: all 0.3s linear;
 }
 .dash-board-top-nav {
-  width: calc(100% - 300px);
+  width: calc(100% - 250px);
 }
 .dashboard-top-search {
   max-width: 400px;
 }
-
+.dashboard-main-container {
+  top: 20px;
+  bottom: 20px;
+  left: 200px;
+  right: 20px;
+  overflow-y: scroll;
+}
 .circular-progress-wrapper {
   max-width: 500px;
-}
-.dashboard-activity {
-  max-width: 900px;
 }
 
 .margin-right-300 {
@@ -69,7 +67,7 @@
 .icon-wrapper-primary {
   /* background-color: var(--gray-secondary); */
   border: 1px solid var(--gray-400);
-  padding: 2px 10px;
+  padding: 2px 8px;
 }
 .dashboard-card {
   max-width: 220px;
@@ -95,22 +93,31 @@
   visibility: visible;
   z-index: 20;
 }
-@media screen and (max-width: 1060px) {
+.dashboard-content .left-side {
+  flex-grow: 6;
+}
+@media screen and (max-width: 991px) {
   .margin-right-300 {
     margin-right: 300px;
   }
-
+  .dashboard-main-container {
+    left: 0px;
+    right: 20px;
+  }
+  .dashboard-left {
+    top: 80px;
+    transform: translateX(-200px);
+  }
+  .dash-board-top-nav {
+    width: calc(100%);
+  }
   .translate-x {
     transform: translateX(0);
   }
 }
 @media screen and (max-width: 769px) {
   .dashboard-left {
-    top: 55px;
-    transform: translateX(-100%);
-  }
-  .dash-board-top-nav {
-    width: 100%;
+    top: 80px;
   }
   .margin-right-300 {
     margin-right: 0px;
