@@ -1,29 +1,31 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../utils/context/auth";
 import DashboardCard from "../../../Components/card/dashboardCards";
-import { Edit2, Money, TickCircle } from "iconsax-react";
+import { Box2, Edit2, Money, Money2, TickCircle } from "iconsax-react";
 import CircularAvatar from "../../../Components/commen/circular_avatar";
 import BudgetChart from "../../../Components/chart/budget_chart";
 import CreatedProjectTable from "../../../Components/tables/created_project_table";
 import HalfCircleProgress from "../../../Components/half_circle/half_circle_progress";
+import ListTile from "../../../Components/commen/list_tile";
 
 const CustomerDashBoard = () => {
   const { userState } = useContext(AuthContext);
 
   return (
-    <div className={`d-flex dashboard-content`}>
+    <div className={`d-flex dashboard-content`} style={{}}>
       <div
         className="d-flex
       flex-column
      gap-4
      px-3
      pb-3 pb-md-0
-     col
      left-side
     "
       >
         <div
-          className={`d-flex justify-content-center justify-content-sm-between flex-wrap gap-2 `}
+          className={`d-flex 
+          justify-content-center align-items-center 
+          justify-content-sm-between flex-wrap gap-2 flex-sm-row flex-column `}
           style={{}}
         >
           <DashboardCard
@@ -45,15 +47,15 @@ const CustomerDashBoard = () => {
           />
           {/* Budget Chart */}
         </div>
-        <div className={`d-flex gap-2 `}>
+        <div className={`d-flex gap-2  flex-sm-row flex-column  `}>
           <div
-            className={`col-8 bg-white-variant-4 p-2 rounded`}
+            className={`col-sm-8 col bg-white-variant-4 p-2 rounded`}
             style={{ height: "300px" }}
           >
             <BudgetChart />
           </div>
           <div
-            className={`col-4 bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1`}
+            className={`col-sm-4 col bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1`}
             style={{ height: "100%" }}
           >
             <HalfCircleProgress />
@@ -86,13 +88,15 @@ const CustomerDashBoard = () => {
           </div>
         </div>
         {/* Table */}
+
         <CreatedProjectTable />
       </div>
+
       {/* customer simple porfile */}
       <div
         className="d-none d-lg-flex flex-column align-items-center gap-2 text-black-variant-1 "
         style={{
-          flexGrow: "1",
+          flexShrink: "50%",
         }}
       >
         <div
@@ -151,7 +155,21 @@ function Activity() {
     "
     >
       <h5 className={`font-weight-400`}>Activity</h5>
-      <div></div>
+      <div>
+        <ListTile
+          title={"Project Created "}
+          subtitle={"You have created new porject"}
+          time={"20-20-12"}
+          icon={<Box2 color="white" />}
+        />
+        <hr className="m-0" />
+        <ListTile
+          title={"Payment"}
+          subtitle={"Payment done for project completion"}
+          time={"30-20-12"}
+          icon={<Money2 color="white" />}
+        />
+      </div>
     </div>
   );
 }
