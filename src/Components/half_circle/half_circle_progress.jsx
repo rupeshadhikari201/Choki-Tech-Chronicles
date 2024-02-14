@@ -63,6 +63,7 @@ const HalfCircleProgress = ({
           fontSize={`${radius / 3}px`}
           fill={`${isDark ? "white" : "#333"}`}
           fontWeight={300}
+          className="font-size-20"
         >
           {Math.round(currentPercentage)}%
         </text>
