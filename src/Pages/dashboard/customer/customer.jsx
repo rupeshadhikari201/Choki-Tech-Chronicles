@@ -4,6 +4,8 @@ import DashboardCard from "../../../Components/card/dashboardCards";
 import { Edit2, Money, TickCircle } from "iconsax-react";
 import CircularAvatar from "../../../Components/commen/circular_avatar";
 import BudgetChart from "../../../Components/chart/budget_chart";
+import CreatedProjectTable from "../../../Components/tables/created_project_table";
+import HalfCircleProgress from "../../../Components/half_circle/half_circle_progress";
 
 const CustomerDashBoard = () => {
   const { userState } = useContext(AuthContext);
@@ -51,18 +53,44 @@ const CustomerDashBoard = () => {
             <BudgetChart />
           </div>
           <div
-            className={`col-4 bg-white-variant-4 rounded`}
+            className={`col-4 bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1`}
             style={{ height: "100%" }}
-          ></div>
+          >
+            <HalfCircleProgress />
+            <div className="d-flex align-items-center gap-3">
+              {" "}
+              <span
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor: "#4caf50",
+                  display: "inline-block",
+                }}
+              />{" "}
+              Finished
+            </div>
+            <div className="d-flex align-items-center gap-3">
+              {" "}
+              <span
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor: "#e0e0e0",
+                  display: "inline-block",
+                }}
+              />{" "}
+              Pending
+            </div>
+          </div>
         </div>
-        {/* Activity */}
-        <Activity />
-        {/* Invitation */}
-        <Invitation />
+        {/* Table */}
+        <CreatedProjectTable />
       </div>
       {/* customer simple porfile */}
       <div
-        className="d-none flex-column align-items-center gap-2 text-black-variant-1 d-lg-flex "
+        className="d-none d-lg-flex flex-column align-items-center gap-2 text-black-variant-1 "
         style={{
           flexGrow: "1",
         }}
@@ -102,6 +130,8 @@ const CustomerDashBoard = () => {
             <h2 className={`text-center font-weight-400`}>500</h2>
           </div>
         </div>
+        {/* Activity */}
+        <Activity />
       </div>
     </div>
   );
@@ -115,43 +145,13 @@ function Activity() {
       className="
     text-black-variant-2
     dashboard-activity
-   
-    col
+    w-100
     p-2
+    bg-white-variant-4
     "
     >
       <h5 className={`font-weight-400`}>Activity</h5>
-      <div>
-        <p className="font-weight-bold m-0">Recent Activity</p>
-        <div
-          className="ps-2
-          mb-2
-          "
-        >
-          <p className="m-0">Project 4 finished</p>
-
-          <p className="m-0">No recent activity</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-function Invitation() {
-  return (
-    <div
-      className="
-text-black-variant-2
-dashboard-activity
-
-col
-p-2
-"
-      style={{ maxWidth: "400px" }}
-    >
-      <div>
-        <h5 className={`font-weight-400`}>Invitations</h5>
-      </div>
-      <p className={`text-center`}>No Invitation So far</p>
+      <div></div>
     </div>
   );
 }
