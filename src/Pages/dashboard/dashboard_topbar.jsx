@@ -5,27 +5,28 @@ import CircularAvatar from "../../Components/commen/circular_avatar";
 import { Link } from "react-router-dom";
 import { commonPath } from "../../utils/constants/path";
 import { motion } from "framer-motion";
-const DashBoardTopbar = () => {
-  const [showNav, setShowNav] = useState(true);
+const DashBoardTopbar = ({ setShowNav, showNav }) => {
   const { userState } = useContext(AuthContext);
   const [showSearchbar, setShowSearchbar] = useState(false);
   return (
     <div
       className=" p-2
-   d-flex align-items-start position-fixed dash-board-top-nav
-gap-2  flex-column
-bg-white
+            d-flex align-items-start position-fixed dash-board-top-nav
+          gap-2  flex-column
+          bg-white-variant-3
 "
     >
       <div
         className={`d-flex align-items-center gap-4 justify-content-between w-100`}
       >
         {/* Wrapping menu hamberger and name */}
-        <div className={`d-flex gap-1 justify-content-between`}>
+        <div
+          className={`d-flex gap-1 justify-content-between align-items-center`}
+        >
           <div
             className={`d-flex flex-column cursor-pointer 
-    dashboard-menu-bar  
-    gap-1 d-md-none `}
+                  dashboard-menu-bar p-2 
+                  gap-1 d-lg-none `}
             onClick={() => setShowNav(!showNav)}
           >
             <span
