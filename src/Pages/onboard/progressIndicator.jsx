@@ -1,5 +1,5 @@
 import CircularCheck from "../../Components/commen/circularCheck";
-import "../../Css/comment/circular-check.css";
+import "../../Css/commen/circular-check.css";
 const ProgressIndicator = ({ numberOfProgress, progress }) => {
   return (
     <>
