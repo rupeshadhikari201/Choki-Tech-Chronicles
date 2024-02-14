@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../../App";
 
 const HalfCircleProgress = ({
-  percentage = 30,
+  percentage = 51,
   width = "100%",
   height = "auto",
   strokeWidth = 5,
@@ -11,7 +12,7 @@ const HalfCircleProgress = ({
   const [currentPercentage, setCurrentPercentage] = useState(0);
   const circumference = Math.PI * (radius - strokeWidth / 2) * 2;
   const framesPerSecond = 60; // Number of frames per second for smooth animation
-
+  const { isDark } = useContext(ThemeContext);
   useEffect(() => {
     let animationFrameId;
     let start = 0;
@@ -60,7 +61,8 @@ const HalfCircleProgress = ({
           dominantBaseline="middle"
           textAnchor="middle"
           fontSize={`${radius / 3}px`}
-          fill="#333"
+          fill={`${isDark ? "white" : "#333"}`}
+          fontWeight={300}
         >
           {Math.round(currentPercentage)}%
         </text>
