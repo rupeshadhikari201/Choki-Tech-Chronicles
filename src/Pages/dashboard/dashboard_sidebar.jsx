@@ -62,7 +62,7 @@ const SideBar = ({ showNav, setShowNav }) => {
       dashboard-left
       position-relative
       bg-dark-blue
-      ${showNav ? "" : "translate-x"}
+      ${showNav ? "translate-x" : ""}
       `}
       style={{
         width: "200px",
@@ -146,6 +146,7 @@ const SideBar = ({ showNav, setShowNav }) => {
                         to={`/${item.to}`}
                         onClick={() => {
                           setActiveLink(item.title);
+                          setShowNav(false);
                           navDispatch({
                             type: ACTION_TYPE.CHANGE_SIDE_NAV,
                             payload: item.title,
