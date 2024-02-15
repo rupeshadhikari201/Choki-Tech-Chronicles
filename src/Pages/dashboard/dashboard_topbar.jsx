@@ -5,9 +5,11 @@ import CircularAvatar from "../../Components/commen/circular_avatar";
 import { Link } from "react-router-dom";
 import { commonPath } from "../../utils/constants/path";
 import { motion } from "framer-motion";
+import { ThemeContext } from "../../App";
 const DashBoardTopbar = ({ setShowNav, showNav }) => {
   const { userState } = useContext(AuthContext);
   const [showSearchbar, setShowSearchbar] = useState(false);
+  const { isDark } = useContext(ThemeContext);
   return (
     <div
       className=" p-2
@@ -126,6 +128,7 @@ const DashBoardTopbar = ({ setShowNav, showNav }) => {
             )}
             <SearchNormal1
               size={18}
+              color={isDark ? "white" : "#333"}
               className={`
       cursor-pointer
       `}
@@ -154,6 +157,7 @@ ms-md-0
               size={18}
               className={`cursor-pointer`}
               onClick={() => {}}
+              color={isDark ? "white" : "#333"}
             />
 
             <div
