@@ -112,6 +112,7 @@ const CustomerDashBoard = () => {
             fontSize={2.5}
             bgcolor="bg-light-violet"
             className={""}
+            fontcolor={"text-white"}
           />
           <span>{userState.user?.email}</span>
         </div>
