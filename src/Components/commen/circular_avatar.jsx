@@ -5,6 +5,7 @@ const CircularAvatar = ({
   fontSize,
   bgcolor,
   className,
+  fontcolor,
 }) => {
   return (
     <div>
@@ -24,7 +25,13 @@ const CircularAvatar = ({
         {img ? (
           <img alt="img" src="" />
         ) : (
-          <span className="text-uppercase text-white">{text}</span>
+          <span
+            className={`text-uppercase ${
+              fontcolor ? fontcolor : "text-black-variant-1"
+            } `}
+          >
+            {text}
+          </span>
         )}
       </div>
     </div>
