@@ -55,7 +55,10 @@ const CreatedProjectTable = () => {
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr
-              className={`border-bottom`}
+              className={``}
+              style={{
+                borderBottom: "1px solid gray",
+              }}
               key={"headers"}
               {...headerGroup.getHeaderGroupProps()}
             >
@@ -76,13 +79,20 @@ const CreatedProjectTable = () => {
             prepareRow(row);
             return (
               <tr
-                className={`border-bottom`}
+                className={``}
+                style={{
+                  borderBottom: "1px solid gray",
+                }}
                 key={row.id}
                 {...row.getRowProps()}
                 onClick={() => handleRowClick(row)}
               >
                 {row.cells.map((cell) => (
-                  <td key={cell.value} {...cell.getCellProps()} className="p-2">
+                  <td
+                    key={cell.value}
+                    {...cell.getCellProps()}
+                    className="p-2 py-3"
+                  >
                     {cell.render("Cell")}
                   </td>
                 ))}
