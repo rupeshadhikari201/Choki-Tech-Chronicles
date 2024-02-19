@@ -45,6 +45,12 @@
 .height-xsm {
   height: var(--height-xsm);
 }
+.auth-page-wrapper {
+  max-width: 70%;
+}
+.sign-wrapper {
+  width: 70%;
+}
 @media screen and (max-width: 769px) {
   .sign-wrapper {
     width: 70%;
@@ -53,5 +59,8 @@
 @media screen and (max-width: 512px) {
   .sign-wrapper {
     width: 90%;
+  }
+  .auth-page-wrapper {
+    max-width: 90%;
   }
 }
