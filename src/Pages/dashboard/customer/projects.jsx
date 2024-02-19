@@ -5,6 +5,7 @@ const CustomerProjectTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRows, setCurrentRows] = useState([]);
   const [alldata, setAllData] = useState(data);
+  const [showPortal, setShowPortal] = useState(false);
   const { isDark } = useContext(ThemeContext);
   const rowsPerPage = 5;
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -36,16 +37,29 @@ const CustomerProjectTable = ({ data }) => {
           minWidth: "600px",
         }}
       >
-        <div className="search-bar">
-          <input
-            type="text"
-            className="custom-input border rounded"
-            placeholder="Search by title or budget"
-            value={searchTerm}
-            onChange={handleSearch}
-            style={{ maxWidth: "400px" }}
-          />
+        {showPortal && <ProjectPortal setShowPortal={setShowPortal} />}
+        <div className="d-flex justify-between">
+          <button
+            className={`btn-custom-secondary ms-1 bg-dark-blue mt-1 `}
+            onClick={() => setShowPortal(!showPortal)}
+          >
+            Create Project
+          </button>
+          <div
+            className="search-bar col "
+            style={{ maxWidth: "400px", width: "100%" }}
+          >
+            <input
+              type="text"
+              className="custom-input border rounded"
+              placeholder="Search by title or budget"
+              value={searchTerm}
+              onChange={handleSearch}
+              style={{ maxWidth: "400px", width: "100%" }}
+            />
+          </div>
         </div>
+
         <div className="row table-header py-2">
           <div className="col">Title</div>
           <div className="col">Created</div>
@@ -120,3 +134,42 @@ const CustomerProjectTable = ({ data }) => {
 };
 
 export default CustomerProjectTable;
+
+const ProjectPortal = ({ setShowPortal }) => {
+  const close = () => {
+    const portal = document.getElementById("p_portal");
+    window.onclick = function (event) {
+      if (event.target == portal) {
+        setShowPortal(false);
+      }
+    };
+  };
+
+  return (
+    <div
+      className={`position-fixed rounded d-flex align-items-center justify-content-center`}
+      style={{
+        top: "0",
+        left: "0",
+        zIndex: "300",
+        width: "100%",
+        height: "100%",
+      }}
+      id="p_portal"
+      onClick={close}
+    >
+      <div
+        style={{
+          background: "white",
+          width: "80%",
+          height: "90%",
+          top: "20px",
+          left: "0",
+          bottom: "0",
+          right: "0",
+          zIndex: "300",
+        }}
+      ></div>
+    </div>
+  );
+};
