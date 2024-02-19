@@ -57,7 +57,9 @@ const Signup = () => {
       <div
         className="bg-white-variant-2
       d-flex 
-      rounded 
+      rounded
+      auth-page-wrapper 
+      sign-wrapper
       "
         style={{
           maxWidth: "90%",
@@ -65,15 +67,18 @@ const Signup = () => {
       >
         <div
           className="signup-right-side col p-4 d-none d-md-flex flex-column justify-content-center
-        align-items-center"
+        align-items-center text-sm"
         >
-          <h1>Welcome To CIT!</h1>
+          <h1 className="text-center">Welcome To Gokap Ino Tech!</h1>
           <p
             style={{
-              fontWeight: "500",
+              fontWeight: "400",
+              textAlign: "center",
             }}
           >
-            place where you can find solutions related to accademic work
+            Join Gokap InnoTech Where Clients and Freelancers Connect for
+            Innovation. Sign up today, Let's collaborate, innovate, and
+            transform together!
           </p>
 
           <Link
@@ -282,25 +287,28 @@ const Signup = () => {
             height-xsm
             mb-2
             mt-3
-            text-sm
-            text-uppercase
+            text-md
+            text-capitalize
             "
             onClick={() => onSumbit()}
           >
-            signup
+            sign up
           </button>
           <div
             className="d-flex
           justify-content-center
+          px-4
           "
             style={{
               color: "var(--text-black-variant-1)",
             }}
           >
-            Or
+            <hr className="col" />
+            <span className="px-2">OR</span>
+            <hr className="col" />
           </div>
           <div
-            className="btn-custom  dark-green
+            className="btn-custom cursor-pointer dark-green
             dark-green-hover
           height-xsm
           mt-2
@@ -310,20 +318,11 @@ const Signup = () => {
          justify-content-center
          gap-2
           text-md
-           
+          font-weight-500
           "
           >
             <FaGoogle />
-            <p
-              className="font-500 mb-1 p-0
-              text-sm
-              "
-              style={{
-                marginBlockStart: "0px",
-              }}
-            >
-              sign up with Google
-            </p>
+            <p className="mb-1 p-0 text-capitalize">sign up with Google</p>
           </div>
         </div>
 
