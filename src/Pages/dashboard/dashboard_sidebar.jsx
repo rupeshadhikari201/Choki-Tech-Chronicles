@@ -59,110 +59,100 @@ const SideBar = ({ showNav, setShowNav }) => {
   return (
     <div
       className={`
-      dashboard-left
-      position-relative
-      bg-dark-blue
-      ${showNav ? "translate-x" : ""}
-      `}
-      style={{
-        width: "200px",
-        transition: "all 0.3s linear",
-        zIndex: "100",
-      }}
-    >
-      <div
-        className={`
-          
+         bg-dark-blue
+          dashboard-left
           position-fixed
           text-black-variant-1
           text-center
           h-100
           w-100
+          ${showNav ? "translate-x" : ""}
         `}
-        style={{
-          maxWidth: "200px",
-          transition: "all 0.3s ease-in",
-          left: 0,
-          overflowY: "scroll",
-        }}
-      >
-        <h2
-          className={`font-weight-400
+      style={{
+        width: "200px",
+        transition: "all 0.3s linear",
+        zIndex: "100",
+        maxWidth: "200px",
+        overflowY: "scroll",
+      }}
+    >
+      <h2
+        className={`font-weight-400
           text-uppercase p-1
           pb-3
           border-bottom-primary
     `}
-          style={{
-            borderBottom: "1px solid rgb(77,92,108)",
-            color: "#43AB7B",
-          }}
-        >
-          GIT
-        </h2>
-        <div
-          className={`
+        style={{
+          borderBottom: "1px solid rgb(77,92,108)",
+          color: "#43AB7B",
+        }}
+      >
+        GIT
+      </h2>
+      <div
+        className={`
     d-flex
   flex-column
   align-items-start
   h-100
   
   `}
-        >
-          <ul className="nav-list">
-            {navList.map((link, index) => (
-              <li
-                key={index}
-                className="mb-3 pb-3"
-                style={{
-                  borderBottom: "1px solid rgb(77,92,108)",
-                }}
-              >
-                <div className="px-2 ps-2">
-                  <p
-                    className="text-gray-secondary font-weight-300 text-start mb-0 pb-3"
+      >
+        <ul className="nav-list">
+          {navList.map((link, index) => (
+            <li
+              key={index}
+              className="mb-3 pb-3"
+              style={{
+                borderBottom: "1px solid rgb(77,92,108)",
+              }}
+            >
+              <div className="px-2 ps-2">
+                <p
+                  className="text-gray-secondary font-weight-300 text-start mb-0 pb-3"
+                  style={{
+                    color: "rgb(200,200,200)",
+                  }}
+                >
+                  {link.title}
+                </p>
+                {link.child.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`d-flex align-items-center ps-1`}
                     style={{
-                      color: "rgb(200,200,200)",
+                      borderLeft:
+                        activeLink === item.title
+                          ? "5px solid #43AB7B"
+                          : "none",
                     }}
                   >
-                    {link.title}
-                  </p>
-                  {link.child.map((item, index) => (
-                    <div
+                    {item.icon("#43AB7B")}
+                    <Link
                       key={index}
-                      className={`d-flex align-items-center ps-1`}
-                      style={{
-                        borderLeft:
-                          activeLink === item.title
-                            ? "5px solid #43AB7B"
-                            : "none",
-                      }}
-                    >
-                      {item.icon("#43AB7B")}
-                      <Link
-                        key={index}
-                        className={`text-start text-white 
+                      className={`text-start text-white 
                 font-weight-300
                 `}
-                        to={`/${item.to}`}
-                        onClick={() => {
-                          setActiveLink(item.title);
-                          setShowNav(false);
-                          navDispatch({
-                            type: ACTION_TYPE.CHANGE_SIDE_NAV,
-                            payload: item.title,
-                          });
-                        }}
-                      >
-                        {item.title}
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div
-            className={`
+                      to={`/${item.to}`}
+                      onClick={() => {
+                        setActiveLink(item.title);
+                        setShowNav(false);
+                        navDispatch({
+                          type: ACTION_TYPE.CHANGE_SIDE_NAV,
+                          payload: item.title,
+                        });
+                      }}
+                    >
+                      {item.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div
+          className={`
       hover-nav
       mt-3
       pb-3
@@ -171,24 +161,23 @@ const SideBar = ({ showNav, setShowNav }) => {
       w-100
       cursor-pointer
       `}
-          >
-            <span className={`px-3`}>
-              <MdLogout /> Log out{" "}
-            </span>
-          </div>
-          <button
-            className="
+        >
+          <span className={`px-3`}>
+            <MdLogout /> Log out{" "}
+          </span>
+        </div>
+        <button
+          className="
   btn-custom-variant-3
   p-1
   text-md
   transparent
   text-black-variant-2
   "
-            onClick={() => {}}
-          >
-            close
-          </button>
-        </div>
+          onClick={() => {}}
+        >
+          close
+        </button>
       </div>
     </div>
   );
