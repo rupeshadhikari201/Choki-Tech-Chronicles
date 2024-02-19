@@ -13,3 +13,9 @@
 .section-frequently .accordion-item {
   background-color: var(--light-lime) !important;
 }
+.accordion-button {
+  color: var(--text-black-variant-1) !important;
+}
+.accordion-button:focus {
+  box-shadow: none !important;
+}

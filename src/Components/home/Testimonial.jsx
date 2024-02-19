@@ -2,7 +2,7 @@ import "../../Css/home/testimonial.css";
 
 const Testimonial = () => {
   return (
-    <section className="testimonial-section pb-4">
+    <section className="testimonial-section d-flex flex-column justify-content-center pb-4">
       <div className="p-2 pt-1 mb-4">
         <h1
           className="text-center
@@ -13,12 +13,12 @@ const Testimonial = () => {
         </h1>
       </div>
       <div
-        className="testimonial-container px-3
+        className="testimonial-container px-3 w-100
       d-flex justify-content-center justify-content-sm-around justify-content-md-around justify-content-lg-between 
       align-items-center
       "
       >
-        <div className="card-2 shadow">
+        <div className="card-2 shadow text-black-variant-1">
           <div className="rounded-circle card-2-img ">
             <img
               src={

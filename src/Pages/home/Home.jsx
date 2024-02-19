@@ -18,7 +18,10 @@ const Home = () => {
   };
   return (
     <>
-      <div className="home">
+      <section
+        className="home"
+        style={{ overflow: "hidden", position: "relative" }}
+      >
         <Navbar />
         <div className="hero d-flex ">
           <div className="mx-4">
@@ -81,7 +84,7 @@ const Home = () => {
             <MdArrowForward size={30} />
           </div>
         </div> */}
-      </div>
+      </section>
       <Services />
       <Testimonial />
       <FrequentAsked />

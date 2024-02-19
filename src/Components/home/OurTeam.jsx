@@ -38,7 +38,7 @@ const OurTeam = () => {
           }
         />
         <TeamCard
-          name={"Divya"}
+          name={"Sonam"}
           position={"Social Media Manager"}
           description={` Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. `}
@@ -51,9 +51,7 @@ const OurTeam = () => {
           position={"Designer and Developer"}
           description={` Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. `}
-          img={
-            "https://images.pexels.com/photos/19510932/pexels-photo-19510932/free-photo-of-a-woman-in-a-red-scarf-is-standing-in-the-snow.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          }
+          img={""}
         />
       </div>
     </section>

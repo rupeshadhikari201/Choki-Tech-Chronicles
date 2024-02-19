@@ -7,7 +7,7 @@ const TeamCard = ({ name, position, description, img }) => {
         <img src={img} alt="team-member" />
       </div>
       <div className="card-3-body">
-        <h1 className="text-black-variant-1">{name}</h1>
+        <h5 className="text-black-variant-1">{name}</h5>
         <h6
           className="mb-3
         text-black-variant-1
@@ -17,7 +17,7 @@ const TeamCard = ({ name, position, description, img }) => {
         </h6>
         <p className="text-black-variant-2">{description}</p>
       </div>
-      <div className="card-3-icon-wrapper d-flex justify-content-around">
+      <div className="card-3-icon-wrapper d-flex justify-content-around text-black-variant-1">
         <FaGithub className="icon" size={30} />
         <FaLinkedin className="icon" size={30} />
         <FaInstagram className="icon" size={30} />
