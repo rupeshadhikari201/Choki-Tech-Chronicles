@@ -9,33 +9,40 @@ const DashBoard = ({ children }) => {
       className="
   min-height-100vh
   bg-dark-blue
-  d-flex
+  position-relative
   "
       style={{
         overflow: "hidden",
       }}
     >
-      {/* Leftside */}
-      <SideBar showNav={showNav} setShowNav={setShowNav} />
       {/* Right side */}
       <div
-        className={`
-      bg-white-variant-3
-      position-fixed
-      dashboard-main-container
-      px-2
-      rounded
+        className={` 
+      
       `}
+        style={{ zIndex: 100 }}
       >
         <div
-          className={`position-relative w-100 mb-2 `}
-          style={{ height: "70px" }}
+          className={`
+      bg-white-variant-3
+      dashboard-main-container
+      px-3
+      pb-3
+      rounded
+      `}
         >
-          {/* TopBar */}
-          <DashBoardTopbar showNav={showNav} setShowNav={setShowNav} />
+          <div
+            className={`position-relative w-100 mb-2`}
+            style={{ height: "70px" }}
+          >
+            {/* TopBar */}
+            <DashBoardTopbar showNav={showNav} setShowNav={setShowNav} />
+          </div>
+          {children}
         </div>
-        {children}
       </div>
+      {/* Leftside */}
+      <SideBar showNav={showNav} setShowNav={setShowNav} />
     </div>
   );
 };
