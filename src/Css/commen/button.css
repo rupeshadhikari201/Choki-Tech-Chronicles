@@ -78,13 +78,10 @@ button {
   padding: 10px 15px;
   border-radius: 10px;
   margin: 10px auto;
-  margin-top: 40px;
   background-color: #ffffff;
   color: var(--primary-green);
   font-weight: 400;
   cursor: pointer;
-  position: relative;
-  z-index: 20;
   transition: background 0.3s ease-in-out;
 }
 .btn-custom-circular {
@@ -102,7 +99,7 @@ button {
   transition: background 0.3s ease-in-out;
 }
 .btn-custom-secondary:hover {
-  background-color: var(--green-variant-4);
+  background-color: var(--dark-blue-hover);
 }
 .btn-custom-variant-3 {
   display: block;
