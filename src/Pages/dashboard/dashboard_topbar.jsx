@@ -169,6 +169,7 @@ ms-md-0
                 top: "100%",
                 width: "200px",
                 right: "-30px",
+                zIndex: "30",
               }}
             >
               <div
@@ -197,6 +198,7 @@ ms-md-0
             className={`position-relative
     dash-board-top-profile
     `}
+            style={{ zIndex: "30" }}
           >
             <CircularAvatar
               size={40}
