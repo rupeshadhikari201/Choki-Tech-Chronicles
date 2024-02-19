@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { path_to_signup, validateSignInInput } from "../../utils/auth/helper";
 import { AuthContext } from "../../utils/context/auth";
+import { commonPath } from "../../utils/constants/path";
 const Signin = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -51,10 +52,12 @@ const Signin = () => {
           <h1>Hello, There!</h1>
           <p
             style={{
-              fontWeight: "500",
+              fontWeight: "400",
+              textAlign: "center",
             }}
           >
-            place where you can find solutions related to accademic work
+            Welcome Back to Gokap InnoTech
+            <br /> Where Opportunities Await.
           </p>
 
           <Link
@@ -62,6 +65,7 @@ const Signin = () => {
              btn-custom
              height-xsm
              text-md
+             
              bg-transparent
              border
              cursor-pointer
@@ -92,6 +96,9 @@ const Signin = () => {
             {" "}
             SIGN IN
           </h2>
+          <span className="d-block d-md-none mt-1 text-start text-black-variant-1 mb-3">
+            create new account? <Link to={path_to_signup}>sign up here</Link>
+          </span>
           <div
             className="input-wrapper
             d-flex flex-column gap-3
@@ -134,58 +141,54 @@ const Signin = () => {
               errorMessage={"incorrect password"}
             />
           </div>
-          <span className="d-block d-md-none mt-1 text-end text-black-variant-1">
-            create new account?<Link to={path_to_signup}>sign up here</Link>
+          <span className="d-block mt-1 text-end text-black-variant-1 mb-2">
+            forget password? <Link to={`/${commonPath}/reset`}>reset</Link>
           </span>
-          <button
-            className="btn-custom 
+          <div className="mt-4">
+            <button
+              className="btn-custom 
               font-500
               green-varient-2
               green-varient-2-hover
               height-xsm
               mb-2
               mt-3
-              text-sm
-              text-uppercase
+              text-md
+              text-capitalize
               "
-            onClick={onSubmit}
-          >
-            sign in
-          </button>
-          <div
-            className="d-flex
+              onClick={onSubmit}
+            >
+              sign in
+            </button>
+            <div
+              className="d-flex
             justify-content-center
             "
-            style={{
-              color: "var(--text-black-variant-1)",
-            }}
-          >
-            Or
-          </div>
-          <div
-            className="btn-custom  dark-green
+              style={{
+                color: "var(--text-black-variant-1)",
+              }}
+            >
+              <hr className="col" />
+              <span className="px-2">OR</span>
+              <hr className="col" />
+            </div>
+            <div
+              className="btn-custom  dark-green cursor-pointer
+              font-weight-500
               dark-green-hover
             height-xsm
             mt-2
             mb-4
            d-flex
-            text-sm
+            text-md
              align-items-center
              justify-content-center
              gap-2
             "
-          >
-            <FaGoogle />
-            <p
-              className="font-500 mb-1 p-0
-              
-              "
-              style={{
-                marginBlockStart: "0px",
-              }}
             >
-              sign up with Google
-            </p>
+              <FaGoogle />
+              <p className="mb-1 p-0 text-capitalize">Sign in with Google</p>
+            </div>
           </div>
         </div>
 
