@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../utils/context/auth";
 import CircularAvatar from "../../../Components/commen/circular_avatar";
-import { ArrowRight, ArrowRight2 } from "iconsax-react";
+import { ArrowRight, ArrowRight2, Edit, Edit2 } from "iconsax-react";
 import "../../../Css/profile/profile.css";
 
 const CustomerProfile = () => {
@@ -76,18 +76,18 @@ const CustomerProfile = () => {
         <div>
           {/* Account */}
           {customerSetting.map((settings, index) => (
-            <div key={index} className={`position-relative mb-2`}>
+            <div key={index} className={`position-relative mb-2 `}>
               <h4 className={`font-weight-400`}>{settings.title}</h4>
               <div
                 className={`d-flex gap-1 position-relative
              flex-column
             flex-wrap
             border-green-variant-3
-            rounded
+            rounded overflow-hidden
           `}
               >
                 {settings.setting.map((set, index) => (
-                  <div key={index} className={`bg-white-variant-4`}>
+                  <div key={index} className={`bg-white-variant-4 py-2`}>
                     <div
                       className={`col d-flex  align-items-center `}
                       id={set.name}
@@ -102,15 +102,15 @@ const CustomerProfile = () => {
                     >
                       <p className="mb-0 p-2">{set.name}</p>
                       <div
-                        className={` p-2 text-md col d-flex justify-content-end
+                        className={` p-2 text-md col d-flex justify-content-end align-items-center gap-2
                text-black-variant-2 
                rounded cursor-pointer`}
                       >
                         {set.value}
-                        <ArrowRight2 />
+                        <Edit size={15} />
                       </div>
                     </div>
-                    <div className={`  setting-dropdown `}>
+                    <div className={`setting-dropdown `}>
                       <div
                         className={` d-flex justify-content-between p-2 gap-2`}
                       >
