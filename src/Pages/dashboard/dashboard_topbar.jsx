@@ -15,34 +15,7 @@ const DashBoardTopbar = ({ setShowNav, showNav }) => {
   const { isDark } = useContext(ThemeContext);
   useEffect(() => {
     console.log("dash_board_top_bar_called");
-    console.log(userState, Cookies.get("token"));
-    const profile = async () => {
-      const res = axios
-        .get(base_url + "/api/user/profile/", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Cookies.get("token")}`,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          userdispatch({
-            type: ACTION_TYPE.SAVE_TO_LOCALE,
-            payload: {
-              firstName: "",
-              lastName: "",
-              email: "",
-            },
-          });
-          return res.data;
-        })
-        .catch((e) => {
-          console.log(e.response.data);
-        })
-        .finally((res) => {});
-    };
-    profile();
-  }, [userState]);
+  }, []);
   return (
     <div
       className=" p-2

@@ -53,11 +53,7 @@ export const validateSignUpInput = (userData, state) => {
     setValidConfirm(false);
     valid = false;
   } else setValidConfirm(true);
-  if (valid) {
-    console.log("Authenticaiton is valid");
 
-    toast("Successfuly signed");
-  }
   //Return to signUp path
   return valid;
 };

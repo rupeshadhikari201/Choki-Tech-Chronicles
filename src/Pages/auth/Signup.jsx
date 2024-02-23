@@ -11,12 +11,13 @@ import TextField from "../../Components/text_input/textField";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { path_to_signin, validateSignUpInput } from "../../utils/auth/helper";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../../utils/context/auth";
 import { ACTION_TYPE } from "../../reducer/action/action";
 import { base_url, commonPath } from "../../utils/constants/path";
 import ReactLoading from "react-loading";
 import axios from "axios";
+import Cookies from "js-cookie";
 const Signup = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -29,7 +30,7 @@ const Signup = () => {
   const [validConfirm, setValidConfirm] = useState(true);
   const [loading, setLoading] = useState(false);
   const { userdispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const navigator = useNavigate();
   //Checking validity
   const onSumbit = async () => {
     const valid = validateSignUpInput(inputData, {
@@ -42,14 +43,34 @@ const Signup = () => {
 
     if (valid) {
       // userdispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
-      setLoading(false);
+      setLoading(true);
       const res = signUpUser(inputData, {});
-      res.then((res) => {
-        setLoading(false);
-        console.log(res.data);
-        console.log(res.status);
-      });
-      // navigate(`/${commonPath}/onboard`);
+      res
+        .then((res) => {
+          userdispatch({
+            type: ACTION_TYPE.SAVE_TO_LOCALE,
+            payload: { email: inputData.email },
+          });
+          userdispatch({
+            type: ACTION_TYPE.SAVE_REFRESH,
+            payload: res.data.token.refresh,
+          });
+          userdispatch({
+            type: ACTION_TYPE.SAVE_TOKEN,
+            payload: res.data.token.access,
+          });
+          // saving token to cookies
+          Cookies.set("token", res.data.token.access, { expires: 1 });
+          navigator(`/${commonPath}/dashboard`);
+        })
+        .catch((e) => {
+          console.log(e?.response?.data);
+          console.log(e);
+          toast.error(`${e.message}`);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
   async function signUpUser(payload, state) {

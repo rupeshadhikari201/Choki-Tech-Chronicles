@@ -17,6 +17,7 @@ export function authReducer(state, action) {
       return state;
     case ACTION_TYPE.SAVE_TO_LOCALE:
       localStorage.setItem("user", JSON.stringify(action.payload));
+      console.log("payload from reducre ", action.payload);
       state = getUserFromLocal(state);
       return state;
     case ACTION_TYPE.SAVE_TOKEN:
@@ -24,6 +25,9 @@ export function authReducer(state, action) {
     case ACTION_TYPE.SAVE_REFRESH:
       localStorage.setItem("refresh", JSON.stringify(action.payload));
       return state;
+    case ACTION_TYPE.ERASE_LOCALE:
+      localStorage.removeItem("user");
+      return { ...state, user: {} };
     default:
       return state;
   }
