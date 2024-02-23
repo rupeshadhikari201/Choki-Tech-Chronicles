@@ -46,7 +46,7 @@ const CustomerProfile = () => {
 
   return (
     <div
-      className={`mt-sm-3 mt-2 p-3 text-black-variant-2 d-flex justify-content-around`}
+      className={`mt-sm-3 mt-2 p-sm-3 px-1 text-black-variant-2 d-flex justify-content-around`}
       style={{ maxWidth: "1000px" }}
     >
       <div

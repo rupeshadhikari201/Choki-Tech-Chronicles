@@ -17,7 +17,8 @@ const CustomerDashBoard = () => {
         className="d-flex
       flex-column
      gap-4
-     px-3
+     px-md-3 
+     px-1
      pb-3 pb-md-0
      left-side
     "

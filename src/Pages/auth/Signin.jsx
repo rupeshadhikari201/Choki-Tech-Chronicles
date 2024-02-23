@@ -147,7 +147,7 @@ const Signin = () => {
               textAlign: "center",
               fontWeight: "bolder",
             }}
-            className="mb-4"
+            className="mb-3"
           >
             {" "}
             SIGN IN
@@ -197,13 +197,13 @@ const Signin = () => {
               errorMessage={"incorrect password"}
             />
           </div>
-          <span className="d-block mt-1 text-end text-black-variant-1 mb-2">
+          <span className="d-block mt-2 text-end text-black-variant-1 mb-2">
             forget password? <Link to={`/${commonPath}/reset`}>reset</Link>
           </span>
           <div className="mt-4">
             <button
               className="btn-custom 
-              font-500
+              font-weight-400
               green-varient-2
               green-varient-2-hover
               height-xsm
@@ -230,7 +230,7 @@ const Signin = () => {
             </div>
             <div
               className="btn-custom  dark-green cursor-pointer
-              font-weight-500
+              font-weight-400
               dark-green-hover
             height-xsm
             mt-2
@@ -243,7 +243,7 @@ const Signin = () => {
             "
             >
               <FaGoogle />
-              <p className="mb-1 p-0 text-capitalize">Sign in with Google</p>
+              <p className="mb-0 p-0 text-capitalize">Sign in with Google</p>
             </div>
           </div>
         </div>

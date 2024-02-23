@@ -46,14 +46,16 @@
   height: var(--height-xsm);
 }
 .auth-page-wrapper {
-  max-width: 70%;
+  width: 80%;
+  max-width: 900px;
 }
 .sign-wrapper {
-  width: 70%;
+  width: 90%;
+  max-width: 900px;
 }
 @media screen and (max-width: 769px) {
   .sign-wrapper {
-    width: 70%;
+    width: 80%;
   }
 }
 @media screen and (max-width: 512px) {

@@ -84,7 +84,7 @@ const DashBoard = ({ children }) => {
               className={`
       bg-white-variant-3
       dashboard-main-container
-      px-3
+      px-md-3 px-0
       pb-3
       rounded
       `}

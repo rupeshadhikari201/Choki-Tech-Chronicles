@@ -23,6 +23,7 @@ const DashBoardTopbar = ({ setShowNav, showNav }) => {
           gap-2  flex-column
           bg-white-variant-3
 "
+      style={{ zIndex: "50" }}
     >
       <div
         className={`d-flex align-items-center gap-4 justify-content-between w-100`}

@@ -121,9 +121,6 @@ const Signup = () => {
       auth-page-wrapper 
       sign-wrapper
       "
-        style={{
-          maxWidth: "90%",
-        }}
       >
         <div
           className="signup-right-side col p-4 d-none d-md-flex flex-column justify-content-center
@@ -341,7 +338,7 @@ const Signup = () => {
           </span>
           <button
             className="btn-custom 
-            font-500
+            font-weight-400
             green-varient-2
             green-varient-2-hover
             height-xsm
@@ -378,11 +375,11 @@ const Signup = () => {
          justify-content-center
          gap-2
           text-md
-          font-weight-500
+          font-weight-400
           "
           >
             <FaGoogle />
-            <p className="mb-1 p-0 text-capitalize">sign up with Google</p>
+            <p className="mb-0 p-0 text-capitalize">sign up with Google</p>
           </div>
         </div>
 

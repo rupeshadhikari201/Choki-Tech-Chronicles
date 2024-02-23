@@ -42,7 +42,7 @@ const CustomerProjectTable = ({ data }) => {
         }}
       >
         {showPortal && <ProjectPortal setShowPortal={setShowPortal} />}
-        <div className="d-flex justify-between">
+        <div className="d-flex flex-column flex-sm-row gap-2 justify-between ">
           <button
             className={`btn-custom-secondary ms-1 bg-dark-blue mt-1 `}
             onClick={() => setShowPortal(!showPortal)}
@@ -51,7 +51,7 @@ const CustomerProjectTable = ({ data }) => {
           </button>
           <div
             className="search-bar col "
-            style={{ maxWidth: "400px", width: "100%" }}
+            style={{ maxWidth: "300px", width: "100%" }}
           >
             <input
               type="text"
