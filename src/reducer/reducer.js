@@ -15,6 +15,15 @@ export function authReducer(state, action) {
     case ACTION_TYPE.LOCAL_STORAGE_EXTRACTOIN:
       state = getUserFromLocal(state);
       return state;
+    case ACTION_TYPE.SAVE_TO_LOCALE:
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      state = getUserFromLocal(state);
+      return state;
+    case ACTION_TYPE.SAVE_TOKEN:
+      return { ...state, token: action.payload };
+    case ACTION_TYPE.SAVE_REFRESH:
+      localStorage.setItem("refresh", JSON.stringify(action.payload));
+      return state;
     default:
       return state;
   }

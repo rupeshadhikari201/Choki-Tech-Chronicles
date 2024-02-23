@@ -4,7 +4,7 @@ import { ACTION_TYPE } from "../../reducer/action/action";
 
 export const AuthContext = createContext();
 const AuthContextProvider = ({ children }) => {
-  const [userState, userdispatch] = useReducer(authReducer, {});
+  const [userState, userdispatch] = useReducer(authReducer, { loading: true });
   useEffect(() => {
     //cheking if there is a user in the local storage
     userdispatch({ type: ACTION_TYPE.LOCAL_STORAGE_EXTRACTOIN });

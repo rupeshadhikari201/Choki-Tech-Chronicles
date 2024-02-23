@@ -1,15 +1,48 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../utils/context/auth";
 import { Notification, SearchNormal1 } from "iconsax-react";
 import CircularAvatar from "../../Components/commen/circular_avatar";
 import { Link } from "react-router-dom";
-import { commonPath } from "../../utils/constants/path";
+import { base_url, commonPath } from "../../utils/constants/path";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../App";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { ACTION_TYPE } from "../../reducer/action/action";
 const DashBoardTopbar = ({ setShowNav, showNav }) => {
-  const { userState } = useContext(AuthContext);
+  const { userState, userdispatch } = useContext(AuthContext);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const { isDark } = useContext(ThemeContext);
+  useEffect(() => {
+    console.log("dash_board_top_bar_called");
+    console.log(userState, Cookies.get("token"));
+    const profile = async () => {
+      const res = axios
+        .get(base_url + "/api/user/profile/", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          userdispatch({
+            type: ACTION_TYPE.SAVE_TO_LOCALE,
+            payload: {
+              firstName: "",
+              lastName: "",
+              email: "",
+            },
+          });
+          return res.data;
+        })
+        .catch((e) => {
+          console.log(e.response.data);
+        })
+        .finally((res) => {});
+    };
+    profile();
+  }, [userState]);
   return (
     <div
       className=" p-2

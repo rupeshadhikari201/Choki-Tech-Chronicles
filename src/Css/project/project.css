@@ -1,0 +1,25 @@
+.table-responsive .table-row {
+  background: var(--gray-secondary);
+}
+
+.table-responsive-container {
+  overflow-x: auto;
+}
+.custom-modal {
+  background-color: var(--white-variant-3);
+  width: 80%;
+  height: 90%;
+  z-index: 300;
+  overflow: hidden;
+}
+.project-portal-header {
+  background-color: #00bf6f;
+  padding: 10px 20px;
+  color: black;
+}
+@media screen and (max-width: 512px) {
+  .custom-modal {
+    width: 95%;
+    height: 90%;
+  }
+}

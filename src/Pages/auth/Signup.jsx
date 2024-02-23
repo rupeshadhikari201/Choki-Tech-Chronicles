@@ -14,7 +14,9 @@ import { path_to_signin, validateSignUpInput } from "../../utils/auth/helper";
 import { ToastContainer } from "react-toastify";
 import { AuthContext } from "../../utils/context/auth";
 import { ACTION_TYPE } from "../../reducer/action/action";
-import { commonPath } from "../../utils/constants/path";
+import { base_url, commonPath } from "../../utils/constants/path";
+import ReactLoading from "react-loading";
+import axios from "axios";
 const Signup = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -25,10 +27,11 @@ const Signup = () => {
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [validConfirm, setValidConfirm] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { userdispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   //Checking validity
-  const onSumbit = () => {
+  const onSumbit = async () => {
     const valid = validateSignUpInput(inputData, {
       setValidFirstName,
       setValidLastName,
@@ -38,10 +41,41 @@ const Signup = () => {
     });
 
     if (valid) {
-      userdispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
-      navigate(`/${commonPath}/onboard`);
+      // userdispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
+      setLoading(false);
+      const res = signUpUser(inputData, {});
+      res.then((res) => {
+        setLoading(false);
+        console.log(res.data);
+        console.log(res.status);
+      });
+      // navigate(`/${commonPath}/onboard`);
     }
   };
+  async function signUpUser(payload, state) {
+    const newState = {
+      ...state,
+      user: {
+        auth: true,
+        firstName: payload.firstName,
+        email: payload.email,
+      },
+    };
+    return signup(payload);
+
+    // localStorage.setItem("user", JSON.stringify(newState.user));
+    // return newState;
+  }
+  async function signup(user) {
+    const response = axios.post(base_url + "/api/user/register/", {
+      firstname: user?.firstName,
+      lastname: user?.lastName,
+      email: user?.email,
+      password: user?.password,
+      cnfpassword: user?.password,
+    });
+    return response;
+  }
 
   return (
     <div
@@ -53,6 +87,11 @@ const Signup = () => {
       align-items-center justify-content-center
       "
     >
+      {loading && (
+        <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
+          <ReactLoading type="spin" height={50} width={50} />
+        </div>
+      )}
       <ToastContainer />
       <div
         className="bg-white-variant-2

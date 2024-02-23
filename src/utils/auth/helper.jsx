@@ -64,10 +64,17 @@ export const validateSignUpInput = (userData, state) => {
 
 export const validateSignInInput = (userData, state) => {
   const { setValidEmail, setValidPassword } = state;
+  let valid = 1;
   if (!isEmailValid(userData.email)) {
     setValidEmail(false);
+    valid = 0;
   } else setValidEmail(true);
   if (!isPasswordStrong(userData.password)) {
     setValidPassword(false);
+    valid = 0;
   } else setValidPassword(true);
+
+  if (valid == 1) return true;
+
+  return false;
 };

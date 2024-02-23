@@ -8,26 +8,75 @@ import {
 import "../../Css/auth/auth.css";
 import TextField from "../../Components/text_input/textField";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { path_to_signup, validateSignInInput } from "../../utils/auth/helper";
 import { AuthContext } from "../../utils/context/auth";
-import { commonPath } from "../../utils/constants/path";
+import { base_url, commonPath } from "../../utils/constants/path";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import ReactLoading from "react-loading";
+import { ACTION_TYPE } from "../../reducer/action/action";
+import Cookies from "js-cookie";
 const Signin = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const { userdispatch, userState } = useContext(AuthContext);
+  const navigator = useNavigate();
   const onSubmit = () => {
-    validateSignInInput(inputData, {
+    const valid = validateSignInInput(inputData, {
       setValidEmail,
       setValidPassword,
     });
+    console.log(valid);
+    if (valid) {
+      setLoading(true);
+      try {
+        const res = axios.post(base_url + "/api/user/login/", {
+          email: inputData.email,
+          password: inputData.password,
+        });
+        res
+          .then((res) => {
+            // console.log(res);
+            // console.log(res.data);
+            // console.log("token  ", res.data.token.access);
+            // console.log("refresh ", res.data.token.refresh);
+            userdispatch({
+              type: ACTION_TYPE.SAVE_TO_LOCALE,
+              payload: { email: inputData.email },
+            });
+            userdispatch({
+              type: ACTION_TYPE.SAVE_REFRESH,
+              payload: res.data.token.refresh,
+            });
+            userdispatch({
+              type: ACTION_TYPE.SAVE_TOKEN,
+              payload: res.data.token.access,
+            });
+            // saving token to cookies
+            Cookies.set("token", res.data.token.access, { expires: 1 });
+            navigator(`/${commonPath}/dashboard`);
+          })
+          .catch((e) => {
+            console.log(e.response.data);
+            toast.error("email or password not valid");
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
-  const { state } = useContext(AuthContext);
+
   useEffect(() => {
-    console.log(state);
-  }, []);
+    console.log(userState);
+  }, [userState]);
   return (
     <div
       style={{
@@ -38,6 +87,13 @@ const Signin = () => {
         align-items-center justify-content-center
         "
     >
+      {" "}
+      {loading && (
+        <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
+          <ReactLoading type="spin" height={50} width={50} />
+        </div>
+      )}
+      <ToastContainer />
       <div
         className="bg-white-variant-2
         d-flex 

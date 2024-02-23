@@ -14,6 +14,7 @@ import {
 import { skillsList } from "../../utils/constants/skillsList";
 import { toast, ToastContainer } from "react-toastify";
 import { Languages } from "../../utils/constants/languageList";
+import { CloseCircle } from "iconsax-react";
 
 const LetsStart = () => {
   const { userState } = useContext(AuthContext);
@@ -303,7 +304,15 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
   const [personalSkills, setPersonalSkills] = useState([]);
   const [skills, setSkills] = useState(skillsList);
   const [profession, setProfession] = useState("");
-
+  const professionList = [
+    "Designer",
+    "Engineer",
+    "Educator",
+    "Student",
+    "Product Manager",
+    "Sales",
+    "Other",
+  ];
   useEffect(() => {
     if (personalSkills.length >= 2) {
       setUserInfo((info) => {
@@ -326,7 +335,7 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
   };
 
   return (
-    <div className="text-black-variant-1">
+    <div className="text-black-variant-1 ">
       {/* What is your profession */}
       <div
         className="d-flex 
@@ -350,9 +359,11 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
           onChange={handleChange}
         >
           <option value="">Select</option>
-          <option value="Student">Student</option>
-          <option value="teacher">teacher</option>
-          <option value="other">other</option>
+          {professionList.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
         </select>
       </div>
       {/* skills you have */}
@@ -365,6 +376,7 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
       `}
       >
         What skill do you have?
+        <span className="text-xsm">(at least 2 skill is required)</span>
         <div
           className={`
         mt-3
@@ -373,21 +385,28 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
         rounded
         w-100
         p-2
-        d-flex
-        flex-wrap
+        d-flex flex-column
         gap-2
-        
         `}
           style={{
             maxWidth: "400px",
+            Height: "200px",
           }}
         >
-          {/*  */}
-          {personalSkills &&
-            personalSkills.map((skill, index) => (
-              <div
-                key={index}
-                className={`
+          {/*Skills list view  */}
+          <div
+            className={"d-flex skill-wrapper gap-2 pb-2"}
+            style={{
+              maxWidth: "400px",
+              overflowX: "scroll",
+            }}
+            id="skill-wrapper"
+          >
+            {personalSkills &&
+              personalSkills.map((skill, index) => (
+                <div
+                  key={index}
+                  className={`
                 border-green-variant-1
                 p-1
                 bg-green-variant-4
@@ -395,27 +414,27 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
                 justify-content-between
                 align-items-center
                 gap-2
-                text-xsm
+                text-sm
                 `}
-                style={{
-                  whiteSpace: "nowrap",
-
-                  borderRadius: "20px",
-                }}
-              >
-                {skill}
-                <FaClosedCaptioning
-                  color="white"
-                  onClick={() => {
-                    let filtered = personalSkills.filter((sk) => sk != skill);
-                    let pos = skillsList.findIndex((sk) => sk.name === skill);
-                    skillsList[pos].isSelected = false;
-                    setPersonalSkills(filtered);
+                  style={{
+                    whiteSpace: "nowrap",
+                    borderRadius: "20px",
                   }}
-                  className={`cursor-pointer`}
-                />
-              </div>
-            ))}
+                >
+                  {skill}
+                  <CloseCircle
+                    color="white"
+                    onClick={() => {
+                      let filtered = personalSkills.filter((sk) => sk != skill);
+                      let pos = skillsList.findIndex((sk) => sk.name === skill);
+                      skillsList[pos].isSelected = false;
+                      setPersonalSkills(filtered);
+                    }}
+                    className={`cursor-pointer`}
+                  />
+                </div>
+              ))}
+          </div>
           {/* Input for skill */}
           <div
             className={`
@@ -423,10 +442,10 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
           border-green-variant-3
             rounded
               p-1
-            bg-green-variant-4
           `}
             style={{
               maxWidth: "200px",
+              zIndex: "100",
             }}
           >
             <div className={`d-flex`}>
@@ -456,18 +475,16 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
                 <span
                   className={`
             cursor-pointer
-
             `}
                   onClick={() => setShowSkillList(false)}
                 >
-                  X
+                  <CloseCircle />
                 </span>
               )}
             </div>
             <ul
               className={`
           skills-list
-          
           ${showSkillList ? "active" : ""}
           `}
             >
@@ -480,6 +497,9 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
                         setPersonalSkills([...personalSkills, skill.name]);
                         skills[index].isSelected = true;
                         setSkills(skillsList);
+                        const skillWrapper =
+                          document.getElementById("skill-wrapper");
+                        skillWrapper.scrollLeft = skillWrapper.scrollWidth;
                       }}
                     >
                       {skill.name}

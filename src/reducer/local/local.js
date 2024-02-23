@@ -10,5 +10,6 @@ export const getUserFromLocal = (state) => {
   return {
     ...state,
     user,
+    loading: false,
   };
 };
