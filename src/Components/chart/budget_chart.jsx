@@ -73,15 +73,8 @@ const HorizontalBarChart = ({ chartData, chartOptions }) => {
 };
 
 // Example usage in a component:
-const BudgetChart = () => {
-  const chartData = [
-    { title: "Jan", value: 200, label: "Spending" },
-    { title: "Feb", value: 500 },
-    { title: "Mar", value: 1000 },
-    { title: "Apr", value: 2000 },
-    { title: "May", value: 1000 },
-    // ...
-  ];
+const BudgetChart = ({ data }) => {
+  const chartData = data;
 
   const chartOptions = {
     title: {
