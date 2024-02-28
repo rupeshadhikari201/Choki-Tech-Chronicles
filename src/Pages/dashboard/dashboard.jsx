@@ -17,7 +17,7 @@ const DashBoard = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     const profile = async () => {
-      const res = axios
+      axios
         .get(base_url + "/api/user/profile/", {
           headers: {
             "Content-Type": "application/json",
