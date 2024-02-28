@@ -2,22 +2,7 @@ import React from "react";
 import { useTable } from "react-table";
 import { useNavigate } from "react-router-dom"; //  Import for navigation
 
-const data = [
-  {
-    title: "Web Development",
-    created: "Jun-2-2024",
-    status: "Assigned",
-    budget: 200,
-  },
-  {
-    title: "Designing",
-    created: "Jun-2-2024",
-    status: "Assigned",
-    budget: 600,
-  },
-];
-
-const CreatedProjectTable = () => {
+const CreatedProjectTable = ({ data }) => {
   const navigate = useNavigate(); // Initialize useNavigate hook
   const columns = React.useMemo(
     () => [
