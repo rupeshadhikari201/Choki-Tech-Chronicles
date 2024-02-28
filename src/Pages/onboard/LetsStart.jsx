@@ -4,17 +4,15 @@ import "../../Css/onboarding/onboarding.css";
 import ProgressIndicator from "./progressIndicator";
 import { STATUS } from "../../utils/constants/status";
 import { useNavigate } from "react-router-dom";
-import { commonPath } from "../../utils/constants/path";
-import {
-  FaArrowLeft,
-  FaArrowRight,
-  FaClosedCaptioning,
-  FaFile,
-} from "react-icons/fa6";
+import { base_url, commonPath } from "../../utils/constants/path";
+import { FaArrowLeft, FaArrowRight, FaFile } from "react-icons/fa6";
 import { skillsList } from "../../utils/constants/skillsList";
 import { toast, ToastContainer } from "react-toastify";
 import { Languages } from "../../utils/constants/languageList";
-import { CloseCircle } from "iconsax-react";
+import { AddCircle, CloseCircle, CloseSquare } from "iconsax-react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { ACTION_TYPE } from "../../reducer/action/action";
 
 const LetsStart = () => {
   const { userState } = useContext(AuthContext);
@@ -84,12 +82,54 @@ const LetsStart = () => {
   const [userInfo, setUserInfo] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const [gotoNext, setGotoNext] = useState(false);
+  const [currentUser, setCurrentUser] = useState("");
+  const { userdispatch } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     console.log(userState);
     console.log(pages[currentPage]);
   }, []);
+  useEffect(() => {
+    setLoading(true);
+    const profile = async () => {
+      axios
+        .get(base_url + "/api/user/profile/", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setCurrentUser({
+            firstName: res.data.data.firstname,
+            lastName: res.data.data.lastname,
+            email: res.data.data.email,
+          });
+          return res.data;
+        })
+        .catch((e) => {
+          if (e.response.status == 401) {
+            console.log("response is 401");
+            userdispatch({
+              type: ACTION_TYPE.ERASE_LOCALE,
+            });
+            //navigator(`/${commonPath}/signin`);
+          }
+          console.log(e.response.data);
+        })
+        .finally((res) => {
+          setLoading(false);
+        });
+    };
+    profile();
+  }, []);
+
   const onNextPage = () => {
     console.log("user info ==> ", userInfo);
+    if (userInfo["userAs"] == "client") {
+      navigator(`/${commonPath}/dashboard`);
+    }
     if (!gotoNext) {
       toast("please compelet all", {});
     }
@@ -118,8 +158,9 @@ const LetsStart = () => {
   min-height-100vh 
   d-flex align-items-center 
   justify-content-center
- 
+  pb-1
   "
+        style={{ overflow: "hidden" }}
       >
         <div
           className="
@@ -251,7 +292,7 @@ const UserPreference = ({ setGotoNext, setUserInfo }) => {
     switch (e.currentTarget.id) {
       case "01":
         setUserInfo((info) => {
-          return { ...info, userAs: "agent" };
+          return { ...info, userAs: "client" };
         });
         setGotoNext(true);
         break;
@@ -305,12 +346,12 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
   const [skills, setSkills] = useState(skillsList);
   const [profession, setProfession] = useState("");
   const professionList = [
-    "Designer",
+    "Designer/Artist",
     "Engineer",
     "Educator",
     "Student",
     "Product Manager",
-    "Sales",
+    "Sales/Marketing",
     "Other",
   ];
   useEffect(() => {
@@ -448,13 +489,13 @@ const UserProfessionAndSkill = ({ setGotoNext, setUserInfo }) => {
               zIndex: "100",
             }}
           >
-            <div className={`d-flex`}>
+            <div className={`d-flex `}>
               <input
                 type="text"
                 placeholder="your skills"
                 name="skills"
                 className={`
-            transparent
+            transparent text-black-variant-2
             w-100
             `}
                 onFocus={() => setShowSkillList(true)}
@@ -525,7 +566,12 @@ const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
       setGotoNext(true);
     else setGotoNext(false);
   }, [whyFreelance, hearedAboutUs]);
-
+  const updateUserInfo = (e) => {
+    const { name, value } = e.target.name;
+    setUserInfo((info) => {
+      return { ...info, [name]: value };
+    });
+  };
   return (
     <div className="text-black-variant-1">
       <div>
@@ -541,6 +587,7 @@ const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
           <p className={`text-center`}>Why do you want start freelancing</p>
           <input
             placeholder="why"
+            name="reason"
             className={`
       w-100
       p-2
@@ -549,7 +596,10 @@ const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
       transparent
       text-black-variant-2
           `}
-            onChange={(e) => setWhyFreelance(e.target.value)}
+            onChange={(e) => {
+              setWhyFreelance(e.target.value);
+              updateUserInfo(e);
+            }}
           />
         </div>
         <div
@@ -586,19 +636,25 @@ const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
 
 const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
   const [resume, setResume] = useState("");
+  const [lang, setLang] = useState(Languages);
   const [userLanguage, setUserLanguage] = useState([
     {
       language: "English",
       level: "good",
     },
   ]);
-  const [showLanguageList, setShowLanguageList] = useState(false);
-  useEffect(() => {}, []);
+
   useEffect(() => {
     const size = resume?.size / 1000_000 ?? null;
     if (size && size > 2) toast(`Resume size ${size}MB greater than 2MB`);
-    if (size && size <= 2) setGotoNext(true);
-  }, [resume]);
+    if (size && size <= 2 && userLanguage.length >= 1) setGotoNext(true);
+    if (userLanguage.length < 1) {
+      setGotoNext(false);
+      toast(`at lease one language is required`);
+    }
+    console.log(userLanguage);
+  }, [resume, userLanguage]);
+
   return (
     <div>
       <div className={`max-width-400-center mt-4`}>
@@ -633,60 +689,145 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
         </div>
       </div>
       {/*Language  */}
-      <div className={`max-width-400-center mt-3`}>
-        <p className={`text-black-variant-1 text-center`}>Language</p>
-        <div className={`d-flex align-items-center justify-content-between`}>
-          <div className={`position-relative text-black-variant-2`}>
-            <div className={`rounded border-green-variant-3`}>
-              <input
-                type="text"
-                id="0"
-                className={`p-1 rounded  bg-white-variant-2 text-black-variant-2`}
-                placeholder="Language"
-                defaultValue={userLanguage[0]?.language}
-                onFocus={() => setShowLanguageList(true)}
-              />
-              {showLanguageList && (
-                <span
-                  className={`cursor-pointer p-1`}
-                  onClick={() => setShowLanguageList(false)}
-                >
-                  X
-                </span>
-              )}
-              <ul
-                className={`language-list ${showLanguageList ? "active" : ""}`}
+      <div className={`max-width-400-center mt-3 text-black-variant-1 `}>
+        <p className={`text-center`}>Language</p>
+
+        {userLanguage
+          ? userLanguage.map((item, index) => (
+              <div
+                className={`d-flex align-items-center justify-content-between gap-2 mb-2`}
+                key={index}
               >
-                {Languages.map(
-                  (skill, index) =>
-                    !skill.isSelected && (
-                      <li key={index} onClick={() => {}}>
-                        {skill.name}
-                      </li>
-                    )
-                )}
-              </ul>
-            </div>
-          </div>
-          <div>
-            <select
-              className={`
-      p-1
-      rounded
-      border-green-variant-3
-      text-black-variant-1
-      bg-white-variant-2
-      
-      `}
-              name="level"
-              onChange={(e) => {}}
-              defaultValue={userLanguage[0].level}
-            >
-              <option value="good">Good</option>
-              <option value="excellent">Excellent</option>
-              <option value="native">Native</option>
-            </select>
-          </div>
+                <div
+                  className={`rounded border-green-variant-3 text-black-variant-2 position-relative col`}
+                  style={{ maxWidth: "200px" }}
+                >
+                  <div className="d-flex">
+                    <div
+                      id="0"
+                      className={`p-1 rounded  bg-white-variant-2 text-black-variant-2 cursor-pointer `}
+                      style={{ width: "100%" }}
+                      onClick={(e) => {
+                        const langlist = document.getElementById(
+                          `lang-${index}`
+                        );
+                        langlist.classList.toggle("active");
+                      }}
+                    >
+                      {item.language}
+                    </div>
+
+                    <span
+                      className={`cursor-pointer p-1`}
+                      onClick={() => {
+                        setUserLanguage((lan) =>
+                          lan.filter((l) => l.language != item.language)
+                        );
+                      }}
+                    >
+                      X
+                    </span>
+                  </div>
+                  <ul id={`lang-${index}`} className={`language-list `}>
+                    <div className="d-flex bg-light-green border rounded text-black-variant-1 p-1 mx-1">
+                      <input
+                        type="text"
+                        className="transparent text-black-variant-1 "
+                        style={{ maxWidth: "85%" }}
+                        onChange={(e) => {
+                          const { value } = e.target;
+                          if (value != "") {
+                            setLang((lang) =>
+                              lang.filter((x) => x.name.includes(value))
+                            );
+                          } else setLang(Languages);
+                        }}
+                        placeholder="seach"
+                      />
+                      <CloseSquare
+                        size={20}
+                        className="col cursor-pointer"
+                        onClick={() => {
+                          const langlist = document.getElementById(
+                            `lang-${index}`
+                          );
+                          langlist.classList.toggle("active");
+                        }}
+                      />
+                    </div>
+
+                    {lang.map(
+                      (lan, i) =>
+                        !lan.isSelected && (
+                          <li
+                            key={i}
+                            onClick={(e) => {
+                              setUserLanguage((prevUserLanguage) => {
+                                // Create a copy of the userLanguage array
+                                const updatedUserLanguage = [
+                                  ...prevUserLanguage,
+                                ];
+                                // Update the language at the specified index
+                                updatedUserLanguage[index] = {
+                                  ...updatedUserLanguage[index],
+                                  language: lan.name,
+                                };
+                                // Return the updated userLanguage array
+                                return updatedUserLanguage;
+                              });
+                              lang.find(
+                                (l) => l.name == item.language
+                              ).isSelected = false;
+                              item.language = lan.name;
+                              lan.isSelected = true;
+
+                              e.currentTarget.parentElement.classList.toggle(
+                                "active"
+                              );
+                            }}
+                          >
+                            {lan.name}
+                          </li>
+                        )
+                    )}
+                  </ul>
+                </div>
+
+                <div>
+                  <select
+                    className={`
+    p-1
+    rounded
+    border-green-variant-3
+    text-black-variant-1
+    bg-white-variant-2
+    
+    `}
+                    name="level"
+                    onChange={(e) => {
+                      item.level = e.target.value;
+                    }}
+                    defaultValue={item.level}
+                  >
+                    <option value="good">Good</option>
+                    <option value="excellent">Excellent</option>
+                    <option value="native">Native</option>
+                  </select>
+                </div>
+              </div>
+            ))
+          : ""}
+        <div
+          className="border-green-variant-3 mt-3 p-1 rounded"
+          style={{ maxWidth: "200px" }}
+          onClick={() => {
+            setUserLanguage([
+              ...userLanguage,
+              { language: "English", level: "good" },
+            ]);
+          }}
+        >
+          add language <AddCircle />{" "}
         </div>
       </div>
     </div>
