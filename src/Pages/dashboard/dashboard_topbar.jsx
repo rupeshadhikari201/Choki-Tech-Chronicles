@@ -3,12 +3,9 @@ import { AuthContext } from "../../utils/context/auth";
 import { Notification, SearchNormal1 } from "iconsax-react";
 import CircularAvatar from "../../Components/commen/circular_avatar";
 import { Link } from "react-router-dom";
-import { base_url, commonPath } from "../../utils/constants/path";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../App";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { ACTION_TYPE } from "../../reducer/action/action";
+import { commonPath } from "../../utils/constants/path";
 const DashBoardTopbar = ({ setShowNav, showNav }) => {
   const { userState, userdispatch } = useContext(AuthContext);
   const [showSearchbar, setShowSearchbar] = useState(false);
