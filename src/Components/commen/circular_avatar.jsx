@@ -26,7 +26,7 @@ const CircularAvatar = ({
           <img alt="img" src="" />
         ) : (
           <span
-            className={`text-uppercase ${
+            className={`text-uppercase cursor-pointer ${
               fontcolor ? fontcolor : "text-black-variant-1"
             } `}
           >
