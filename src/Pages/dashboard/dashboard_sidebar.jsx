@@ -40,7 +40,7 @@ const SideBar = ({ showNav, setShowNav }) => {
         },
         {
           title: "Invoice",
-          to: `${commonPath}/dashboard/`,
+          to: `${commonPath}/invoice`,
           icon: (color) => <Money color={color} />,
         },
       ],
