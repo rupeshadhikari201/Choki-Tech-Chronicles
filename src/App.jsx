@@ -16,6 +16,10 @@ import Profile from "./Pages/profile/profile.jsx";
 import Projects from "./Pages/projects/projects.jsx";
 import DashBoard from "./Pages/dashboard/dashboard.jsx";
 import SideNavContextProvider from "./utils/context/sidenav.jsx";
+import ProjectStatus from "./Pages/dashboard/customer/project_status.jsx";
+import Invoice from "./Pages/dashboard/customer/invoice.jsx";
+import ProjectContextProvider from "./utils/context/project.jsx";
+import Support from "./Pages/help/support.jsx";
 
 export const ThemeContext = createContext();
 const App = () => {
@@ -35,33 +39,53 @@ const App = () => {
       <AuthContextProvider>
         <SideNavContextProvider>
           <ThemeContext.Provider value={{ isDark }}>
-            <BrowserRouter>
-              <Routes>
-                <Route path={`${commonPath}/`} element={<Home />} />
-                <Route path={`${commonPath}/services`} element={<Services />} />
-                <Route path={`${commonPath}/team`} element={<Services />} />
-                <Route path={`${commonPath}/signup`} element={<Signup />} />
-                <Route path={`${commonPath}/signin`} element={<Signin />} />
-                <Route element={<ProtectedRoutes />}>
+            <ProjectContextProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path={`${commonPath}/`} element={<Home />} />
                   <Route
-                    path={`${commonPath}/onboard`}
-                    element={<LetsStart />}
+                    path={`${commonPath}/services`}
+                    element={<Services />}
                   />
-                </Route>
-                <Route path={`${commonPath}/new`} element={<DashBoard />} />
-                <Route element={<DashBoardRoute />}>
-                  <Route
-                    path={`${commonPath}/dashboard`}
-                    element={<CustomerDashBoard />}
-                  />
-                  <Route path={`${commonPath}/profile`} element={<Profile />} />
-                  <Route
-                    path={`${commonPath}/projects`}
-                    element={<Projects />}
-                  />
-                </Route>
-              </Routes>
-            </BrowserRouter>
+                  <Route path={`${commonPath}/team`} element={<Services />} />
+                  <Route path={`${commonPath}/signup`} element={<Signup />} />
+                  <Route path={`${commonPath}/signin`} element={<Signin />} />
+                  <Route element={<ProtectedRoutes />}>
+                    <Route
+                      path={`${commonPath}/onboard`}
+                      element={<LetsStart />}
+                    />
+                  </Route>
+                  <Route path={`${commonPath}/new`} element={<DashBoard />} />
+                  <Route element={<DashBoardRoute />}>
+                    <Route
+                      path={`${commonPath}/dashboard`}
+                      element={<CustomerDashBoard />}
+                    />
+                    <Route
+                      path={`${commonPath}/profile`}
+                      element={<Profile />}
+                    />
+                    <Route
+                      path={`${commonPath}/projects/status/:id`}
+                      element={<ProjectStatus />}
+                    />
+                    <Route
+                      path={`${commonPath}/invoice`}
+                      element={<Invoice />}
+                    />
+                    <Route
+                      path={`${commonPath}/projects`}
+                      element={<Projects />}
+                    />
+                    <Route
+                      path={`${commonPath}/support`}
+                      element={<Support />}
+                    />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </ProjectContextProvider>
           </ThemeContext.Provider>
         </SideNavContextProvider>
       </AuthContextProvider>
