@@ -10,9 +10,7 @@ const CircularAvatar = ({
   return (
     <div>
       <div
-        className={`${
-          bgcolor ? bgcolor : "bg-gray"
-        } d-flex align-items-center justify-content-center text-md font-weight-400
+        className={` d-flex align-items-center justify-content-center text-md font-weight-400
             icon-wrapper-primary ${className}
             `}
         style={{
@@ -20,6 +18,7 @@ const CircularAvatar = ({
           height: `${size || 20}px`,
           borderRadius: "50%",
           fontSize: `${fontSize || 1}rem`,
+          backgroundColor: bgcolor ? bgcolor : "gray",
         }}
       >
         {img ? (
