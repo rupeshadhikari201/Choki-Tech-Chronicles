@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../utils/context/auth";
 import DashboardCard from "../../../Components/card/dashboardCards";
 import { Box2, Edit2, Money, Money2, TickCircle } from "iconsax-react";
@@ -10,7 +10,23 @@ import ListTile from "../../../Components/commen/list_tile";
 
 const CustomerDashBoard = () => {
   const { userState } = useContext(AuthContext);
-
+  const [budgetChar, setBudgetChart] = useState([
+    { title: "Jan", value: 0, label: "Spending" },
+    { title: "Feb", value: 0, label: "Spending" },
+    { title: "Mar", value: 0 },
+    { title: "Apr", value: 0 },
+    { title: "May", value: 100 },
+    // ...
+  ]);
+  const [cardState, setCardState] = useState({
+    projectCreated: 0,
+    projectCompeleted: 0,
+    investment: 0,
+  });
+  const [budget, setBudget] = useState({
+    maxBudget: 0,
+    minBudget: 0,
+  });
   return (
     <div className={`d-flex dashboard-content`} style={{}}>
       <div
@@ -31,18 +47,18 @@ const CustomerDashBoard = () => {
         >
           <DashboardCard
             title={"Posted Project"}
-            number={4}
+            number={cardState.projectCreated}
             icon={<Edit2 size={25} color="blue" />}
           />
           <DashboardCard
             title={"Compeleted Project"}
-            number={2}
+            number={cardState.projectCompeleted}
             icon={<TickCircle size={25} />}
             background={"linear-gradient(to right,#09CA62,#24995A)"}
           />
           <DashboardCard
             title={"Investment"}
-            number={300}
+            number={cardState.investment}
             icon={<Money size={25} color="green" />}
             background={"linear-gradient(to right,#793FF5,#56349D)"}
           />
@@ -53,13 +69,17 @@ const CustomerDashBoard = () => {
             className={`col-sm-8 col bg-white-variant-4 p-2 rounded`}
             style={{ height: "300px" }}
           >
-            <BudgetChart />
+            <BudgetChart data={budgetChar} />
           </div>
           <div
             className={`col-sm-4 col bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1`}
             style={{ height: "100%" }}
           >
-            <HalfCircleProgress />
+            <HalfCircleProgress
+              percentage={
+                cardState.projectCompeleted / cardState.projectCreated
+              }
+            />
             <div className="d-flex align-items-center gap-3">
               {" "}
               <span
@@ -90,7 +110,7 @@ const CustomerDashBoard = () => {
         </div>
         {/* Table */}
 
-        <CreatedProjectTable />
+        <CreatedProjectTable data={[]} />
       </div>
 
       {/* customer simple porfile */}
@@ -109,9 +129,9 @@ const CustomerDashBoard = () => {
         >
           <CircularAvatar
             size={130}
-            text="YA"
+            text={userState?.user?.firstName.slice(0, 2)}
             fontSize={2.5}
-            bgcolor="bg-light-violet"
+            bgcolor="#802cff"
             className={""}
             fontcolor={"text-white"}
           />
@@ -128,12 +148,16 @@ const CustomerDashBoard = () => {
           <div className="col d-flex flex-column justify-content-center">
             <span>Max Budget</span>
             <h2 className={`text-center font-weight-400`}>
-              2000<span className="h5">Rs</span>
+              {budget.maxBudget}
+              <span className="h5">rs</span>
             </h2>
           </div>
           <div className="col col d-flex flex-column justify-content-center">
             <span>Min Budget</span>
-            <h2 className={`text-center font-weight-400`}>500</h2>
+            <h2 className={`text-center font-weight-400`}>
+              {budget.minBudget}
+              <span className="h5">rs</span>
+            </h2>
           </div>
         </div>
         {/* Activity */}
