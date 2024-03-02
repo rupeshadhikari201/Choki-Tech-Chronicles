@@ -4,6 +4,11 @@ import { ThemeContext } from "../../../App";
 import { ToastContainer, toast } from "react-toastify";
 import { CloseCircle } from "iconsax-react";
 import { skillsList } from "../../../utils/constants/skillsList";
+import { useNavigate } from "react-router-dom";
+import { commonPath } from "../../../utils/constants/path";
+import { projectDummyData } from "../../../utils/constants/status";
+import { ProjectContext } from "../../../utils/context/project";
+import { ACTION_TYPE } from "../../../reducer/action/action";
 const CustomerProjectTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRows, setCurrentRows] = useState([]);
@@ -13,6 +18,7 @@ const CustomerProjectTable = ({ data }) => {
   const rowsPerPage = 5;
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const navigator = useNavigate();
   useEffect(() => {
     setCurrentRows(alldata.slice(indexOfFirstRow, indexOfLastRow));
   }, [currentPage, alldata]);
@@ -41,7 +47,12 @@ const CustomerProjectTable = ({ data }) => {
           minWidth: "600px",
         }}
       >
-        {showPortal && <ProjectPortal setShowPortal={setShowPortal} />}
+        {showPortal && (
+          <ProjectPortal
+            setShowPortal={setShowPortal}
+            setAllData={setAllData}
+          />
+        )}
         <div className="d-flex flex-column flex-sm-row gap-2 justify-between ">
           <button
             className={`btn-custom-secondary ms-1 bg-dark-blue mt-1 `}
@@ -75,7 +86,13 @@ const CustomerProjectTable = ({ data }) => {
         </div>
         <div className="table-body">
           {currentRows.map((item, index) => (
-            <div key={index} className="row table-row my-2 p-1 py-2">
+            <div
+              key={index}
+              className="row table-row my-2 p-1 py-2 cursor-pointer"
+              onClick={() => {
+                navigator(`/${commonPath}/projects/status/${index}`);
+              }}
+            >
               <div className="col">{item.title}</div>
               <div className="col">{item.created}</div>
               <div className="col">
@@ -139,7 +156,7 @@ const CustomerProjectTable = ({ data }) => {
 
 export default CustomerProjectTable;
 
-const ProjectPortal = ({ setShowPortal }) => {
+const ProjectPortal = ({ setShowPortal, setAllData }) => {
   const close = () => {
     const portal = document.getElementById("p_portal");
     window.onclick = function (event) {
@@ -148,17 +165,21 @@ const ProjectPortal = ({ setShowPortal }) => {
       }
     };
   };
+  const { projectDispatch } = useContext(ProjectContext);
   const [showError, setShowError] = useState(false);
   const [showSkillList, setShowSkillList] = useState(false);
   const [personalSkills, setPersonalSkills] = useState([]);
   const [skills, setSkills] = useState(skillsList);
   const [projectDetail, setProjectDetail] = useState({
     title: "",
-    date: "",
+    submittion: "",
     description: "",
     skill: [],
     budget: "",
     attachment: "",
+    created: new Date().toLocaleDateString(),
+    progress: "Not assigned",
+    payment: "pending",
   });
   useEffect(() => {
     setProjectDetail({ ...projectDetail, skill: personalSkills });
@@ -177,6 +198,11 @@ const ProjectPortal = ({ setShowPortal }) => {
       toast.success("Great your project is created!");
       setShowPortal(false);
       console.log(projectDetail);
+      setAllData((prev) => [...prev, projectDetail]);
+      projectDispatch({
+        type: ACTION_TYPE.ADD_PROJECT,
+        payload: projectDetail,
+      });
     } else {
       toast.error("Please fill all details");
       console.log(projectDetail);
@@ -206,8 +232,13 @@ const ProjectPortal = ({ setShowPortal }) => {
       <ToastContainer />
       <div className="rounded custom-modal " style={{ overflowY: "scroll" }}>
         {/* heading for posting project */}
-        <div className={"project-portal-header"}>
-          <h5 className={`text-center`}>New Project</h5>
+        <div className={"project-portal-header d-flex justify-content-center"}>
+          <h5 className={`text-center  `}>New Project</h5>
+          <CloseCircle
+            className="ms-auto p-1 cursor-pointer"
+            size={35}
+            onClick={() => setShowPortal(false)}
+          />
         </div>
 
         <div
@@ -243,7 +274,7 @@ const ProjectPortal = ({ setShowPortal }) => {
               type="date"
               className={`custom-input border-green-variant-1 rounded`}
               style={{ maxWidth: "400px" }}
-              name="date"
+              name="submission"
               onChange={(e) =>
                 setProjectDetail({
                   ...projectDetail,
@@ -485,7 +516,7 @@ const ProjectPortal = ({ setShowPortal }) => {
           </div>
         </div>
         <button
-          className="btn-custom-secondary bg-dark-blue text-black-variant-1"
+          className="btn-custom-secondary bg-green-variant-4 text-black-variant-1"
           onClick={() => handleCreate()}
         >
           Create
