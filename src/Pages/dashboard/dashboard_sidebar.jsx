@@ -50,7 +50,7 @@ const SideBar = ({ showNav, setShowNav }) => {
       child: [
         {
           title: "support",
-          to: `${commonPath}/dashboard/`,
+          to: `${commonPath}/support`,
           icon: (color) => <MdSupportAgent color={color} size={22} />,
         },
       ],
