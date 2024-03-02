@@ -1,6 +1,7 @@
 import { ACTION_TYPE } from "./action/action";
 import { signUpUser } from "./auth/reducer";
 import { getUserFromLocal } from "./local/local";
+import { saveproject } from "./project/project";
 
 export function authReducer(state, action) {
   switch (action.type) {
@@ -41,3 +42,13 @@ export function sideNavReducer(state, action) {
       return state;
   }
 }
+
+export const projectReducer = (state, action) => {
+  switch (action.type) {
+    case ACTION_TYPE.ADD_PROJECT:
+      state = saveproject(state, action.payload);
+      return state;
+    default:
+      return state;
+  }
+};
