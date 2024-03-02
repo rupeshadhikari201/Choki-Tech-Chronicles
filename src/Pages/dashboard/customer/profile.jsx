@@ -97,7 +97,7 @@ const CustomerProfile = () => {
                         if (next.style.maxHeight) {
                           next.style.maxHeight = null;
                         } else
-                          next.style.maxHeight = next.scrollHeight + 20 + "px";
+                          next.style.maxHeight = next.scrollHeight + 10 + "px";
                       }}
                     >
                       <p className="mb-0 p-2">{set.name}</p>
