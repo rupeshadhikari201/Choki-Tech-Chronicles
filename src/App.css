@@ -42,8 +42,10 @@
   --text-xxlg: 50px;
   --text-black-variant-1: rgb(0, 0, 0);
   --text-black-variant-2: rgb(43, 43, 43);
+  --text-black-variant-3: rgb(43, 43, 43);
   --text-blue-variant-1: rgb(4, 6, 44);
   --text-white-variant-1: rgb(255, 255, 255);
+  --text-white-variant-2: white;
   --text-gray-secondary: rgb(39, 39, 39);
   --height-xsm: 50px;
   --height-sm: 70px;
@@ -52,6 +54,7 @@
   --black-variant-3: rgb(9, 114, 37);
   --font-weight-var-300: 400;
   --font-weight-var-normal: 500;
+  --border-variant-1: rgba(118, 118, 118, 0.203);
 }
 .dark-theme {
   --home-background: rgb(36, 36, 36);
@@ -68,8 +71,10 @@
   --dark-blue-hover: rgb(63, 63, 63);
   --text-black-variant-1: rgb(218, 218, 218);
   --text-black-variant-2: rgb(194, 194, 194);
+  --text-black-variant-3: rgb(156, 156, 156);
   --text-blue-variant-1: rgb(218, 218, 218);
   --text-white-variant-1: rgb(31, 31, 31);
+  --text-white-variant-2: #5ecc5c;
   --text-gray-secondary: gray;
   --green-secondary: rgb(0, 191, 111);
   --green-variant-3: rgb(44, 76, 63);
@@ -79,10 +84,9 @@
   --black-variant-3: rgb(56, 56, 56);
   --font-weight-var-300: 400;
   --font-weight-var-normal: 500;
+  --border-variant-1: rgba(255, 255, 255, 0.214);
 }
 html {
-  scroll-behavior: smooth !important;
-  scroll-snap-type: y proximity;
 }
 body {
   font-family: "Inter", sans-serif;
@@ -104,7 +108,6 @@ a {
 }
 section {
   min-height: 40vh;
-  scroll-snap-align: center;
 }
 .font-weight-var-normal {
   font-weight: var(--font-weight-var-normal);
@@ -206,11 +209,17 @@ section {
 .text-black-variant-1 {
   color: var(--text-black-variant-1);
 }
+.text-black-variant-3 {
+  color: var(--text-black-variant-3);
+}
 .text-blue-variant-1 {
   color: var(--text-blue-variant-1);
 }
 .text-green-secondary {
   color: var(--green-secondary);
+}
+.text-white-variant-2 {
+  color: var(--text-white-variant-2);
 }
 .text-white {
   color: var(--text-white-variant-1);
@@ -243,7 +252,9 @@ section {
 .transparent {
   background-color: transparent;
 }
-
+.border-variant-1 {
+  border: 1px solid var(--border-variant-1);
+}
 .border-primary-green {
   border: 1px solid var(--primary-green);
 }
