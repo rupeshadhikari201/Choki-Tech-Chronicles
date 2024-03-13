@@ -8,7 +8,34 @@
   width: 2px;
   height: 3px;
 }
-@media screen and (max-width: 800px) {
-  .card-holder {
+.service-card-wrapper {
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
+.service-card {
+  height: 300px;
+  border: 1px solid var(--border-variant-1);
+  max-width: 360px;
+}
+.icon-wrapper {
+  background-color: rgba(255, 255, 255, 0.11);
+  border: 1px solid white;
+  padding: 10px 5px;
+  display: flex;
+  align-items: center;
+  max-width: 50px;
+  justify-content: center;
+  border-radius: 10px;
+}
+.feature-section {
+  max-width: 1200px;
+}
+.feature-list-wrapper {
+  max-width: 600px;
+  border: 1px solid var(--border-variant-1);
+}
+@media screen and (max-width: 576px) {
+  .service-card {
+    max-width: 100%;
   }
 }
