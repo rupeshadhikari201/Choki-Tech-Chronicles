@@ -41,9 +41,32 @@
 .card-3-icon-wrapper .icon {
   cursor: pointer;
 }
-
+.team-quote h1 {
+  font-size: 4rem;
+}
+.ceo-img-wrapper {
+  border-radius: 50%;
+}
+.team-quote-wrapper {
+  top: 20%;
+  left: 5%;
+}
 @media screen and (max-width: 890px) {
   .team-card-holder {
     width: 80%;
+  }
+  .team-quote h1 {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 576px) {
+  .team-quote h1 {
+    font-size: 2rem;
+  }
+  .ceo-img-wrapper {
+    border-radius: 0;
+  }
+  .team-quote-wrapper {
+    top: 40%;
   }
 }
