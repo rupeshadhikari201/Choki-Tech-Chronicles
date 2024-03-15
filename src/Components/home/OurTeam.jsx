@@ -1,7 +1,7 @@
 import TeamCard from "../card/TeamCard";
 import "../../Css/home/ourteam.css";
 import { QuoteDown, QuoteUp } from "iconsax-react";
-
+import yared from "../../assets/yared.jpg";
 const OurTeam = () => {
   return (
     <section className="our-team px-3 pb-3">
@@ -24,7 +24,7 @@ const OurTeam = () => {
         style={{ maxWidth: "1200px", minHeight: "80vh" }}
       >
         <div
-          className="ms-auto rounded-circle"
+          className="ms-auto ceo-img-wrapper "
           style={{ height: "400px", width: "400px", overflow: "hidden" }}
         >
           <img
@@ -38,17 +38,15 @@ const OurTeam = () => {
           />
         </div>
         <div
-          className="mx-auto position-absolute "
+          className="mx-auto position-absolute team-quote-wrapper "
           style={{
             maxWidth: "1000px",
             alignSelf: "center",
-            top: "20%",
-            left: "5%",
           }}
         >
-          <div className="">
+          <div className="team-quote">
             <QuoteUp size={40} />
-            <h1 className="font-weight-400" style={{ fontSize: "4rem" }}>
+            <h1 className="font-weight-400">
               Innovation thrives at the intersection of tech and collaboration.
             </h1>
             <QuoteDown size={40} />
@@ -81,7 +79,7 @@ const OurTeam = () => {
           position={"Designer and Developer"}
           description={` Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. `}
-          img={""}
+          img={yared}
         />
       </div>
     </section>
