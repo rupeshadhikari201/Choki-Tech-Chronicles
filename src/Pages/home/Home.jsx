@@ -18,10 +18,7 @@ const Home = () => {
   };
   return (
     <>
-      <section
-        className="home"
-        style={{ overflow: "hidden", position: "relative" }}
-      >
+      <section className="home">
         <Navbar />
         <div className="hero d-flex ">
           <div className="mx-4">
@@ -37,6 +34,7 @@ const Home = () => {
               className="typer-text
             text-black-variant-2
             "
+              style={{ minHeight: "50px" }}
             >
               {/* Unlocking Potential: Where Clients and Freelancers Coalesce for Collective Success */}
               <TypeAnimation
@@ -60,11 +58,11 @@ const Home = () => {
                   fontSize: "1.5em",
                   display: "inline-block",
                 }}
-                repeat={0}
+                repeat={Infinity}
               />
             </div>
             {/* Buttons */}
-            <div className="d-flex flex-column flex-sm-row flex-md-row gap-4 justify-content-center align-items-center">
+            <div className="btn-wrapper d-flex flex-column flex-sm-row flex-md-row gap-4 justify-content-center align-items-center">
               <div
                 className="btn-custom-white text-white-variant-2 "
                 onClick={() => change()}
