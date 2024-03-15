@@ -86,6 +86,7 @@ button {
 }
 .btn-custom-white-variant-1:hover {
   background-color: white;
+  color: black;
 }
 .btn-custom-white:hover {
   background-color: transparent;
