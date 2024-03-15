@@ -106,7 +106,7 @@ const Sevices = () => {
         className=" text-black-variant-1 mx-4 feature-section mx-auto "
         style={{ marginTop: "100px" }}
       >
-        <h5>Features</h5>
+        <h5 className="ps-4">Features</h5>
 
         {/* Feature1 ^ */}
         <div>
@@ -171,7 +171,7 @@ const Sevices = () => {
           <div className="" style={{ marginTop: "100px" }}>
             <div className="d-flex align-items-center gap-4 flex-column flex-md-row px-4 px-md-2">
               <div
-                className="col order-2 order-md-1"
+                className="col order-2 order-md-0"
                 style={{ height: "300px", overflow: "hidden" }}
               >
                 <img
