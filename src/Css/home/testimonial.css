@@ -5,6 +5,7 @@
 
 .card-2 {
   max-width: 400px;
+  width: 100%;
   background-color: var(--light-lime);
   padding-top: 10px;
   padding: 30px 10px 20px;
@@ -32,16 +33,18 @@
 }
 
 .card-2-img {
-  max-width: 200px;
-  max-height: 200px;
-  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+
+  border: 1px solid blue;
   overflow: hidden;
   margin: 0px auto 10px;
   display: none;
 }
 .card-2-img img {
   width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 992px) {
@@ -53,11 +56,19 @@
 @media screen and (max-width: 576px) {
   .card-2 {
     height: auto;
+    max-width: 350px;
+    min-width: 100%;
   }
   .img-circle {
     display: none;
   }
   .card-2-img {
     display: block;
+  }
+  .testimonial-container {
+    max-width: 350px;
+    margin: 10px auto;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
   }
 }
