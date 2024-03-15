@@ -4,7 +4,14 @@ const TeamCard = ({ name, position, description, img }) => {
   return (
     <div className="card-3">
       <div className="card-3-img mb-4">
-        <img src={img} alt="team-member" />
+        <img
+          src={img}
+          alt="team-member"
+          style={{
+            objectFit: "cover",
+            objectPosition: "center top",
+          }}
+        />
       </div>
       <div className="card-3-body">
         <h5 className="text-black-variant-1">{name}</h5>
