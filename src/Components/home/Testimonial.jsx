@@ -109,13 +109,13 @@ const Testimonial = () => {
       >
         {testimonials.map((item, index) => (
           <div
-            className="d-flex col gap-4 justify-content-center justify-content-sm-around justify-content-md-around justify-content-lg-between align-items-center"
-            style={{ minWidth: "100%" }}
+            className="d-flex col  gap-4 justify-content-start justify-content-sm-around  justify-content-lg-between align-items-center"
             key={index}
+            style={{ minWidth: "100%" }}
           >
-            <div className="card-2 text-black-variant-1">
+            <div className="card-2  text-black-variant-1">
               <div className="rounded-circle card-2-img">
-                <img src={item.image} alt="carousel-item" />
+                <img src={item.image} alt="" />
               </div>
               <p>{item.text}</p>
               <h5 className="mb-0">{item.name}</h5>
@@ -144,7 +144,7 @@ const Testimonial = () => {
           Our journey, milestone, and commitment to excellence
         </h1>
         <p className="text-center">Trusted growth proven success</p>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between px-3">
           {milestone.map((item, index) => (
             <div key={index}>
               <h3>{item.number}</h3>
