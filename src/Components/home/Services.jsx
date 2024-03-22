@@ -2,6 +2,7 @@ import "../../Css/home/service.css";
 import { motion, useScroll, useSpring, useInView } from "framer-motion";
 import { useInsertionEffect, useRef } from "react";
 import {
+  Chart,
   Graph,
   Message,
   Monitor,
@@ -36,6 +37,11 @@ const Sevices = () => {
       title: "Detailed Analytics",
       subtitle: `Delivering comprehensive analytics and reporting on website traffic, user behavior, and performance metrics to gain actionable insights and optimize your online presence for maximum impact and results.`,
       icon: <Graph />,
+    },
+    {
+      title: "Automate Workflow",
+      subtitle: ` our automated workflow system kicks into gear, facilitating seamless communication, task assignments, and milestone tracking. Clients can effortlessly monitor progress, provide feedback, and approve deliverables.`,
+      icon: <Chart />,
     },
   ];
   const serviceRef = useRef();

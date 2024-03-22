@@ -131,8 +131,8 @@ const Testimonial = () => {
       {/* Add more items as needed */}
 
       <div className="text-black-variant-2 d-flex justify-content-center gap-4 mt-4 mb-4">
-        <ArrowLeft2 onClick={prevSlide} />
-        <ArrowRight2 onClick={nextSlide} />
+        <ArrowLeft2 onClick={prevSlide} className="cursor-pointer" />
+        <ArrowRight2 onClick={nextSlide} className="cursor-pointer" />
       </div>
       <div style={{ maxHeight: "500px", overflow: "hidden" }}></div>
       {/*  */}

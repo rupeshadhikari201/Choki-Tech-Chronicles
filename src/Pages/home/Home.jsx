@@ -97,7 +97,7 @@ const Home = () => {
       */}
       <Testimonial />
       <OurTeam />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
