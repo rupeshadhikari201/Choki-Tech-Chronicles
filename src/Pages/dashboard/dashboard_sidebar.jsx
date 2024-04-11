@@ -15,7 +15,7 @@ const SideBar = ({ showNav, setShowNav }) => {
       child: [
         {
           title: "home",
-          to: `${commonPath}/dashboard/`,
+          to: ``,
           icon: (color) => <Home color={color} />,
         },
       ],
@@ -25,7 +25,7 @@ const SideBar = ({ showNav, setShowNav }) => {
       child: [
         {
           title: "All Projects",
-          to: `${commonPath}/projects`,
+          to: `projects`,
           icon: (color) => <Box color={color} />,
         },
       ],
@@ -35,12 +35,12 @@ const SideBar = ({ showNav, setShowNav }) => {
       child: [
         {
           title: "Profile",
-          to: `${commonPath}/profile`,
+          to: `profile`,
           icon: (color) => <User color={color} />,
         },
         {
           title: "Invoice",
-          to: `${commonPath}/invoice`,
+          to: `invoice`,
           icon: (color) => <Money color={color} />,
         },
       ],
@@ -50,7 +50,7 @@ const SideBar = ({ showNav, setShowNav }) => {
       child: [
         {
           title: "support",
-          to: `${commonPath}/support`,
+          to: `support`,
           icon: (color) => <MdSupportAgent color={color} size={22} />,
         },
       ],
@@ -73,7 +73,6 @@ const SideBar = ({ showNav, setShowNav }) => {
         transition: "all 0.3s linear",
         zIndex: "100",
         maxWidth: "200px",
-        overflowY: "scroll",
       }}
     >
       <h2
@@ -133,7 +132,7 @@ const SideBar = ({ showNav, setShowNav }) => {
                       className={`text-start text-white 
                 font-weight-300
                 `}
-                      to={`/${item.to}`}
+                      to={`${item.to}`}
                       onClick={() => {
                         setActiveLink(item.title);
                         setShowNav(false);
@@ -166,7 +165,7 @@ const SideBar = ({ showNav, setShowNav }) => {
             <MdLogout /> Log out{" "}
           </span>
         </div>
-        <button
+        {/* <button
           className="
   btn-custom-variant-3
   p-1
@@ -177,7 +176,7 @@ const SideBar = ({ showNav, setShowNav }) => {
           onClick={() => {}}
         >
           close
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -5,13 +5,14 @@ import DashBoardTopbar from "./dashboard_topbar";
 import { AuthContext } from "../../utils/context/auth";
 import ReactLoading from "react-loading";
 import { ACTION_TYPE } from "../../reducer/action/action";
-import { base_url, commonPath } from "../../utils/constants/path";
+import { base_url } from "../../utils/constants/path";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 const DashBoard = ({ children }) => {
   const [showNav, setShowNav] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(false);
   const { userState, userdispatch } = useContext(AuthContext);
   const navigator = useNavigate();
   useEffect(() => {
@@ -24,25 +25,43 @@ const DashBoard = ({ children }) => {
             Authorization: `Bearer ${Cookies.get("token")}`,
           },
         })
-        .then((res) => {
-          console.log(res.data);
+        .then(async (res) => {
           userdispatch({
             type: ACTION_TYPE.SAVE_TO_LOCALE,
             payload: {
-              firstName: res.data.data.firstname,
-              lastName: res.data.data.lastname,
+              firstname: res.data.data.firstname,
+              lastname: res.data.data.lastname,
               email: res.data.data.email,
             },
           });
+          //UpdateUser
+          userdispatch({
+            type: ACTION_TYPE.UPDATE_USER,
+            payload: { ...res.data?.data, id: res.data.id },
+          });
+
           return res.data;
         })
-        .catch((e) => {
+        .catch(async (e) => {
           if (e.response.status == 401) {
+            //if get new token if there is refresh token
+            const refreshToken = Cookies.get("refresh");
+            const refresh = await axios.post(
+              base_url + "/api/user/token/refresh/",
+              {
+                refresh: refreshToken,
+              }
+            );
+            if (refresh.data.access) {
+              Cookies.set("token", refresh.data.access, { expires: 1 });
+              setRefresh(true);
+              return;
+            }
             console.log("response is 401");
             userdispatch({
               type: ACTION_TYPE.ERASE_LOCALE,
             });
-            navigator(`${commonPath}/signin`);
+            navigator(`/signin`);
           }
           console.log(e.response.data);
         })
@@ -52,7 +71,7 @@ const DashBoard = ({ children }) => {
     };
     profile();
     return () => {};
-  }, [userState.loading]);
+  }, [userState.loading, refresh]);
 
   return (
     <div

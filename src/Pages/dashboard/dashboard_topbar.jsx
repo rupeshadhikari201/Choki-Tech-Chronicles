@@ -74,7 +74,7 @@ const DashBoardTopbar = ({ setShowNav, showNav }) => {
           <div>
             {/* Greeting */}
             <h4 className="text-blue-variant-1 mb-0 text-capitalize font-weight-400">
-              {userState.user?.firstName}'s
+              {userState.user?.firstname}'s
             </h4>
 
             <h6
@@ -229,7 +229,7 @@ ms-md-0
          p-2
          `}
               >
-                <p>{userState?.user?.firstName}</p>
+                <p>{userState?.user?.firstname}</p>
                 <hr />
                 <div
                   className={`
