@@ -4,12 +4,14 @@
   box-sizing: border-box;
 }
 .nav-container {
-  background-color: rgba(255, 255, 255, 0.77);
+  background-color: var(--nav-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   border-radius: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-container .center ul {

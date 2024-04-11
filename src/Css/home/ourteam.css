@@ -1,5 +1,6 @@
 .our-team {
   background-color: var(--light-green);
+  padding-top: 100px;
 }
 .team-card-holder {
   max-width: 900px;

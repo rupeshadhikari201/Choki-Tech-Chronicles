@@ -13,12 +13,13 @@ const Navbar = () => {
   return (
     <Container className="nav-container">
       <div className="logo" style={{ position: "relative" }}>
-        <p className="fw-bolder logo ">
+        <p className="fw-bolder  ">
           <span
             style={{
               position: "absolute",
               top: "50%",
               transform: "translateY(-50%)",
+              color: "white",
             }}
           >
             LOGO
@@ -51,7 +52,7 @@ const Navbar = () => {
               Services
             </Link>
           </li>
-          <li className="">
+          {/* <li className="">
             <Link
               to="./"
               className="text-decoration-none"
@@ -60,16 +61,16 @@ const Navbar = () => {
             >
               Products
             </Link>
-          </li>
+          </li> */}
           <li className="">
-            <Link
-              to="#team"
+            <a
+              href="#team"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
             >
               Team
-            </Link>
+            </a>
           </li>
           <li className="blogs">
             <Link

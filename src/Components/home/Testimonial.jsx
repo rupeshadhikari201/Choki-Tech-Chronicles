@@ -58,7 +58,6 @@ const Testimonial = () => {
     );
     const n = testimonialContainer.childElementCount;
     const width = testimonialContainer.scrollWidth / n;
-    console.log(width);
     // testimonialContainer
     testimonialContainer.scrollLeft += width;
   };
@@ -69,91 +68,103 @@ const Testimonial = () => {
     );
     const n = testimonialContainer.childElementCount;
     const width = testimonialContainer.scrollWidth / n;
-    console.log(width);
     // testimonialContainer
     testimonialContainer.scrollLeft -= width;
   };
   return (
-    <section
-      className="testimonial-section d-flex flex-column justify-content-center pb-4"
-      style={{ paddingTop: "50px" }}
-    >
-      <div
-        className="p-2 pt-1 mb-4 mx-auto
+    <>
+      <section
+        className="testimonial-section d-flex flex-column justify-content-center pb-4
+       position-relative
       "
-        style={{ maxWidth: "500px" }}
+        style={{ paddingTop: "50px" }}
       >
-        <h1
-          className="text-center
+        <div>
+          <div className="color-box-1"></div>
+          <div className="color-box-2"></div>
+          <div className="color-box-3"></div>
+        </div>
+        <div
+          className="p-2 pt-1 mb-4 mx-auto 
+      "
+          style={{ maxWidth: "500px" }}
+        >
+          <h1
+            className="text-center
         text-black-variant-1
-      
+          
         "
-        >
-          100+ Happy customers
-        </h1>
-        <p
-          className="
-        text-black-variant-3
-        mx-auto
-        "
-        >
-          Don't take our word see what customer says about us
-        </p>
-      </div>
-      {/*  */}
-      <div
-        className="testimonial-container 
-       d-flex gap-1
-      "
-        style={{ overflowX: "scroll" }}
-      >
-        {testimonials.map((item, index) => (
-          <div
-            className="d-flex col  gap-4 justify-content-start justify-content-sm-around  justify-content-lg-between align-items-center"
-            key={index}
-            style={{ minWidth: "100%" }}
           >
-            <div className="card-2  text-black-variant-1">
-              <div className="rounded-circle card-2-img">
-                <img src={item.image} alt="" />
+            100+ Happy customers
+          </h1>
+          <p
+            className="
+        text-black-variant-3
+        mx-auto 
+        "
+            style={{ zIndex: 60 }}
+          >
+            Don't take our word see what customer says about us
+          </p>
+        </div>
+        {/*  */}
+        <div
+          className="testimonial-container d-flex gap-4"
+          style={{ overflowX: "scroll" }}
+        >
+          {testimonials.map((item, index) => (
+            <div
+              className="review d-flex col  gap-4 justify-content-start justify-content-sm-around  justify-content-lg-between align-items-center"
+              key={index}
+            >
+              <div className="card-2  text-black-variant-1">
+                <div className="rounded-circle card-2-img">
+                  <img src={item.image} alt="" />
+                </div>
+                <p>{item.text}</p>
+                <h5 className="mb-0">{item.name}</h5>
               </div>
-              <p>{item.text}</p>
-              <h5 className="mb-0">{item.name}</h5>
-            </div>
-
-            <div className="rounded-circle img-circle">
-              <img src={item.image} alt={item.name} />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="" style={{ width: "500px" }}></div>
-      {/* Add more items as needed */}
-
-      <div className="text-black-variant-2 d-flex justify-content-center gap-4 mt-4 mb-4">
-        <ArrowLeft2 onClick={prevSlide} className="cursor-pointer" />
-        <ArrowRight2 onClick={nextSlide} className="cursor-pointer" />
-      </div>
-      <div style={{ maxHeight: "500px", overflow: "hidden" }}></div>
-      {/*  */}
-      <div
-        className="text-black-variant-2 mx-auto w-100 mt-4"
-        style={{ maxWidth: "900px" }}
-      >
-        <h1 className="mb-4 mx-auto text-center" style={{ maxWidth: "900px" }}>
-          Our journey, milestone, and commitment to excellence
-        </h1>
-        <p className="text-center">Trusted growth proven success</p>
-        <div className="d-flex justify-content-between px-3">
-          {milestone.map((item, index) => (
-            <div key={index}>
-              <h3>{item.number}</h3>
-              <p>{item.title}</p>
+              {/* 
+              <div className="rounded-circle img-circle">
+                <img src={item.image} alt={item.name} />
+              </div> */}
             </div>
           ))}
         </div>
+        <div className="" style={{ width: "500px" }}></div>
+        {/* Add more items as needed */}
+
+        <div className="text-black-variant-2 d-flex justify-content-center gap-4 mt-4 mb-4">
+          <ArrowLeft2 onClick={prevSlide} className="cursor-pointer" />
+          <ArrowRight2 onClick={nextSlide} className="cursor-pointer" />
+        </div>
+        <div style={{ maxHeight: "500px", overflow: "hidden" }}></div>
+        {/*  */}
+      </section>
+      {/* mile stone */}
+      <div className="milestone-section">
+        <div
+          className="milestone-wrapper  text-black-variant-2 mx-auto w-100 "
+          style={{ maxWidth: "1300px" }}
+        >
+          <h1
+            className="mb-4 mx-auto text-center"
+            style={{ maxWidth: "900px" }}
+          >
+            Our journey, milestone, and commitment to excellence
+          </h1>
+          <p className="text-center">Trusted growth proven success</p>
+          <div className="d-flex justify-content-between px-3">
+            {milestone.map((item, index) => (
+              <div key={index}>
+                <h3>{item.number}</h3>
+                <p>{item.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </section>
+    </>
   );
 };
 

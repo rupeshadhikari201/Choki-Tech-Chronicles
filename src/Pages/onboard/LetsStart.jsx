@@ -17,12 +17,12 @@ import { ACTION_TYPE } from "../../reducer/action/action";
 const LetsStart = () => {
   const { userState } = useContext(AuthContext);
   const [progressState, setProgressState] = useState([
+    // {
+    //   status: STATUS.PENDING,
+    //   label: "First",
+    // },
     {
       status: STATUS.PENDING,
-      label: "First",
-    },
-    {
-      status: STATUS.DEFAULT,
       label: "About",
     },
     {
@@ -39,18 +39,18 @@ const LetsStart = () => {
     },
   ]);
   const headerSubtitles = [
-    "let's know more about you",
+    // "let's know more about you",
     "Your skill and profession",
     "Your legacy",
     "Your resume help us to know more",
     "Starting your new journey",
   ];
   const pages = [
-    {
-      page: (setGotoNext, setUserInfo) => (
-        <UserPreference setGotoNext={setGotoNext} setUserInfo={setUserInfo} />
-      ),
-    },
+    // {
+    //   page: (setGotoNext, setUserInfo) => (
+    //     <UserPreference setGotoNext={setGotoNext} setUserInfo={setUserInfo} />
+    //   ),
+    // },
     {
       page: (setGotoNext, setUserInfo) => (
         <UserProfessionAndSkill
@@ -114,7 +114,7 @@ const LetsStart = () => {
             userdispatch({
               type: ACTION_TYPE.ERASE_LOCALE,
             });
-            //navigator(`/${commonPath}/signin`);
+            navigator(`/signin`);
           }
           console.log(e.response.data);
         })
@@ -124,17 +124,28 @@ const LetsStart = () => {
     };
     profile();
   }, []);
-
+  const createFreelancer = async () => {
+    try {
+      const res = await axios.post(base_url + `/api/user/freelancer/`, {
+        user: "",
+        profession: userInfo.profession,
+        reason_to_join: userInfo.reason,
+        where_did_you_heared: userInfo.where,
+        bio: userInfo.bio,
+        skill: userInfo.skills,
+        language: userInfo.language,
+      });
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
   const onNextPage = () => {
     console.log("user info ==> ", userInfo);
-    if (userInfo["userAs"] == "client") {
-      navigator(`/${commonPath}/dashboard`);
-    }
     if (!gotoNext) {
       toast("please compelet all", {});
     }
     if (gotoNext && currentPage == pages.length - 1) {
-      navigator(`/${commonPath}/dashboard`);
+      navigator(`/agent/dashboard`);
     } else if (gotoNext && currentPage != pages.length - 1) {
       setCurrentPage((c) => c + 1);
       let progress = progressState;
@@ -562,12 +573,13 @@ const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
   const [whyFreelance, setWhyFreelance] = useState("");
   const [hearedAboutUs, setHeardAboutUs] = useState("");
   useEffect(() => {
-    if (whyFreelance && whyFreelance.length > 3 && hearedAboutUs)
+    if (whyFreelance && whyFreelance.length > 3 && hearedAboutUs) {
+      // setUserInfo(info=>{ return {...info,reason:whyFreelance,heared:hearedAboutUs}})
       setGotoNext(true);
-    else setGotoNext(false);
+    } else setGotoNext(false);
   }, [whyFreelance, hearedAboutUs]);
   const updateUserInfo = (e) => {
-    const { name, value } = e.target.name;
+    const { name, value } = e.target;
     setUserInfo((info) => {
       return { ...info, [name]: value };
     });
@@ -621,7 +633,10 @@ const WhyAndWhere = ({ setGotoNext, setUserInfo }) => {
       w-100
       `}
             name="where"
-            onChange={(e) => setHeardAboutUs(e.target.value)}
+            onChange={(e) => {
+              setHeardAboutUs(e.target.value);
+              updateUserInfo(e);
+            }}
           >
             <option value="">Select</option>
             <option value="Instagram">Instagram</option>
@@ -647,7 +662,12 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
   useEffect(() => {
     const size = resume?.size / 1000_000 ?? null;
     if (size && size > 2) toast(`Resume size ${size}MB greater than 2MB`);
-    if (size && size <= 2 && userLanguage.length >= 1) setGotoNext(true);
+    if (size && size <= 2 && userLanguage.length >= 1) {
+      setUserInfo((info) => {
+        return { ...info, language: userLanguage, resume: resume };
+      });
+      setGotoNext(true);
+    }
     if (userLanguage.length < 1) {
       setGotoNext(false);
       toast(`at lease one language is required`);
@@ -709,7 +729,7 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
                       style={{ width: "100%" }}
                       onClick={(e) => {
                         const langlist = document.getElementById(
-                          `lang-${index}`
+                          `lang-ul-${index}`
                         );
                         langlist.classList.toggle("active");
                       }}
@@ -728,7 +748,7 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
                       X
                     </span>
                   </div>
-                  <ul id={`lang-${index}`} className={`language-list `}>
+                  <ul id={`lang-ul-${index}`} className={`language-list `}>
                     <div className="d-flex bg-light-green border rounded text-black-variant-1 p-1 mx-1">
                       <input
                         type="text"
@@ -738,7 +758,9 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
                           const { value } = e.target;
                           if (value != "") {
                             setLang((lang) =>
-                              lang.filter((x) => x.name.includes(value))
+                              lang.filter((x) =>
+                                x.name.toLowerCase().includes(value)
+                              )
                             );
                           } else setLang(Languages);
                         }}
@@ -749,7 +771,7 @@ const ResumeAndLanguage = ({ setGotoNext, setUserInfo }) => {
                         className="col cursor-pointer"
                         onClick={() => {
                           const langlist = document.getElementById(
-                            `lang-${index}`
+                            `lang-ul-${index}`
                           );
                           langlist.classList.toggle("active");
                         }}

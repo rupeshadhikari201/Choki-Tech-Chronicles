@@ -4,7 +4,7 @@ import { QuoteDown, QuoteUp } from "iconsax-react";
 import yared from "../../assets/yared.jpg";
 const OurTeam = () => {
   return (
-    <section className="our-team px-3 pb-3">
+    <section className="our-team px-3 pb-3 " id="team">
       <h1
         className="text-center
       text-black-variant-1

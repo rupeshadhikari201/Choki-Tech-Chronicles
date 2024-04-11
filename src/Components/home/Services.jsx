@@ -1,6 +1,6 @@
 import "../../Css/home/service.css";
-import { motion, useScroll, useSpring, useInView } from "framer-motion";
-import { useInsertionEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   Chart,
   Graph,
@@ -79,11 +79,14 @@ const Sevices = () => {
   };
   return (
     <div
-      className="service-section pb-4 pb-md-5 pt-3"
+      className="service-section pb-4 pb-md-5 pt-3 "
       style={{ position: "relative" }}
     >
+      <div className="position-absolute color-box-1"></div>
+      <div className="position-absolute color-box-2"></div>
+      <div className="position-absolute color-box-3"></div>
       <div className="px-4">
-        <h1 className="text-center p-3 text-black-variant-1">Our Services</h1>
+        <h1 className="text-center p-3 text-black-variant-1 b">Our Services</h1>
       </div>
 
       <motion.section
@@ -91,18 +94,26 @@ const Sevices = () => {
         variants={variant}
         initial={"hidden"}
         animate={isInView ? "show" : ""}
-        className="d-flex mx-auto px-4 px-sm-2 mt-4 gap-4 service-card-wrapper flex-column flex-md-row"
+        className="d-flex mx-auto px-4 px-sm-2 mt-4 gap-4 service-card-wrapper flex-column flex-md-row
+        
+        "
       >
         {item &&
           item.map((section, index) => (
             <motion.div
               variants={variant}
               key={index}
-              className="rounded service-card  p-2 px-4 d-flex flex-column text-black-variant-1"
+              whileHover={{
+                backgroundColor: "#955604",
+                color: "white",
+                scale: 1.05,
+                transition: { duration: 0.3 },
+              }}
+              className="rounded service-card  p-2 px-4 d-flex flex-column text-black-variant-1 bg-service-card"
             >
               <div className="mt-3 mb-3 icon-wrapper">{section.icon}</div>
               <h5 className="font-weight-500">{section.title}</h5>
-              <div className="text-black-variant-3">{section.subtitle}</div>
+              <div className="text-black-variant-1">{section.subtitle}</div>
             </motion.div>
           ))}
       </motion.section>
@@ -129,7 +140,8 @@ const Sevices = () => {
                 style={{ maxWidth: "500px" }}
               >
                 <h1 className="font-weight-500" style={{}}>
-                  Collaboration for large Team
+                  Collaboration for{" "}
+                  <span style={{ color: "green" }}>large Team</span>
                 </h1>
                 <p className="text-black-variant-3">
                   Our collaboration platform provides secure access control,
@@ -194,7 +206,7 @@ const Sevices = () => {
                   viewport={{ once: true, amount: 0.5 }}
                 >
                   <h1 className="font-weight-500" style={{}}>
-                    Detail analytics
+                    Detail <span style={{ color: "yellow" }}>analytics</span>
                   </h1>
                   <p className="text-black-variant-3">
                     Our analytics dashboard delivers customizable visual
