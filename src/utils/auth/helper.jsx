@@ -1,7 +1,5 @@
-import { toast } from "react-toastify";
-
-export const path_to_signin = "/Choki-Tech-Chronicles/signin";
-export const path_to_signup = "/Choki-Tech-Chronicles/signup";
+export const path_to_signin = `/signin`;
+export const path_to_signup = `/signup`;
 
 export const isPasswordStrong = (password) => {
   if (!password) return false;

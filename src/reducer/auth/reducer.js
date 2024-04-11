@@ -1,4 +1,5 @@
 import axios from "axios";
+import { base_url } from "../../utils/constants/path";
 
 export function signInUser() {}
 
@@ -13,12 +14,10 @@ export function signUpUser(payload, state) {
       email: payload.email,
     },
   };
-  console.log(payload);
   signup(payload);
   localStorage.setItem("user", JSON.stringify(newState.user));
   return newState;
 }
-const base_url = "https://django-backend-zb2n.onrender.com";
 async function signup(user) {
   const response = await axios.post(base_url + "/api/user/register/", {
     firstname: user?.firstName,
