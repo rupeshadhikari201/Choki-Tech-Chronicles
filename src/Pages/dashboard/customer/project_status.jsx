@@ -1,18 +1,19 @@
-import { TickCircle } from "iconsax-react";
+import { ArrowLeft, TickCircle } from "iconsax-react";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { projectDummyData } from "../../../utils/constants/status";
 import { ProjectContext } from "../../../utils/context/project";
-
+import { useNavigate } from "react-router-dom";
 const ProjectStatus = () => {
+  const navigator = useNavigate();
   const { id } = useParams();
   const { projectData } = useContext(ProjectContext);
   const [projectDetail, setProjectDetail] = useState({});
   useEffect(() => {
-    if (id > projectData?.data.length) {
+    if (id >= projectData?.data.length) {
       setProjectDetail({});
+      navigator("/client/dashboard/projects");
     } else setProjectDetail(projectData?.data[id]);
-  }, []);
+  });
   const [projectStatus, setProjectStatus] = useState([
     {
       name: "Project Assigned",
@@ -37,6 +38,14 @@ const ProjectStatus = () => {
   ]);
   return (
     <div className={`text-black-variant-2 px-2`}>
+      <button
+        className=" transparent w-auto btn-custom-secondary ms-0 p-1 text-black-variant-1"
+        onClick={() => {
+          navigator(-1);
+        }}
+      >
+        <ArrowLeft />
+      </button>
       <div className={`bg-white-variant-4 p-2 mb-3`}>
         <h4 className="font-weight-400 text-capitalize">
           {projectDetail?.title}
@@ -54,7 +63,7 @@ const ProjectStatus = () => {
               Budget
               <div className="h-100 w-100 mt-3">
                 <h3 className="font-weight-400 text-center">
-                  {projectDetail?.budget}
+                  {projectDetail?.project_price}
                 </h3>
               </div>
             </div>
@@ -62,7 +71,9 @@ const ProjectStatus = () => {
               {" "}
               Posted Date
               <div className="h-100 w-100 mt-3">
-                <p>{projectDetail?.created}</p>
+                <p>
+                  {new Date(projectDetail?.created_at).toLocaleDateString()}
+                </p>
               </div>
             </div>
           </div>
@@ -70,8 +81,8 @@ const ProjectStatus = () => {
           <div className={`bg-white-variant-4 col p-2`}>
             skill required
             <div className="d-flex gap-4 mt-3 flex-wrap">
-              {projectDetail.skill
-                ? projectDetail.skill.map((sk, index) => (
+              {projectDetail?.skills_required
+                ? projectDetail?.skills_required.map((sk, index) => (
                     <div
                       key={index}
                       className="border px-3 py-1"
@@ -81,12 +92,6 @@ const ProjectStatus = () => {
                     </div>
                   ))
                 : ""}
-              <div
-                className="border px-3 py-1"
-                style={{ borderRadius: "30px" }}
-              >
-                Managment
-              </div>
             </div>
           </div>
         </div>

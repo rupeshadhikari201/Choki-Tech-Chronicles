@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../utils/context/auth";
 import DashboardCard from "../../../Components/card/dashboardCards";
 import { Box2, Edit2, Money, Money2, TickCircle } from "iconsax-react";
@@ -7,9 +7,12 @@ import BudgetChart from "../../../Components/chart/budget_chart";
 import CreatedProjectTable from "../../../Components/tables/created_project_table";
 import HalfCircleProgress from "../../../Components/half_circle/half_circle_progress";
 import ListTile from "../../../Components/commen/list_tile";
+import { ProjectContext } from "../../../utils/context/project";
+import TimeAgo from "javascript-time-ago";
 
 const CustomerDashBoard = () => {
   const { userState } = useContext(AuthContext);
+  const timeAgo = new TimeAgo("en-US");
   const [budgetChar, setBudgetChart] = useState([
     { title: "Jan", value: 0, label: "Spending" },
     { title: "Feb", value: 0, label: "Spending" },
@@ -18,15 +21,67 @@ const CustomerDashBoard = () => {
     { title: "May", value: 100 },
     // ...
   ]);
+  const { projectData, projectDispatch, projectLoading } =
+    useContext(ProjectContext);
+
   const [cardState, setCardState] = useState({
-    projectCreated: 0,
-    projectCompeleted: 0,
+    projectCreated: projectData.data.length,
+    projectCompeleted: projectData.data.filter(
+      (item) => item?.project_status === 2
+    ).length,
     investment: 0,
   });
+  //For budget card
   const [budget, setBudget] = useState({
     maxBudget: 0,
     minBudget: 0,
   });
+  const getMinMaxBudget = (details) => {
+    let min = Infinity;
+    let max = -Infinity;
+    if (details.length <= 0) return [0, 0];
+
+    details.forEach((detail) => {
+      if (detail.project_price > max) max = detail.project_price;
+      if (detail.project_price < min) min = detail.project_price;
+    });
+
+    return [min, max];
+  };
+
+  //converting projectDetail ti useable format
+  const projectDetailConvert = (details) => {
+    details = details.sort((a, b) => {
+      if (Date.parse(a.created_at) < Date.parse(b.created_at)) return 1;
+      return -1;
+    });
+    const converted = details.map((detail) => {
+      return {
+        title: detail.title,
+        created_at: timeAgo.format(new Date(detail.created_at)),
+        project_status: detail.project_status === 1 ? "unassigned" : "assigned",
+        project_price: detail.project_price,
+      };
+    });
+    if (converted.length > 5) return converted.slice(0, 5);
+    return converted;
+  };
+  useEffect(() => {
+    // console.log(projectData);
+    const [min, max] = getMinMaxBudget(projectData.data);
+    setBudget({
+      maxBudget: max,
+      minBudget: min,
+    });
+    setCardState({
+      projectCreated: projectData.data.length,
+      projectCompeleted: projectData.data.filter(
+        (item) => item?.project_status === 2
+      ).length,
+      investment: 0,
+    });
+  }, [projectData, projectLoading]);
+
   return (
     <div className={`d-flex dashboard-content`} style={{}}>
       <div
@@ -110,7 +165,7 @@ const CustomerDashBoard = () => {
         </div>
         {/* Table */}
 
-        <CreatedProjectTable data={[]} />
+        <CreatedProjectTable data={projectDetailConvert(projectData.data)} />
       </div>
 
       {/* customer simple porfile */}
@@ -129,7 +184,7 @@ const CustomerDashBoard = () => {
         >
           <CircularAvatar
             size={130}
-            text={userState?.user?.firstName.slice(0, 2)}
+            text={userState?.user?.firstname.slice(0, 2)}
             fontSize={2.5}
             bgcolor="#802cff"
             className={""}

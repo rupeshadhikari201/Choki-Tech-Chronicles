@@ -1,19 +1,18 @@
 import React from "react";
 import { useTable } from "react-table";
 import { useNavigate } from "react-router-dom"; //  Import for navigation
-
+import TimeAgo from "javascript-time-ago";
 const CreatedProjectTable = ({ data }) => {
   const navigate = useNavigate(); // Initialize useNavigate hook
   const columns = React.useMemo(
     () => [
       { Header: "Title", accessor: "title" },
-      { Header: "Created", accessor: "created" },
-      { Header: "Status", accessor: "status" },
-      { Header: "Budget", accessor: "budget" },
+      { Header: "Created", accessor: "created_at" },
+      { Header: "Status", accessor: "project_status" },
+      { Header: "Budget", accessor: "project_price" },
     ],
     []
   );
-
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
@@ -22,7 +21,7 @@ const CreatedProjectTable = ({ data }) => {
 
   const handleRowClick = (row) => {
     // Customize the navigation path based on your project structure
-    navigate(`/project/${row.original.title}`);
+    navigate(`projects/status/${row}`);
   };
 
   return (
@@ -60,7 +59,7 @@ const CreatedProjectTable = ({ data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {rows.map((row, index) => {
             prepareRow(row);
             return (
               <tr
@@ -70,13 +69,13 @@ const CreatedProjectTable = ({ data }) => {
                 }}
                 key={row.id}
                 {...row.getRowProps()}
-                onClick={() => handleRowClick(row)}
+                onClick={() => handleRowClick(index)}
               >
                 {row.cells.map((cell) => (
                   <td
                     key={cell.value}
                     {...cell.getCellProps()}
-                    className="p-2 py-3"
+                    className="p-2 "
                   >
                     {cell.render("Cell")}
                   </td>

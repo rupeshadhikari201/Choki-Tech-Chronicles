@@ -67,7 +67,7 @@ const Invoice = () => {
               <CircularAvatar
                 size={60}
                 bgcolor={"#eee"}
-                text={userState?.user.firstName.slice(0, 2)}
+                text={userState?.user?.firstname.slice(0, 2)}
               />
               <div className="col cursor-pointer">
                 <p className="font-weight-500 mb-0">Paid for paper writing</p>
@@ -79,7 +79,7 @@ const Invoice = () => {
               <CircularAvatar
                 size={60}
                 bgcolor={"#eee"}
-                text={userState?.user.firstName.slice(0, 2)}
+                text={userState?.user?.firstname.slice(0, 2)}
               />
               <div className="col cursor-pointer">
                 <p className="font-weight-500 mb-0">Paid for Web Design</p>
@@ -94,7 +94,7 @@ const Invoice = () => {
               size={60}
               bgcolor={"#eee"}
               className={"mt-2"}
-              text={userState?.user.firstName.slice(0, 2)}
+              text={userState?.user?.firstname.slice(0, 2)}
             />
             <p className="m-0 mt-1">
               Paid for <span className="font-weight-500"> writing paper</span>

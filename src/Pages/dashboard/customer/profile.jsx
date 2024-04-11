@@ -17,12 +17,12 @@ const CustomerProfile = () => {
       setting: [
         {
           name: "FirstName",
-          value: userState?.user?.firstName,
+          value: userState?.user?.firstname,
           action: () => {},
         },
         {
           name: "LastName",
-          value: userState?.user?.lastName,
+          value: userState?.user?.lastname,
           action: () => {},
         },
       ],
@@ -58,13 +58,13 @@ const CustomerProfile = () => {
         <h2 className={`text-lg order-2 order-sm-1`}>
           Hello,
           <span className={`text-green-secondary text-lg  `}>
-            {userState?.user?.firstName}
+            {userState?.user?.firstname}
           </span>
         </h2>
         <CircularAvatar
           size={160}
           img={""}
-          text={userState?.user?.firstName?.slice(0, 2)}
+          text={userState?.user?.firstname?.slice(0, 2)}
           fontSize={5}
           bgcolor="bg-gray-secondary"
         />

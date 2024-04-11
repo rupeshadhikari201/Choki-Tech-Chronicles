@@ -5,40 +5,70 @@ import { ToastContainer, toast } from "react-toastify";
 import { CloseCircle } from "iconsax-react";
 import { skillsList } from "../../../utils/constants/skillsList";
 import { useNavigate } from "react-router-dom";
-import { commonPath } from "../../../utils/constants/path";
-import { projectDummyData } from "../../../utils/constants/status";
+import { base_url, commonPath } from "../../../utils/constants/path";
 import { ProjectContext } from "../../../utils/context/project";
 import { ACTION_TYPE } from "../../../reducer/action/action";
-const CustomerProjectTable = ({ data }) => {
+import { AuthContext } from "../../../utils/context/auth";
+import ReactLoading from "react-loading";
+import axios from "axios";
+import Cookies from "js-cookie";
+import TimeAgo from "javascript-time-ago";
+const CustomerProjectTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRows, setCurrentRows] = useState([]);
-  const [alldata, setAllData] = useState(data);
+  const [alldata, setAllData] = useState([]);
   const [showPortal, setShowPortal] = useState(false);
   const { isDark } = useContext(ThemeContext);
+  const { userState } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [showReload, setShowReload] = useState(false);
+  const { projectData, projectDispatch } = useContext(ProjectContext);
+  const [fetchProject, setFetchProject] = useState(false);
   const rowsPerPage = 5;
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const timeAgo = new TimeAgo("en-US");
   const navigator = useNavigate();
   useEffect(() => {
-    setCurrentRows(alldata.slice(indexOfFirstRow, indexOfLastRow));
-  }, [currentPage, alldata]);
+    //Geting client project
+    setLoading(true);
+    axios
+      .get(base_url + "/api/user/get-client-project/", {
+        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+      })
+      .then((res) => {
+        setAllData(res.data);
+        projectDispatch({
+          type: ACTION_TYPE.SET_PROJECT,
+          payload: res.data,
+        });
+        setCurrentRows(res.data.slice(indexOfFirstRow, indexOfLastRow));
+        setShowReload(false);
+      })
+      .catch((e) => {
+        console.log("Fetching project", e.message);
+        toast.error("Error while fetching project. please refresh page");
+        setShowReload(true);
+      })
+      .finally(() => setLoading(false));
+  }, [currentPage, showReload, fetchProject]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredData = data.filter(
+  const filteredData = projectData.data.filter(
     (item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.budget.toLowerCase().includes(searchTerm.toLowerCase())
+      item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.project_price?.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
     setAllData(filteredData);
-    if (e.target.value === "") setAllData(data);
+    if (e.target.value === "") setAllData(projectData.data);
     // Reset to first page when searching
   };
   return (
-    <div className="table-responsive-container">
+    <div className="table-responsive-container position-relative">
       <ToastContainer />
       <div
         className="table-responsive text-black-variant-1"
@@ -47,19 +77,37 @@ const CustomerProjectTable = ({ data }) => {
           minWidth: "600px",
         }}
       >
+        {loading && (
+          <>
+            <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
+              <ReactLoading
+                type="spin"
+                className="text-black-variant-1"
+                height={50}
+                width={50}
+              />
+            </div>
+          </>
+        )}
         {showPortal && (
           <ProjectPortal
             setShowPortal={setShowPortal}
             setAllData={setAllData}
+            setFetchProject={setFetchProject}
           />
         )}
         <div className="d-flex flex-column flex-sm-row gap-2 justify-between ">
-          <button
-            className={`btn-custom-secondary ms-1 bg-dark-blue mt-1 `}
-            onClick={() => setShowPortal(!showPortal)}
-          >
-            Create Project
-          </button>
+          {showReload ? (
+            <div className="col"></div>
+          ) : (
+            <button
+              className={`btn-custom-secondary ms-1 bg-dark-blue mt-1 `}
+              onClick={() => setShowPortal(!showPortal)}
+            >
+              Create Project
+            </button>
+          )}
+
           <div
             className="search-bar col "
             style={{ maxWidth: "300px", width: "100%" }}
@@ -74,7 +122,18 @@ const CustomerProjectTable = ({ data }) => {
             />
           </div>
         </div>
-
+        {/* Show Reload */}
+        {showReload && (
+          <button
+            className="btn-custom-secondary"
+            onClick={() => {
+              setShowReload(false);
+              setLoading(true);
+            }}
+          >
+            Reload
+          </button>
+        )}
         <div className="row table-header py-2">
           <div className="col">Title</div>
           <div className="col">Created</div>
@@ -90,21 +149,25 @@ const CustomerProjectTable = ({ data }) => {
               key={index}
               className="row table-row my-2 p-1 py-2 cursor-pointer"
               onClick={() => {
-                navigator(`/${commonPath}/projects/status/${index}`);
+                navigator(`status/${index}`);
               }}
             >
-              <div className="col">{item.title}</div>
-              <div className="col">{item.created}</div>
+              <div className="col">{item?.title}</div>
               <div className="col">
-                <span
-                  style={{ color: item.payment === "Paid" ? "green" : "red" }}
-                >
-                  {item.payment}
+                {timeAgo.format(new Date(item?.created_at))}
+              </div>
+              <div className="col">
+                <span style={{ color: item.payment === 2 ? "green" : "red" }}>
+                  {item.payment_status == 1 ? "Pending" : "Paid"}
                 </span>
               </div>
-              <div className="col">{item.progress}</div>
-              <div className="col">{item.submission}</div>
-              <div className="col">{item.budget}</div>
+              <div className="col">
+                {item?.project_status === 1 ? "unassigned" : "assigned"}
+              </div>
+              <div className="col">
+                {new Date(item?.project_deadline).toLocaleDateString()}
+              </div>
+              <div className="col">{item?.project_price}</div>
               <div className="col">
                 <div className="dropdown position-relative">
                   <button
@@ -156,7 +219,7 @@ const CustomerProjectTable = ({ data }) => {
 
 export default CustomerProjectTable;
 
-const ProjectPortal = ({ setShowPortal, setAllData }) => {
+const ProjectPortal = ({ setShowPortal, setAllData, setFetchProject }) => {
   const close = () => {
     const portal = document.getElementById("p_portal");
     window.onclick = function (event) {
@@ -170,9 +233,10 @@ const ProjectPortal = ({ setShowPortal, setAllData }) => {
   const [showSkillList, setShowSkillList] = useState(false);
   const [personalSkills, setPersonalSkills] = useState([]);
   const [skills, setSkills] = useState(skillsList);
+  const { userState } = useContext(AuthContext);
   const [projectDetail, setProjectDetail] = useState({
     title: "",
-    submittion: "",
+    submission: "",
     description: "",
     skill: [],
     budget: "",
@@ -186,23 +250,42 @@ const ProjectPortal = ({ setShowPortal, setAllData }) => {
   }, [personalSkills]);
   const projectError = {
     title: "Project title is required",
-    date: "Project date is required",
+    submission: "Project date is required",
     descrition: "Project breif description is required",
     budget: "very much is required",
     skill: "skill is required",
   };
-  const handleCreate = () => {
+  const handleCreate = async () => {
     setShowError(true);
     // Validate project detail
     if (validateProjectDatail(projectDetail)) {
-      toast.success("Great your project is created!");
-      setShowPortal(false);
-      console.log(projectDetail);
-      setAllData((prev) => [...prev, projectDetail]);
-      projectDispatch({
-        type: ACTION_TYPE.ADD_PROJECT,
-        payload: projectDetail,
-      });
+      //let's save client project in database
+      try {
+        const details = {
+          project_category: "D",
+          title: projectDetail.title,
+          description: projectDetail.description,
+          skills_required: projectDetail.skill,
+          project_price: projectDetail.budget,
+          project_deadline: projectDetail.submission,
+          client: userState.user.id,
+        };
+        const res = await axios.post(
+          base_url + "/api/user/create_project/",
+          details
+        );
+        toast.success("Project created Successfuly!");
+        setShowPortal(false);
+        setFetchProject((prev) => !prev);
+        setAllData((prev) => [...prev, details]);
+        projectDispatch({
+          type: ACTION_TYPE.ADD_PROJECT,
+          payload: [projectDetail],
+        });
+      } catch (e) {
+        console.log(e);
+        toast.error(Object.values(e.response.data.errors.errors).toString());
+      }
     } else {
       toast.error("Please fill all details");
       console.log(projectDetail);
@@ -211,7 +294,7 @@ const ProjectPortal = ({ setShowPortal, setAllData }) => {
 
   const validateProjectDatail = (detail) => {
     if (detail.title == "") return false;
-    if (detail.date == "") return false;
+    if (detail.submission == "") return false;
     if (detail.description == "") return false;
     if (detail.budget == "") return false;
     return true;
@@ -282,9 +365,9 @@ const ProjectPortal = ({ setShowPortal, setAllData }) => {
                 })
               }
             />
-            {!projectDetail.date && showError && (
+            {!projectDetail.submission && showError && (
               <span className="text-error text-xsm d-block ps-3">
-                {projectError.date}
+                {projectError.submission}
               </span>
             )}
           </div>
