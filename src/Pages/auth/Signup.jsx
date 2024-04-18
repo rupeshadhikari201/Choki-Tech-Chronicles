@@ -29,7 +29,9 @@ const Signup = () => {
   const [validPassword, setValidPassword] = useState(true);
   const [validConfirm, setValidConfirm] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [userType, setUserType] = useState("client");
   const { userdispatch } = useContext(AuthContext);
+  const [checkbox, setCheckedbox] = useState(false);
   const navigator = useNavigate();
   //Checking validity
   const onSumbit = async () => {
@@ -39,8 +41,13 @@ const Signup = () => {
       setValidEmail,
       setValidPassword,
       setValidConfirm,
+      userType,
     });
-
+    if (!valid) return;
+    if (!checkbox) {
+      toast.error("please agree to term and condition");
+      return;
+    }
     if (valid) {
       // userdispatch({ type: ACTION_TYPE.SIGN_UP, payload: inputData });
       setLoading(true);
@@ -49,7 +56,7 @@ const Signup = () => {
         .then((res) => {
           userdispatch({
             type: ACTION_TYPE.SAVE_TO_LOCALE,
-            payload: { email: inputData.email },
+            payload: { email: inputData.email, firstName: inputData.firstName },
           });
           userdispatch({
             type: ACTION_TYPE.SAVE_REFRESH,
@@ -61,12 +68,14 @@ const Signup = () => {
           });
           // saving token to cookies
           Cookies.set("token", res.data.token.access, { expires: 1 });
-          navigator(`/${commonPath}/dashboard`);
+          navigator(`/verify-user`);
         })
         .catch((e) => {
           console.log(e?.response?.data);
-          console.log(e);
-          toast.error(`${e.message}`);
+          if (e?.response?.data?.errors?.email) {
+            toast.error(`user email already exists`);
+          } else toast.error(`${e.message}`);
+          console.log(e.data);
         })
         .finally(() => {
           setLoading(false);
@@ -94,6 +103,7 @@ const Signup = () => {
       email: user?.email,
       password: user?.password,
       cnfpassword: user?.password,
+      user_type: userType,
     });
     return response;
   }
@@ -318,11 +328,44 @@ const Signup = () => {
               isValid={validConfirm}
               errorMessage={"Password don't match"}
             />
+            <h5 className="text-black-variant-2 text-center font-weight-400">
+              Choose your prefrence
+            </h5>
+            <div className="text-black-variant-1 d-flex justify-content-around">
+              <div>
+                <input
+                  defaultChecked
+                  type="radio"
+                  value="client"
+                  name="type"
+                  id="client"
+                  onChange={(e) => setUserType(e.target.value)}
+                />{" "}
+                <label htmlFor="client">Client</label>
+              </div>
+              or
+              <div>
+                <input
+                  type="radio"
+                  value="freelancer"
+                  name="type"
+                  id="freelancer"
+                  onChange={(e) => setUserType(e.target.value)}
+                />{" "}
+                <label htmlFor="freelancer">Freelancer</label>
+              </div>
+            </div>
+
             <div
               className="d-flex align-items-center
             gap-2"
             >
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  setCheckedbox(e.target.checked);
+                }}
+              />
               <label
                 style={{
                   color: "var(--text-black-variant-1)",
