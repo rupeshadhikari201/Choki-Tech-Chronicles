@@ -75,27 +75,25 @@ const Testimonial = () => {
     <>
       <section
         className="testimonial-section d-flex flex-column justify-content-center pb-4
-       position-relative
+       position-relative bg-white-variant-2
       "
         style={{ paddingTop: "50px" }}
       >
-        <div>
+        {/* <div>
           <div className="color-box-1"></div>
           <div className="color-box-2"></div>
           <div className="color-box-3"></div>
-        </div>
+          <div className="color-box-4"></div>
+        </div> */}
         <div
-          className="p-2 pt-1 mb-4 mx-auto 
-      "
-          style={{ maxWidth: "500px" }}
+          className="p-2 pt-1 mb-4 mx-auto position-relative"
+          style={{ maxWidth: "500px", zIndex: 50 }}
         >
           <h1
             className="text-center
-        text-black-variant-1
-          
-        "
+        text-black-variant-1"
           >
-            100+ Happy customers
+            100+ <span style={{ color: "green" }}>Happy</span> customers
           </h1>
           <p
             className="
@@ -109,7 +107,7 @@ const Testimonial = () => {
         </div>
         {/*  */}
         <div
-          className="testimonial-container d-flex gap-4"
+          className="testimonial-container d-flex gap-4 position-relative"
           style={{ overflowX: "scroll" }}
         >
           {testimonials.map((item, index) => (
@@ -117,12 +115,17 @@ const Testimonial = () => {
               className="review d-flex col  gap-4 justify-content-start justify-content-sm-around  justify-content-lg-between align-items-center"
               key={index}
             >
-              <div className="card-2  text-black-variant-1">
-                <div className="rounded-circle card-2-img">
-                  <img src={item.image} alt="" />
-                </div>
+              <div className="card-2  text-black-variant-1 bg-service-card ">
                 <p>{item.text}</p>
-                <h5 className="mb-0">{item.name}</h5>
+                {/* name and image */}
+                <div className="d-flex gap-2 align-items-center justify-content-start">
+                  <div className="rounded-circle card-2-img">
+                    <img src={item.image} alt="" />
+                  </div>
+                  <h5 className="mb-0" style={{ color: "green" }}>
+                    {item.name}
+                  </h5>
+                </div>
               </div>
               {/* 
               <div className="rounded-circle img-circle">
@@ -142,16 +145,17 @@ const Testimonial = () => {
         {/*  */}
       </section>
       {/* mile stone */}
-      <div className="milestone-section">
+      <div className="milestone-section py-4">
         <div
-          className="milestone-wrapper  text-black-variant-2 mx-auto w-100 "
+          className="milestone-wrapper  text-white mx-auto w-100 "
           style={{ maxWidth: "1300px" }}
         >
           <h1
             className="mb-4 mx-auto text-center"
             style={{ maxWidth: "900px" }}
           >
-            Our journey, milestone, and commitment to excellence
+            Our journey, <span style={{ color: "green" }}>milestone</span>, and{" "}
+            <span style={{ color: "green" }}>commitment</span> to excellence
           </h1>
           <p className="text-center">Trusted growth proven success</p>
           <div className="d-flex justify-content-between px-3">

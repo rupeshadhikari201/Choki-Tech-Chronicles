@@ -10,7 +10,7 @@
 :root {
   --home-background: url("./assets/background2.svg");
   --nav-bg: rgba(230, 255, 227, 0.69);
-  --light-green: rgb(191, 235, 190);
+  --light-green: rgb(245, 252, 245);
   --light-green-border: rgb(191, 235, 190);
   --primary-green: #5ecc5c;
   --green-hover: rgba(94, 204, 92, 0.456);
@@ -58,7 +58,7 @@
   --font-weight-var-normal: 500;
   --border-variant-1: rgba(118, 118, 118, 0.203);
   --mile-stone-bg: rgb(151, 227, 166);
-  --service-card: rgb(150, 218, 150);
+  --service-card: rgb(247, 248, 251);
   --border-card: rgb(211, 211, 211);
   --project-header: rgb(60, 81, 108);
 }
@@ -96,7 +96,7 @@
   --font-weight-var-normal: 500;
   --border-variant-1: rgba(255, 255, 255, 0.214);
   --mile-stone-bg: rgb(20, 26, 24);
-  --service-card: rgba(26, 29, 36, 0.308);
+  --service-card: rgb(39, 39, 39);
   --border-card: rgb(82, 82, 82);
   --project-header: #00bf6f;
 }

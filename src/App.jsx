@@ -32,7 +32,7 @@ const App = () => {
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setIsDark(false);
+      setIsDark(true);
     } else {
       setIsDark(false);
     }

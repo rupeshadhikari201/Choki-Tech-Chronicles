@@ -9,18 +9,20 @@
   position: relative;
 }
 .home .color-box-1 {
-  filter: blur(150px);
+  position: absolute;
+  filter: blur(220px);
   background-color: var(--home-box-1);
-  width: 1050px;
-  height: 1050px;
+  width: 600px;
+  height: 600px;
   top: -30%;
-  left: -30%;
+  left: -20%;
 }
 .home .color-box-2 {
-  filter: blur(150px);
+  position: absolute;
+  filter: blur(220px);
   background-color: var(--home-box-2);
-  width: 1050px;
-  height: 1050px;
+  width: 600px;
+  height: 600px;
   top: -10%;
   right: -30%;
 }
