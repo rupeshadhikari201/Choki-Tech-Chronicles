@@ -29,7 +29,7 @@ const CreatedProjectTable = ({ data }) => {
 
   return (
     <div
-      className="text-black-variant-1 bg-white-variant-4 p-1 rounded w-100"
+      className="text-black-variant-1 bg-white-variant-4 p-1 rounded w-100 border-card"
       style={{ overflow: "auto" }}
     >
       {" "}
