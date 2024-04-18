@@ -1,41 +1,191 @@
-import CircularBar from "../../../Components/commen/circular-bar";
-
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../utils/context/auth";
+import DashboardCard from "../../../Components/card/dashboardCards";
+import { Box2, Edit2, Money, Money2, TickCircle } from "iconsax-react";
+import CircularAvatar from "../../../Components/commen/circular_avatar";
+import BudgetChart from "../../../Components/chart/budget_chart";
+import CreatedProjectTable from "../../../Components/tables/created_project_table";
+import HalfCircleProgress from "../../../Components/half_circle/half_circle_progress";
+import ListTile from "../../../Components/commen/list_tile";
+import axios from "axios";
+import { base_url } from "../../../utils/constants/path";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 const AgentDashBoard = () => {
+  const { userState } = useContext(AuthContext);
+  const [budgetChar, setBudgetChart] = useState([
+    { title: "Jan", value: 0, label: "Spending" },
+    { title: "Feb", value: 0, label: "Spending" },
+    { title: "Mar", value: 0 },
+    { title: "Apr", value: 0 },
+    { title: "May", value: 100 },
+    // ...
+  ]);
+  const [cardState, setCardState] = useState({
+    projectCreated: 0,
+    projectCompeleted: 0,
+    investment: 0,
+  });
+  const [budget, setBudget] = useState({
+    maxBudget: 0,
+    minBudget: 0,
+  });
+  const navigate = useNavigate();
+  useEffect(() => {
+    const token = Cookies.get("token");
+    axios
+      .get(base_url + "/api/user/freelancer/", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log("freelancer data");
+        console.log(res.data);
+        //prompt then to enter there detail
+        if (res.data.data.length == 0) {
+          //show onboarding for freelancer
+          navigate("/onboard");
+        }
+      })
+      .catch((e) => {
+        console.log("error", e);
+      });
+  }, []);
   return (
-    <div className="">
+    <div className={`d-flex dashboard-content`} style={{}}>
       <div
         className="d-flex
-          flex-md-row
-          flex-column
-         gap-4
-         px-3
-        "
+      flex-column
+     gap-4
+     px-md-3 
+     px-1
+     pb-3 pb-md-0
+     left-side
+    "
+      >
+        <div
+          className={`d-flex 
+          justify-content-center align-items-center 
+          justify-content-sm-between flex-wrap gap-2 flex-sm-row flex-column `}
+          style={{}}
+        >
+          <DashboardCard
+            title={"Project Taken"}
+            number={cardState.projectCreated}
+            icon={<Edit2 size={25} color="blue" />}
+          />
+          <DashboardCard
+            title={"Compeleted Project"}
+            number={cardState.projectCompeleted}
+            icon={<TickCircle size={25} />}
+            background={"linear-gradient(to right,#09CA62,#24995A)"}
+          />
+          <DashboardCard
+            title={"Earning"}
+            number={cardState.investment}
+            icon={<Money size={25} color="green" />}
+            background={"linear-gradient(to right,#793FF5,#56349D)"}
+          />
+          {/* Budget Chart */}
+        </div>
+        <div className={`d-flex gap-2  flex-sm-row flex-column  `}>
+          <div
+            className={`col-sm-8 col bg-white-variant-4 p-2 rounded`}
+            style={{ height: "300px" }}
+          >
+            <BudgetChart data={budgetChar} />
+          </div>
+          <div
+            className={`col-sm-4 col bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1`}
+            style={{ height: "100%" }}
+          >
+            <HalfCircleProgress
+              percentage={
+                cardState.projectCompeleted / cardState.projectCreated
+              }
+            />
+            <div className="d-flex align-items-center gap-3">
+              {" "}
+              <span
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor: "#4caf50",
+                  display: "inline-block",
+                }}
+              />{" "}
+              Finished
+            </div>
+            <div className="d-flex align-items-center gap-3">
+              {" "}
+              <span
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor: "#e0e0e0",
+                  display: "inline-block",
+                }}
+              />{" "}
+              Pending
+            </div>
+          </div>
+        </div>
+        {/* Table */}
+
+        <CreatedProjectTable data={[]} />
+      </div>
+
+      {/* customer simple porfile */}
+      <div
+        className="d-none d-lg-flex flex-column align-items-center gap-2 text-black-variant-1 "
         style={{
-          maxWidth: "1200px",
+          flexShrink: "50%",
         }}
       >
-        {/* Project Progress circularBar */}
         <div
-          className="
-      circular-progress-wrapper
-      p-2
-      bg-light-lime-secondary
-      col
-      text-black-variant-1
-      "
+          className={`d-flex flex-column gap-2 align-items-center rounded bg-white-variant-4 pt-2`}
           style={{
-            maxWidth: "300px",
-            height: "300px",
+            width: "100%",
+            height: "200px",
           }}
         >
-          <p>Project Progress</p>
-          <CircularBar />
-          <ul>
-            <li>Completed 10%</li>
-            <li>Remaining 10%</li>
-          </ul>
+          <CircularAvatar
+            size={130}
+            text={userState?.user?.firstname.slice(0, 2)}
+            fontSize={2.5}
+            bgcolor="#802cff"
+            className={""}
+            fontcolor={"text-white"}
+          />
+          <span>{userState.user?.email}</span>
         </div>
 
+        <div
+          className={`width-100 d-flex flex-column bg-white-variant-4 p-3`}
+          style={{
+            width: "100%",
+            height: "200px",
+          }}
+        >
+          <div className="col d-flex flex-column justify-content-center">
+            <span>Max Earning</span>
+            <h2 className={`text-center font-weight-400`}>
+              {budget.maxBudget}
+              <span className="h5">rs</span>
+            </h2>
+          </div>
+          <div className="col col d-flex flex-column justify-content-center">
+            <span>Min Earning</span>
+            <h2 className={`text-center font-weight-400`}>
+              {budget.minBudget}
+              <span className="h5">rs</span>
+            </h2>
+          </div>
+        </div>
         {/* Activity */}
         <Activity />
       </div>
@@ -44,35 +194,33 @@ const AgentDashBoard = () => {
 };
 
 export default AgentDashBoard;
+
 function Activity() {
   return (
     <div
       className="
-  text-black-variant-2
-  dashboard-activity
-  bg-light-lime-secondary
-  col
-  p-2
-  "
-      style={{
-        minHeight: "300px",
-      }}
+    text-black-variant-2
+    dashboard-activity
+    w-100
+    p-2
+    bg-white-variant-4
+    "
     >
-      <p>Activity</p>
+      <h5 className={`font-weight-400`}>Activity</h5>
       <div>
-        <p className="font-weight-bold">Recent Activity</p>
-        <div
-          className="ps-2
-            mb-2
-            "
-        >
-          <p className="m-0">Project 4 finished</p>
-
-          <p className="m-0">No recent activity</p>
-        </div>
-      </div>
-      <div>
-        <h5>Invitations</h5>
+        <ListTile
+          title={"Project Created "}
+          subtitle={"You have applied new porject"}
+          time={"20-20-12"}
+          icon={<Box2 color="white" />}
+        />
+        <hr className="m-0" />
+        <ListTile
+          title={"Payment"}
+          subtitle={"Payment recieved for project completion"}
+          time={"30-20-12"}
+          icon={<Money2 color="white" />}
+        />
       </div>
     </div>
   );
