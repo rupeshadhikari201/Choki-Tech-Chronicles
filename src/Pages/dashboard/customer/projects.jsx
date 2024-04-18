@@ -9,10 +9,10 @@ import { base_url } from "../../../utils/constants/path";
 import { ProjectContext } from "../../../utils/context/project";
 import { ACTION_TYPE } from "../../../reducer/action/action";
 import { AuthContext } from "../../../utils/context/auth";
-import ReactLoading from "react-loading";
 import axios from "axios";
 import Cookies from "js-cookie";
 import TimeAgo from "javascript-time-ago";
+import CircularLoading from "../../../Components/commen/react_loading";
 const CustomerProjectTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRows, setCurrentRows] = useState([]);
@@ -108,12 +108,7 @@ const CustomerProjectTable = () => {
         {loading && (
           <>
             <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
-              <ReactLoading
-                type="spin"
-                className="text-black-variant-1"
-                height={50}
-                width={50}
-              />
+            <CircularLoading/>
             </div>
           </>
         )}
@@ -124,31 +119,31 @@ const CustomerProjectTable = () => {
             setFetchProject={setFetchProject}
           />
         )}
-        <div className="d-flex flex-column flex-sm-row gap-2 justify-between ">
-          {showReload ? (
-            <div className="col"></div>
-          ) : (
-            <button
-              className={`btn-custom-secondary ms-1 bg-dark-blue mt-1 `}
-              onClick={() => setShowPortal(!showPortal)}
-            >
-              Create Project
-            </button>
-          )}
-
+        <div className="d-flex flex-column flex-sm-row gap-2 justify-content-between mb-4">
           <div
             className="search-bar col "
             style={{ maxWidth: "300px", width: "100%" }}
           >
             <input
               type="text"
-              className="custom-input border rounded"
+              className="custom-input rounded"
               placeholder="Search by title or budget"
               value={searchTerm}
               onChange={handleSearch}
               style={{ maxWidth: "400px", width: "100%" }}
             />
           </div>
+
+          {showReload ? (
+            <div className="col"></div>
+          ) : (
+            <button
+              className={`btn-custom-secondary btn-create-1 ms-1 bg-dark-blue mt-1 col `}
+              onClick={() => setShowPortal(!showPortal)}
+            >
+              Create Project
+            </button>
+          )}
         </div>
         {/* Show Reload */}
         {showReload && (
@@ -161,68 +156,69 @@ const CustomerProjectTable = () => {
             Reload
           </button>
         )}
-        <div className="row table-header py-2">
-          <div className="col">Title</div>
-          <div className="col">Created</div>
-          <div className="col">Payment</div>
-          <div className="col">Progress</div>
-          <div className="col">Submission</div>
-          <div className="col">Budget</div>
-          <div className="col">Action</div>
-        </div>
-        <div className="table-body">
-          {currentRows.map((project, index) => (
-            <div
-              key={index}
-              className="row table-row my-2 p-1 py-2 cursor-pointer"
-              onClick={() => {
-                // navigator(`status/${index}`);
-                gotoProjectDetail(project, index);
-              }}
-            >
-              <div className="col">{project?.title}</div>
-              <div className="col">
-                {timeAgo.format(new Date(project?.created_at))}
-              </div>
-              <div className="col">
-                <span
-                  style={{ color: project.payment === 2 ? "green" : "red" }}
-                >
-                  {project.payment_status == 1 ? "Pending" : "Paid"}
-                </span>
-              </div>
-              <div className="col">
-                {project?.project_status === 1 ? "unassigned" : "assigned"}
-              </div>
-              <div className="col">
-                {new Date(project?.project_deadline).toLocaleDateString()}
-              </div>
-              <div className="col">{project?.project_price}</div>
-              <div className="col">
-                <div className="dropdown position-relative">
-                  <button
-                    className={`btn dropdown-toggle ${
-                      isDark ? "text-white" : ""
-                    }`}
-                    type="button"
-                    id={`dropdownMenuButton${index}`}
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+        <table className="project-table mb-2">
+          <thead className="table-header py-2">
+            <tr>
+              <th>Title</th>
+              <th>Created</th>
+              <th>Payment</th>
+              <th>Progress</th>
+              <th>Submission</th>
+              <th>Budget</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody className="table-body">
+            {currentRows.map((project, index) => (
+              <tr
+                key={index}
+                className="table-row my-2 p-1 py-2 cursor-pointer"
+                onClick={() => {
+                  gotoProjectDetail(project, index);
+                }}
+              >
+                <td>{project?.title}</td>
+                <td>{timeAgo.format(new Date(project?.created_at))}</td>
+                <td>
+                  <span
+                    style={{ color: project.payment === 2 ? "green" : "red" }}
                   >
-                    Action
-                  </button>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby={`dropdownMenuButton${index}`}
-                  >
-                    <li className="px-2 py-1">Edit</li>
-                    <li className="px-2 py-1">Check</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                    {project.payment_status == 1 ? "Pending" : "Paid"}
+                  </span>
+                </td>
+                <td>
+                  {project?.project_status === 1 ? "unassigned" : "assigned"}
+                </td>
+                <td>
+                  {new Date(project?.project_deadline).toLocaleDateString()}
+                </td>
+                <td>{project?.project_price}</td>
+                <td>
+                  <div className="dropdown position-relative">
+                    <button
+                      className={`btn dropdown-toggle ${
+                        isDark ? "text-white" : ""
+                      }`}
+                      type="button"
+                      id={`dropdownMenuButton${index}`}
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Action
+                    </button>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby={`dropdownMenuButton${index}`}
+                    >
+                      <li className="px-2 py-1">Edit</li>
+                      <li className="px-2 py-1">Check</li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <nav>
           <ul className="pagination">
             {Array.from(
