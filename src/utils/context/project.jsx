@@ -11,6 +11,7 @@ const ProjectContextProvider = ({ children }) => {
   });
   const [projectLoading, setProjectLoading] = useState(false);
   const [loadProject, setLoadProject] = useState(false);
+  const [currentProject, setCurrentProject] = useState({});
   useEffect(() => {
     setProjectLoading(true);
     axios
@@ -28,7 +29,14 @@ const ProjectContextProvider = ({ children }) => {
   }, [loadProject]);
   return (
     <ProjectContext.Provider
-      value={{ projectData, projectDispatch, projectLoading, setLoadProject }}
+      value={{
+        projectData,
+        projectDispatch,
+        projectLoading,
+        setLoadProject,
+        currentProject,
+        setCurrentProject,
+      }}
     >
       {children}
     </ProjectContext.Provider>
