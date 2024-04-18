@@ -1,30 +1,27 @@
 import { useContext, useEffect, useState } from "react";
 import "../../../Css/project/project.css";
-import { ThemeContext } from "../../../App";
 import { ToastContainer, toast } from "react-toastify";
-import { CloseCircle } from "iconsax-react";
-import { skillsList } from "../../../utils/constants/skillsList";
 import { useNavigate } from "react-router-dom";
 import { base_url } from "../../../utils/constants/path";
 import { ProjectContext } from "../../../utils/context/project";
 import { ACTION_TYPE } from "../../../reducer/action/action";
-import { AuthContext } from "../../../utils/context/auth";
-import ReactLoading from "react-loading";
 import axios from "axios";
 import Cookies from "js-cookie";
 import TimeAgo from "javascript-time-ago";
+import CircularLoading from "../../../Components/commen/react_loading";
+import { MdCheckBoxOutlineBlank, MdOutlineCheckBox } from "react-icons/md";
 
 const PostedProjects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRows, setCurrentRows] = useState([]);
   const [alldata, setAllData] = useState([]);
-  const [showPortal, setShowPortal] = useState(false);
-  const { isDark } = useContext(ThemeContext);
   const [loading, setLoading] = useState(false);
   const [showReload, setShowReload] = useState(false);
   const { projectData, projectDispatch, currentProject, setCurrentProject } =
     useContext(ProjectContext);
   const [fetchProject, setFetchProject] = useState(false);
+  const [priceFilter, setPriceFilter] = useState("");
+  const [applicatFilter, setApplicantFilter] = useState("");
   const rowsPerPage = 5;
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
@@ -63,6 +60,8 @@ const PostedProjects = () => {
       project_price: 200,
     },
   ];
+  const priceFilterList = ["500-1000", "1K-2K", "2k-5K", ">5k"];
+  const applicatFilterList = ["0-5", "5-10", ">10"];
   useEffect(() => {
     //Geting client project
     setLoading(true);
@@ -129,101 +128,161 @@ const PostedProjects = () => {
   };
 
   return (
-    <div className="table-responsive-container position-relative">
-      <ToastContainer />
-      <div
-        className="table-responsive text-black-variant-1"
-        style={{
-          maxWidth: "1200px",
-          minWidth: "600px",
-        }}
-      >
-        {loading && (
-          <>
-            <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
-              <ReactLoading
-                type="spin"
-                className="text-black-variant-1"
-                height={50}
-                width={50}
+    <>
+      {" "}
+      {loading && (
+        <>
+          <CircularLoading />
+        </>
+      )}
+      <div className="table-responsive-container position-relative">
+        <ToastContainer />
+        <div
+          className="table-responsive text-black-variant-1"
+          style={{
+            maxWidth: "1200px",
+            minWidth: "600px",
+          }}
+        >
+          <div className="d-flex flex-column flex-sm-row gap-2 justify-between ">
+            <div
+              className="search-bar col "
+              style={{ maxWidth: "300px", width: "100%" }}
+            >
+              <input
+                type="text"
+                className="custom-input card-border rounded"
+                placeholder="Search by title"
+                value={searchTerm}
+                onChange={handleSearch}
+                style={{ maxWidth: "400px", width: "100%" }}
               />
             </div>
-          </>
-        )}
-
-        <div className="d-flex flex-column flex-sm-row gap-2 justify-between ">
-          <div
-            className="search-bar col "
-            style={{ maxWidth: "300px", width: "100%" }}
-          >
-            <input
-              type="text"
-              className="custom-input border rounded"
-              placeholder="Search by title"
-              value={searchTerm}
-              onChange={handleSearch}
-              style={{ maxWidth: "400px", width: "100%" }}
-            />
           </div>
-        </div>
-        {/* Show Reload */}
-        {showReload && (
-          <button
-            className="btn-custom-secondary"
-            onClick={() => {
-              window.location.reload();
-            }}
-          >
-            Reload
-          </button>
-        )}
-        {/* Project cards */}
-        <div className="mb-4"></div>
-        {postedProjects.map((project, index) => (
-          <div
-            className="project-card-wrapper bg-white-variant-4 px-3 py-3 mb-4 rounded"
-            style={{
-              maxWidth: "900px",
-              width: "100%",
-              border: "1px solid white",
-            }}
-            key={index}
-            onClick={() => checkOutProject(project, index)}
-          >
-            <p className="m-0 font-size-xsm">posted date</p>
-            {/* title */}
-            <h4 className="project-title my-2 font-weight-400 text-capitalize">
-              {project.title}
-            </h4>
-            {/* Description */}
-            <div className="project-description my-3">
-              {project.description}
-            </div>
-            <div className="d-flex gap-3 flex-wrap my-3">
-              {project.skills.map((skill, index) => (
+          {/* Show Reload */}
+          {showReload && (
+            <button
+              className="btn-custom-secondary"
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              Reload
+            </button>
+          )}
+          {/* Project cards */}
+          <div className="mb-4"></div>
+          <div className={`d-flex gap-4 `}>
+            <div>
+              {postedProjects.map((project, index) => (
                 <div
+                  className="project-card-wrapper bg-white-variant-4  px-3 py-3 mb-4 rounded border-card cursor-pointer"
+                  style={{
+                    maxWidth: "900px",
+                    width: "100%",
+                  }}
                   key={index}
-                  className="border px-3 py-1"
-                  style={{ borderRadius: "30px", width: "auto" }}
+                  onClick={() => checkOutProject(project, index)}
                 >
-                  {skill}
+                  <p className="m-0 font-size-xsm">posted date</p>
+                  {/* title */}
+                  <h4 className="project-title my-2 font-weight-400 text-capitalize">
+                    {project.title}
+                  </h4>
+                  {/* Description */}
+                  <p className="project-description my-3">
+                    {project.description}
+                  </p>
+                  <div className="d-flex gap-3 flex-wrap my-3">
+                    {project.skills.map((skill, index) => (
+                      <div
+                        key={index}
+                        className="border px-3 py-1"
+                        style={{ borderRadius: "30px", width: "auto" }}
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="card-bottom d-flex justify-content-between">
+                    <p>Estimated Submission {project.submission}</p>
+                    <p>
+                      Budget <br />
+                      {project.project_price}rs
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
+            {/* Filter projects */}
             <div
-              className="card-bottom d-flex justify-content-between
-            "
+              className="project-filter"
+              style={{ maxWidth: "200px", width: "100%" }}
             >
-              <p>Estimated Submission {project.submission}</p>
-              <p>
-                Budget <br />
-                {project.project_price}rs
-              </p>
+              <h6>Category</h6>
+              <select
+                className="p-2
+                  rounded
+                  border-green-variant-3
+                  text-black-variant-1
+                  bg-white-variant-2
+                  w-100 mb-2"
+              >
+                <option>All</option>
+              </select>
+              <h6>Price</h6>
+              {priceFilterList.map((price, index) => (
+                <div
+                  key={index}
+                  className="cursor-pointer px-1 py-1"
+                  onClick={() => setPriceFilter(price)}
+                >
+                  {priceFilter == price ? (
+                    <MdOutlineCheckBox color="green" size={25} />
+                  ) : (
+                    <MdCheckBoxOutlineBlank size={25} />
+                  )}
+
+                  <input
+                    type="radio"
+                    value={price}
+                    id={price}
+                    name="price-filter"
+                    hidden
+                  />
+                  <label htmlFor={price} className="cursor-pointer ps-2">
+                    {price}
+                  </label>
+                </div>
+              ))}
+              <h6 className="mt-2">Applicants</h6>
+              {applicatFilterList.map((applicat, index) => (
+                <div
+                  key={index}
+                  className="cursor-pointer px-1 py-1"
+                  onClick={() => setApplicantFilter(applicat)}
+                >
+                  {applicatFilter == applicat ? (
+                    <MdOutlineCheckBox color="green" size={25} />
+                  ) : (
+                    <MdCheckBoxOutlineBlank size={25} />
+                  )}
+
+                  <input
+                    type="radio"
+                    value={applicat}
+                    id={applicat}
+                    name="price-filter"
+                    hidden
+                  />
+                  <label htmlFor={applicat} className="cursor-pointer ps-2">
+                    {applicat}
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-
-        {/* <nav>
+          {/* <nav>
           <ul className="pagination">
             {Array.from(
               { length: Math.ceil(alldata.length / rowsPerPage) },
@@ -242,399 +301,10 @@ const PostedProjects = () => {
             )}
           </ul>
         </nav> */}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default PostedProjects;
-
-const ProjectPortal = ({ setShowPortal, setAllData, setFetchProject }) => {
-  const close = () => {
-    const portal = document.getElementById("p_portal");
-    window.onclick = function (event) {
-      if (event.target == portal) {
-        setShowPortal(false);
-      }
-    };
-  };
-  const { projectDispatch } = useContext(ProjectContext);
-  const [showError, setShowError] = useState(false);
-  const [showSkillList, setShowSkillList] = useState(false);
-  const [personalSkills, setPersonalSkills] = useState([]);
-  const [skills, setSkills] = useState(skillsList);
-  const { userState } = useContext(AuthContext);
-  const [projectDetail, setProjectDetail] = useState({
-    title: "",
-    submission: "",
-    description: "",
-    skill: [],
-    budget: "",
-    attachment: "",
-    created: new Date().toLocaleDateString(),
-    progress: "Not assigned",
-    payment: "pending",
-  });
-  useEffect(() => {
-    setProjectDetail({ ...projectDetail, skill: personalSkills });
-  }, [personalSkills]);
-  const projectError = {
-    title: "Project title is required",
-    submission: "Project date is required",
-    descrition: "Project breif description is required",
-    budget: "very much is required",
-    skill: "skill is required",
-  };
-  const handleCreate = async () => {
-    setShowError(true);
-    // Validate project detail
-    if (validateProjectDatail(projectDetail)) {
-      //let's save client project in database
-      try {
-        const details = {
-          project_category: "D",
-          title: projectDetail.title,
-          description: projectDetail.description,
-          skills_required: projectDetail.skill,
-          project_price: projectDetail.budget,
-          project_deadline: projectDetail.submission,
-          client: userState.user.id,
-        };
-        const res = await axios.post(
-          base_url + "/api/user/create_project/",
-          details
-        );
-        toast.success("Project created Successfuly!");
-        setShowPortal(false);
-        setFetchProject((prev) => !prev);
-        setAllData((prev) => [...prev, details]);
-        projectDispatch({
-          type: ACTION_TYPE.ADD_PROJECT,
-          payload: [projectDetail],
-        });
-      } catch (e) {
-        console.log(e);
-        toast.error(Object.values(e.response.data.errors.errors).toString());
-      }
-    } else {
-      toast.error("Please fill all details");
-      console.log(projectDetail);
-    }
-  };
-
-  const validateProjectDatail = (detail) => {
-    if (detail.title == "") return false;
-    if (detail.submission == "") return false;
-    if (detail.description == "") return false;
-    if (detail.budget == "") return false;
-    return true;
-  };
-  return (
-    <div
-      className={`position-fixed rounded d-flex align-items-center justify-content-center`}
-      style={{
-        top: "0",
-        left: "0",
-        zIndex: "300",
-        width: "100%",
-        height: "100%",
-      }}
-      id="p_portal"
-      onClick={close}
-    >
-      <ToastContainer />
-      <div className="rounded custom-modal " style={{ overflowY: "scroll" }}>
-        {/* heading for posting project */}
-        <div className={"project-portal-header d-flex justify-content-center"}>
-          <h5 className={`text-center  `}>New Project</h5>
-          <CloseCircle
-            className="ms-auto p-1 cursor-pointer"
-            size={35}
-            onClick={() => setShowPortal(false)}
-          />
-        </div>
-
-        <div
-          className={`d-flex flex-column flex-md-row flex-wrap justify-content-start px-4`}
-        >
-          {/* Project title */}
-          <div className={`p-2 col-md-6 col`}>
-            <h5 className={"font-weight-400"}>Title *</h5>
-            <p>Project title that tells the project</p>
-            <input
-              type="text"
-              className={`custom-input border-green-variant-1 rounded`}
-              style={{ maxWidth: "400px" }}
-              name="title"
-              onChange={(e) =>
-                setProjectDetail({
-                  ...projectDetail,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-            {!projectDetail.title && showError && (
-              <span className="text-error text-xsm d-block ps-3">
-                {projectError.title}
-              </span>
-            )}
-          </div>
-          {/* Project submition data line */}
-          <div className={`p-2 col-md-6 col`} style={{ maxWidth: "400px" }}>
-            <h5 className={"font-weight-400"}>Submition Date *</h5>
-            <p>Last date for project submition</p>
-            <input
-              type="date"
-              className={`custom-input border-green-variant-1 rounded`}
-              style={{ maxWidth: "400px" }}
-              name="submission"
-              onChange={(e) =>
-                setProjectDetail({
-                  ...projectDetail,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-            {!projectDetail.submission && showError && (
-              <span className="text-error text-xsm d-block ps-3">
-                {projectError.submission}
-              </span>
-            )}
-          </div>
-          {/* Description */}
-          <div className={`p-2 col-md-6 col`} style={{ minHeight: "100px" }}>
-            <div style={{ maxWidth: "400px" }}>
-              <h5 className={"font-weight-400"}>Description</h5>
-              <p>
-                Detail explanation of project that explain what is the project
-                about
-              </p>
-            </div>
-            <textarea
-              type="text"
-              className={`custom-input border-green-variant-1 rounded w-100`}
-              style={{ maxWidth: "400px", height: "100px" }}
-              rows={30}
-              name="description"
-              onChange={(e) =>
-                setProjectDetail({
-                  ...projectDetail,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-            {!projectDetail.description && showError && (
-              <span className="text-error text-xsm d-block ps-3">
-                {projectError.descrition}
-              </span>
-            )}
-          </div>
-          {/* Skill section  */}
-          <div
-            className={`p-2 col-md-6 col`}
-            style={{ minHeight: "100px", maxWidth: "400px" }}
-          >
-            <div style={{ maxWidth: "400px" }}>
-              <h5 className={"font-weight-400"}>Skill</h5>
-              <p>Skill required for the project</p>
-            </div>
-            <div
-              className={`
-        mt-3
-        border-green-variant-1
-        rounded
-        w-100
-        p-2
-        d-flex flex-column
-        gap-2
-        `}
-              style={{
-                maxWidth: "400px",
-                Height: "200px",
-              }}
-            >
-              {/*Skills list view  */}
-              <div
-                className={"d-flex skill-wrapper gap-2 pb-2"}
-                style={{
-                  maxWidth: "400px",
-                  overflowX: "scroll",
-                }}
-                id="skill-wrapper"
-              >
-                {personalSkills &&
-                  personalSkills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className={`
-                border-green-variant-1
-                p-1
-                bg-green-variant-4
-                d-flex
-                justify-content-between
-                align-items-center
-                gap-2
-                text-sm
-                `}
-                      style={{
-                        whiteSpace: "nowrap",
-                        borderRadius: "20px",
-                      }}
-                    >
-                      {skill}
-                      <CloseCircle
-                        color="white"
-                        onClick={() => {
-                          let filtered = personalSkills.filter(
-                            (sk) => sk != skill
-                          );
-                          let pos = skillsList.findIndex(
-                            (sk) => sk.name === skill
-                          );
-                          skillsList[pos].isSelected = false;
-                          setPersonalSkills(filtered);
-                        }}
-                        className={`cursor-pointer`}
-                      />
-                    </div>
-                  ))}
-              </div>
-              {/* Input for skill */}
-              <div
-                className={`
-          position-relative
-          border-green-variant-1
-            rounded
-              p-1
-          `}
-                style={{
-                  maxWidth: "200px",
-                  zIndex: "100",
-                }}
-              >
-                <div className={`d-flex`}>
-                  <input
-                    type="text"
-                    placeholder="your skills"
-                    name="skills"
-                    className={`
-            transparent
-            w-100
-            `}
-                    onFocus={() => setShowSkillList(true)}
-                    onChange={(e) => {
-                      const { value } = e.target;
-                      let filtered;
-                      if (value) {
-                        filtered = skillsList.filter(
-                          (skill) =>
-                            !skill.isSelected &&
-                            skill.name
-                              .toLowerCase()
-                              .includes(value.toLowerCase())
-                        );
-                        setSkills(filtered);
-                      } else setSkills(skillsList);
-                    }}
-                  />
-                  {showSkillList && (
-                    <span
-                      className={`
-            cursor-pointer
-            `}
-                      onClick={() => setShowSkillList(false)}
-                    >
-                      <CloseCircle />
-                    </span>
-                  )}
-                </div>
-                <ul
-                  className={`
-          skills-list
-          ${showSkillList ? "active" : ""}
-          `}
-                >
-                  {skills.map(
-                    (skill, index) =>
-                      !skill.isSelected && (
-                        <li
-                          key={index}
-                          onClick={() => {
-                            setPersonalSkills([...personalSkills, skill.name]);
-                            skills[index].isSelected = true;
-                            setSkills(skillsList);
-                            const skillWrapper =
-                              document.getElementById("skill-wrapper");
-                            skillWrapper.scrollLeft = skillWrapper.scrollWidth;
-                          }}
-                        >
-                          {skill.name}
-                        </li>
-                      )
-                  )}
-                </ul>
-              </div>
-              {/*  */}
-
-              {/*  */}
-            </div>
-            {projectDetail.skill.length < 1 && showError && (
-              <span className="text-error text-xsm d-block ps-3">
-                {projectError.skill}
-              </span>
-            )}
-          </div>
-          {/* Budget */}
-          <div className={`p-2 col-md-6 col`}>
-            <div style={{ maxWidth: "400px" }}>
-              <h5 className={"font-weight-400"}>Budget</h5>
-              <p>Budget required for the project</p>
-            </div>
-            <input
-              type="text"
-              className={`custom-input border-green-variant-1 rounded`}
-              style={{ maxWidth: "400px" }}
-              name="budget"
-              onChange={(e) =>
-                setProjectDetail({
-                  ...projectDetail,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-            {!projectDetail.budget && showError && (
-              <span className="text-error text-xsm d-block ps-3">
-                {projectError.budget}
-              </span>
-            )}
-          </div>
-          {/* Attachment */}
-          <div className={`p-2 col-md-6 col`}>
-            <div style={{ maxWidth: "400px" }}>
-              <h5 className={"font-weight-400"}>Attachment</h5>
-              <p>Attachment if any</p>
-            </div>
-            <input
-              type="file"
-              className={`custom-input border-green-variant-1 rounded`}
-              style={{ maxWidth: "400px" }}
-              name="attachment"
-              onChange={(e) =>
-                setProjectDetail({
-                  ...projectDetail,
-                  [e.target.name]: e.target.files[0],
-                })
-              }
-            />
-          </div>
-        </div>
-        <button
-          className="btn-custom-secondary bg-green-variant-4 text-black-variant-1"
-          onClick={() => handleCreate()}
-        >
-          Create
-        </button>
-      </div>
-    </div>
-  );
-};
