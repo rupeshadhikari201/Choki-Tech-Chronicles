@@ -69,7 +69,9 @@ const ProjectStatus = () => {
           setFetchProject={setFetchProject}
         />
       )}
-      <div className={`bg-white-variant-4 p-2 mb-3 position-relative`}>
+      <div
+        className={`bg-white-variant-4 p-2 mb-3 position-relative border-card`}
+      >
         {/* show Edit */}
         <div
           className="position-absolute"
@@ -92,7 +94,7 @@ const ProjectStatus = () => {
           style={{ minHeight: 300 }}
         >
           <div className={`col d-flex gap-3`}>
-            <div className={`bg-white-variant-4 col p-2`}>
+            <div className={`bg-white-variant-4 col p-2 border-card`}>
               {" "}
               Budget
               <div className="h-100 w-100 mt-3">
@@ -101,7 +103,7 @@ const ProjectStatus = () => {
                 </h3>
               </div>
             </div>
-            <div className={`bg-white-variant-4 col p-2`}>
+            <div className={`bg-white-variant-4 col p-2 border-card`}>
               {" "}
               Posted Date
               <div className="h-100 w-100 mt-3">
@@ -112,7 +114,7 @@ const ProjectStatus = () => {
             </div>
           </div>
 
-          <div className={`bg-white-variant-4 col p-2`}>
+          <div className={`bg-white-variant-4 col p-2 border-card`}>
             skill required
             <div className="d-flex gap-4 mt-3 flex-wrap">
               {projectDetail?.skills_required
@@ -130,7 +132,10 @@ const ProjectStatus = () => {
           </div>
         </div>
 
-        <div className={`bg-white-variant-4 col p-2`} style={{ height: 300 }}>
+        <div
+          className={`bg-white-variant-4 col p-2 border-card`}
+          style={{ height: 300 }}
+        >
           Status
           <div className="d-flex flex-column mt-2 ms-1 ms-md-4">
             {projectStatus.map((states, index) => (
@@ -151,7 +156,7 @@ const ProjectStatus = () => {
         </div>
       </div>
 
-      <div className={`bg-white-variant-4 p-2 mb-3`}>
+      <div className={`bg-white-variant-4 p-2 mb-3 border-card`}>
         <h5>Project Progress</h5>
         <p>Screen shot</p>
       </div>
@@ -175,7 +180,6 @@ const EditProjectPortal = ({ setShowPortal, setFetchProject, details }) => {
   const [showSkillList, setShowSkillList] = useState(false);
   const [personalSkills, setPersonalSkills] = useState(details.skills_required);
   const [skills, setSkills] = useState(skillsList);
-  const { userState } = useContext(AuthContext);
   const [projectDetail, setProjectDetail] = useState({
     title: details.title,
     submission: details.project_deadline,
