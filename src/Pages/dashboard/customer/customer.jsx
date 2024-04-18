@@ -122,13 +122,13 @@ const CustomerDashBoard = () => {
         </div>
         <div className={`d-flex gap-2  flex-sm-row flex-column  `}>
           <div
-            className={`col-sm-8 col bg-white-variant-4 p-2 rounded`}
+            className={`col-sm-8 col bg-white-variant-4 p-2 rounded border-card`}
             style={{ height: "300px" }}
           >
             <BudgetChart data={budgetChar} />
           </div>
           <div
-            className={`col-sm-4 col bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1`}
+            className={`col-sm-4 col bg-white-variant-4 rounded d-flex align-items-start flex-column p-2 gap-4 text-black-variant-1 border-card`}
             style={{ height: "100%" }}
           >
             <HalfCircleProgress
@@ -177,7 +177,7 @@ const CustomerDashBoard = () => {
         }}
       >
         <div
-          className={`d-flex flex-column gap-2 align-items-center rounded bg-white-variant-4 pt-2`}
+          className={`d-flex flex-column gap-2 align-items-center rounded bg-white-variant-4 pt-2 border-card`}
           style={{
             width: "100%",
             height: "200px",
@@ -195,7 +195,7 @@ const CustomerDashBoard = () => {
         </div>
 
         <div
-          className={`width-100 d-flex flex-column bg-white-variant-4 p-3`}
+          className={`width-100 d-flex flex-column bg-white-variant-4 p-3 border-card`}
           style={{
             width: "100%",
             height: "200px",
@@ -234,6 +234,8 @@ function Activity() {
     w-100
     p-2
     bg-white-variant-4
+    border-card
+    rounded
     "
     >
       <h5 className={`font-weight-400`}>Activity</h5>
