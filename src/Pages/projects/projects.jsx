@@ -11,7 +11,6 @@ const Projects = () => {
   if (userState.user.user_type == "client")
     return (
       <div className={`text-black-variant-1 ps-2`}>
-        <h5 className={`font-weight-400`}>All Projects</h5>
         <CustomerProjectTable
           data={projectData.data}
           projectDispatch={projectDispatch}

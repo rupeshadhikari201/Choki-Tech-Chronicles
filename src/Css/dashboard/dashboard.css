@@ -101,6 +101,17 @@
 .dashboard-content .left-side {
   flex-grow: 6;
 }
+.theme.ul {
+  list-style: none;
+  margin-block-start: 0;
+  padding-inline-start: 0px;
+}
+.theme.ul li {
+  padding: 5px 8px;
+}
+.theme.ul .active {
+  color: green;
+}
 @media screen and (max-width: 991px) {
   .margin-right-300 {
     margin-right: 300px;

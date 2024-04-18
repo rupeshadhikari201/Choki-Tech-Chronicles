@@ -32,7 +32,7 @@ const App = () => {
   const [isDark, setIsDark] = useState(false);
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setIsDark(true);
+      setIsDark(false);
     } else {
       setIsDark(false);
     }
@@ -44,7 +44,7 @@ const App = () => {
     >
       <AuthContextProvider>
         <SideNavContextProvider>
-          <ThemeContext.Provider value={{ isDark }}>
+          <ThemeContext.Provider value={{ isDark, setIsDark }}>
             <ProjectContextProvider>
               <BrowserRouter>
                 <Routes>

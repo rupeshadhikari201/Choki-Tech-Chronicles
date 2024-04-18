@@ -9,6 +9,7 @@
 
 :root {
   --home-background: url("./assets/background2.svg");
+  --nav-bg: rgba(230, 255, 227, 0.69);
   --light-green: rgb(191, 235, 190);
   --light-green-border: rgb(191, 235, 190);
   --primary-green: #5ecc5c;
@@ -29,11 +30,12 @@
   --dark-blue-hover: rgb(69, 97, 132);
   --white-variant-1: rgb(255, 255, 255);
   --white-variant-2: rgb(255, 255, 255);
-  --white-variant-3: rgb(241, 241, 249);
+  --white-variant-3: rgb(240, 247, 255);
   --white-variant-4: rgb(247, 252, 255);
   --gray-200: rgb(255, 255, 255);
-  --gray-secondary: #f2f2f2;
+  --gray-secondary: #ffffff;
   --gray-400: rgba(0, 135, 20, 0.448);
+  --gray-dark-shade: rgb(243, 243, 243);
   --text-xsm: 12px;
   --text-sm: 1rem;
   --text-md: 1.2rem;
@@ -55,9 +57,16 @@
   --font-weight-var-300: 400;
   --font-weight-var-normal: 500;
   --border-variant-1: rgba(118, 118, 118, 0.203);
+  --mile-stone-bg: rgb(151, 227, 166);
+  --service-card: rgb(150, 218, 150);
+  --border-card: rgb(211, 211, 211);
+  --project-header: rgb(60, 81, 108);
 }
 .dark-theme {
   --home-background: rgb(36, 36, 36);
+  --nav-bg: rgba(70, 70, 70, 0.445);
+  --home-box-1: #071f0e;
+  --home-box-2: #05251c;
   --light-green: rgb(41, 41, 41);
   --light-lime: rgb(58, 58, 58);
   --white-variant-1: var(--black-variant-2);
@@ -66,6 +75,7 @@
   --white-variant-4: rgb(58, 58, 58);
   --gray-secondary: #434343;
   --gray-400: rgba(144, 144, 144, 0.448);
+  --gray-dark-shade: rgb(60, 60, 60);
   --light-green-border: var(--gray-200);
   --dark-blue: rgb(41, 41, 41);
   --dark-blue-hover: rgb(63, 63, 63);
@@ -85,8 +95,13 @@
   --font-weight-var-300: 400;
   --font-weight-var-normal: 500;
   --border-variant-1: rgba(255, 255, 255, 0.214);
+  --mile-stone-bg: rgb(20, 26, 24);
+  --service-card: rgba(26, 29, 36, 0.308);
+  --border-card: rgb(82, 82, 82);
+  --project-header: #00bf6f;
 }
 html {
+  scroll-behavior: smooth;
 }
 body {
   font-family: "Inter", sans-serif;
@@ -178,6 +193,15 @@ section {
 .bg-dark-blue {
   background-color: var(--dark-blue);
 }
+.bg-dark-blue-variant-1 {
+  background-color: #211e29;
+}
+.bg-dark-purple-variant-1 {
+  background-color: rgb(45, 31, 48);
+}
+.bg-service-card {
+  background-color: var(--service-card) !important;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -237,7 +261,7 @@ section {
   background: transparent !important;
 }
 .font-size-20 {
-  font-size: 7px;
+  font-size: 5px;
 }
 .cursor-not-allowed {
   cursor: not-allowed;
@@ -273,6 +297,9 @@ section {
 .border-green-variant-3 {
   border: 1px solid var(--green-variant-3);
 }
+.border-card {
+  border: 1px solid var(--border-card);
+}
 .w-0 {
   width: 0% !important;
 }
@@ -286,6 +313,6 @@ section {
     --text-md: 18px;
   }
   .font-size-20 {
-    font-size: 5px;
+    font-size: 4px;
   }
 }

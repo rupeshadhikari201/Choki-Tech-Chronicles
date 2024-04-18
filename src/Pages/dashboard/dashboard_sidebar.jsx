@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { commonPath } from "../../utils/constants/path";
-import { MdLogout, MdSupportAgent } from "react-icons/md";
+import {  MdSupportAgent } from "react-icons/md";
 import { Box, Home, Money, User } from "iconsax-react";
 import { useContext, useState } from "react";
 import { SideNavContext } from "../../utils/context/sidenav";
@@ -161,9 +160,6 @@ const SideBar = ({ showNav, setShowNav }) => {
       cursor-pointer
       `}
         >
-          <span className={`px-3`}>
-            <MdLogout /> Log out{" "}
-          </span>
         </div>
         {/* <button
           className="

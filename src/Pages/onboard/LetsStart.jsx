@@ -4,7 +4,7 @@ import "../../Css/onboarding/onboarding.css";
 import ProgressIndicator from "./progressIndicator";
 import { STATUS } from "../../utils/constants/status";
 import { useNavigate } from "react-router-dom";
-import { base_url, commonPath } from "../../utils/constants/path";
+import { base_url } from "../../utils/constants/path";
 import { FaArrowLeft, FaArrowRight, FaFile } from "react-icons/fa6";
 import { skillsList } from "../../utils/constants/skillsList";
 import { toast, ToastContainer } from "react-toastify";
@@ -14,6 +14,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { ACTION_TYPE } from "../../reducer/action/action";
 import ReactLoading from "react-loading";
+import CircularLoading from "../../Components/commen/react_loading";
 const LetsStart = () => {
   const { userState } = useContext(AuthContext);
   const [progressState, setProgressState] = useState([
@@ -184,9 +185,7 @@ const LetsStart = () => {
       >
         {loading && (
           <>
-            <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
-              <ReactLoading type="spin" height={50} width={50} />
-            </div>
+            <CircularLoading />
           </>
         )}
         <div

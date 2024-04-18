@@ -9,6 +9,7 @@ import { base_url } from "../../utils/constants/path";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import CircularLoading from "../../Components/commen/react_loading";
 const DashBoard = ({ children }) => {
   const [showNav, setShowNav] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -92,9 +93,7 @@ const DashBoard = ({ children }) => {
       {/* Right side */}
       {loading ? (
         <>
-          <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
-            <ReactLoading type="spin" height={50} width={50} />
-          </div>
+          <CircularLoading />
         </>
       ) : (
         <>

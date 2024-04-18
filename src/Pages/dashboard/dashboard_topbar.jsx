@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ThemeContext } from "../../App";
 import { commonPath } from "../../utils/constants/path";
+import { MdLogout } from "react-icons/md";
 const DashBoardTopbar = ({ setShowNav, showNav }) => {
   const { userState, userdispatch } = useContext(AuthContext);
   const [showSearchbar, setShowSearchbar] = useState(false);
-  const { isDark } = useContext(ThemeContext);
+  const { isDark, setIsDark } = useContext(ThemeContext);
   useEffect(() => {
     console.log("dash_board_top_bar_called");
   }, []);
@@ -142,17 +143,17 @@ const DashBoardTopbar = ({ setShowNav, showNav }) => {
           {/* Notification */}
           <div
             className={`
-icon-wrapper-primary
-bg-gray-secondary
-d-flex
-justify-content-center
-align-items-center
-rounded
-position-relative
-dash-board-top-notification
-ms-auto
-ms-md-0
-`}
+              icon-wrapper-primary
+              bg-gray-secondary
+              d-flex
+              justify-content-center
+              align-items-center
+              rounded
+              position-relative
+              dash-board-top-notification
+              ms-auto
+              ms-md-0
+              `}
             style={{
               minWidth: "40px",
             }}
@@ -229,7 +230,8 @@ ms-md-0
          p-2
          `}
               >
-                <p>{userState?.user?.firstname}</p>
+                <p className="mb-0">{userState?.user?.firstname}</p>
+                <p>{userState?.user?.email}</p>
                 <hr />
                 <div
                   className={`
@@ -237,13 +239,36 @@ ms-md-0
         flex-column
         `}
                 >
-                  <Link
-                    className={`text-gray-secondary p-1`}
-                    to={`${commonPath}/profile`}
-                  >
+                  <div>
+                    Theme
+                    <ul className="theme ul">
+                      <li
+                        onClick={() => {
+                          setIsDark(false);
+                        }}
+                        className={`${isDark ? "" : "active"} cursor-pointer`}
+                      >
+                        Light
+                      </li>
+                      <li
+                        onClick={() => {
+                          setIsDark(true);
+                        }}
+                        className={`${isDark ? "active" : ""} cursor-pointer`}
+                      >
+                        Dark
+                      </li>
+                    </ul>
+                  </div>
+                  <Link className={`text-gray-secondary p-1`} to={`profile`}>
                     Profile
                   </Link>
-                  <Link className={`text-gray-secondary p-1`}>Logout</Link>
+                  <hr />
+                  <Link className={`text-gray-secondary p-1`}>
+                    {" "}
+                    <MdLogout />
+                    Logout
+                  </Link>
                   <span></span>
                 </div>
               </div>

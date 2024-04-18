@@ -107,9 +107,7 @@ const CustomerProjectTable = () => {
       >
         {loading && (
           <>
-            <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
-            <CircularLoading/>
-            </div>
+            <CircularLoading />
           </>
         )}
         {showPortal && (
