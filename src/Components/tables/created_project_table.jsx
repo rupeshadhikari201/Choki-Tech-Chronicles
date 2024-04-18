@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTable } from "react-table";
-import { useNavigate } from "react-router-dom"; //  Import for navigation
-import TimeAgo from "javascript-time-ago";
+import { useNavigate } from "react-router-dom";
+import { ProjectContext } from "../../utils/context/project";
 const CreatedProjectTable = ({ data }) => {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
+  const { setCurrentProject } = useContext(ProjectContext);
   const columns = React.useMemo(
     () => [
       { Header: "Title", accessor: "title" },
@@ -19,9 +20,11 @@ const CreatedProjectTable = ({ data }) => {
       data,
     });
 
-  const handleRowClick = (row) => {
+  const handleRowClick = (index) => {
     // Customize the navigation path based on your project structure
-    navigate(`projects/status/${row}`);
+    console.log(data, index);
+    setCurrentProject(data[index]);
+    navigate(`projects/status/${index}`);
   };
 
   return (
