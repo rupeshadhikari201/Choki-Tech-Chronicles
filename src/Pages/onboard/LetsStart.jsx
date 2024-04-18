@@ -13,7 +13,7 @@ import { AddCircle, CloseCircle, CloseSquare } from "iconsax-react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ACTION_TYPE } from "../../reducer/action/action";
-
+import ReactLoading from "react-loading";
 const LetsStart = () => {
   const { userState } = useContext(AuthContext);
   const [progressState, setProgressState] = useState([
@@ -124,19 +124,28 @@ const LetsStart = () => {
     };
     profile();
   }, []);
+
   const createFreelancer = async () => {
+    setLoading(true);
     try {
       const res = await axios.post(base_url + `/api/user/freelancer/`, {
-        user: "",
+        user: userState.user.id,
         profession: userInfo.profession,
         reason_to_join: userInfo.reason,
-        where_did_you_heared: userInfo.where,
+        where_did_you_heard: userInfo.where.slice(0, 1),
         bio: userInfo.bio,
-        skill: userInfo.skills,
-        language: userInfo.language,
+        skills: userInfo.skills,
+        languages: Object.keys(userInfo.language[0]),
       });
+      toast.success("success");
+      setTimeout(() => {
+        navigator(`/agent/dashboard`);
+      }, 1000);
     } catch (e) {
-      toast.error(e.message);
+      console.log(e);
+      toast.error(Object.values(e.response.errors).toString());
+    } finally {
+      setLoading(false);
     }
   };
   const onNextPage = () => {
@@ -145,7 +154,7 @@ const LetsStart = () => {
       toast("please compelet all", {});
     }
     if (gotoNext && currentPage == pages.length - 1) {
-      navigator(`/agent/dashboard`);
+      createFreelancer();
     } else if (gotoNext && currentPage != pages.length - 1) {
       setCurrentPage((c) => c + 1);
       let progress = progressState;
@@ -173,6 +182,13 @@ const LetsStart = () => {
   "
         style={{ overflow: "hidden" }}
       >
+        {loading && (
+          <>
+            <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
+              <ReactLoading type="spin" height={50} width={50} />
+            </div>
+          </>
+        )}
         <div
           className="
         wrapper
@@ -210,7 +226,7 @@ const LetsStart = () => {
             <h1 className="text-black-variant-1">
               <span className={`font-weight-300`}>Hello,</span>
               <span className="text-green-secondary text-capitalize">
-                {userState.user?.firstName}
+                {userState.user?.firstname}
               </span>{" "}
             </h1>
             <h4
@@ -885,10 +901,16 @@ const UserSummary = ({ setGotoNext, setUserInfo }) => {
           style={{
             textAlign: "justify",
           }}
+          name="bio"
           onChange={(e) => {
-            const { value } = e.target;
+            const { value, name } = e.target;
             setSummary(e.target.value);
-            if (value.split(" ").length > 50) setGotoNext(true);
+            if (value.split(" ").length > 50) {
+              setGotoNext(true);
+              setUserInfo((info) => {
+                return { ...info, [name]: value };
+              });
+            }
           }}
         />
         <span className={`text-xsm p-1 text-black-variant-1`}>
