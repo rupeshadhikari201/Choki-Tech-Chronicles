@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { CloseCircle } from "iconsax-react";
 import { skillsList } from "../../../utils/constants/skillsList";
 import { useNavigate } from "react-router-dom";
-import { base_url, commonPath } from "../../../utils/constants/path";
+import { base_url } from "../../../utils/constants/path";
 import { ProjectContext } from "../../../utils/context/project";
 import { ACTION_TYPE } from "../../../reducer/action/action";
 import { AuthContext } from "../../../utils/context/auth";
@@ -19,24 +19,31 @@ const CustomerProjectTable = () => {
   const [alldata, setAllData] = useState([]);
   const [showPortal, setShowPortal] = useState(false);
   const { isDark } = useContext(ThemeContext);
-  const { userState } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [showReload, setShowReload] = useState(false);
-  const { projectData, projectDispatch } = useContext(ProjectContext);
+  const { projectData, projectDispatch, currentProject, setCurrentProject } =
+    useContext(ProjectContext);
   const [fetchProject, setFetchProject] = useState(false);
   const rowsPerPage = 5;
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const timeAgo = new TimeAgo("en-US");
   const navigator = useNavigate();
+  const controller = new AbortController();
   useEffect(() => {
     //Geting client project
     setLoading(true);
     axios
       .get(base_url + "/api/user/get-client-project/", {
+        signal: controller.signal,
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       })
       .then((res) => {
+        //sorting data based on created time
+        res.data.sort((a, b) => {
+          if (Date(a.created_at) < Date(b.created_at)) return 1;
+          return -1;
+        });
         setAllData(res.data);
         projectDispatch({
           type: ACTION_TYPE.SET_PROJECT,
@@ -47,26 +54,47 @@ const CustomerProjectTable = () => {
       })
       .catch((e) => {
         console.log("Fetching project", e.message);
-        toast.error("Error while fetching project. please refresh page");
-        setShowReload(true);
+        // console.log(e);
+        if (e.response?.status == 401) {
+          toast.error("please refresh page");
+          setShowReload(true);
+        } else {
+          toast.error("No Internet connection");
+        }
       })
       .finally(() => setLoading(false));
-  }, [currentPage, showReload, fetchProject]);
+
+    return () => {
+      controller.abort();
+    };
+  }, [currentPage, fetchProject]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredData = projectData.data.filter(
-    (item) =>
-      item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.project_price?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    const { value } = e.target;
+    setSearchTerm(value);
+    const filteredData = projectData.data.filter(
+      (item) =>
+        item.title?.toLowerCase().includes(value.toLowerCase()) ||
+        item.project_price
+          ?.toString()
+          .toLowerCase()
+          .includes(value.toLowerCase())
+    );
+    setCurrentRows(filteredData.slice(indexOfFirstRow, indexOfLastRow));
+    // Reset to first page when searching
     setCurrentPage(1);
     setAllData(filteredData);
     if (e.target.value === "") setAllData(projectData.data);
-    // Reset to first page when searching
   };
+  const gotoProjectDetail = (detail, index) => {
+    //setCurrentProject
+    setCurrentProject(detail);
+    navigator(`status/${index}`);
+  };
+
   return (
     <div className="table-responsive-container position-relative">
       <ToastContainer />
@@ -127,8 +155,7 @@ const CustomerProjectTable = () => {
           <button
             className="btn-custom-secondary"
             onClick={() => {
-              setShowReload(false);
-              setLoading(true);
+              window.location.reload();
             }}
           >
             Reload
@@ -144,30 +171,33 @@ const CustomerProjectTable = () => {
           <div className="col">Action</div>
         </div>
         <div className="table-body">
-          {currentRows.map((item, index) => (
+          {currentRows.map((project, index) => (
             <div
               key={index}
               className="row table-row my-2 p-1 py-2 cursor-pointer"
               onClick={() => {
-                navigator(`status/${index}`);
+                // navigator(`status/${index}`);
+                gotoProjectDetail(project, index);
               }}
             >
-              <div className="col">{item?.title}</div>
+              <div className="col">{project?.title}</div>
               <div className="col">
-                {timeAgo.format(new Date(item?.created_at))}
+                {timeAgo.format(new Date(project?.created_at))}
               </div>
               <div className="col">
-                <span style={{ color: item.payment === 2 ? "green" : "red" }}>
-                  {item.payment_status == 1 ? "Pending" : "Paid"}
+                <span
+                  style={{ color: project.payment === 2 ? "green" : "red" }}
+                >
+                  {project.payment_status == 1 ? "Pending" : "Paid"}
                 </span>
               </div>
               <div className="col">
-                {item?.project_status === 1 ? "unassigned" : "assigned"}
+                {project?.project_status === 1 ? "unassigned" : "assigned"}
               </div>
               <div className="col">
-                {new Date(item?.project_deadline).toLocaleDateString()}
+                {new Date(project?.project_deadline).toLocaleDateString()}
               </div>
-              <div className="col">{item?.project_price}</div>
+              <div className="col">{project?.project_price}</div>
               <div className="col">
                 <div className="dropdown position-relative">
                   <button
