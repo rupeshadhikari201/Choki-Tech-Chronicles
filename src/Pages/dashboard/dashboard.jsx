@@ -18,6 +18,7 @@ const DashBoard = ({ children }) => {
   useEffect(() => {
     setLoading(true);
     const profile = async () => {
+      console.log("checking user profile");
       axios
         .get(base_url + "/api/user/profile/", {
           headers: {
@@ -52,6 +53,7 @@ const DashBoard = ({ children }) => {
                 refresh: refreshToken,
               }
             );
+
             if (refresh.data.access) {
               Cookies.set("token", refresh.data.access, { expires: 1 });
               setRefresh(true);
@@ -64,6 +66,9 @@ const DashBoard = ({ children }) => {
             navigator(`/signin`);
           }
           console.log(e.response.data);
+        })
+        .catch((e) => {
+          navigator(`/signin`);
         })
         .finally((res) => {
           setLoading(false);
