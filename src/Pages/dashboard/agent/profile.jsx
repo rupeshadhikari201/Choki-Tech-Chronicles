@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../utils/context/auth";
 import CircularAvatar from "../../../Components/commen/circular_avatar";
-import { Edit, Edit2 } from "iconsax-react";
+import { Edit } from "iconsax-react";
 import "../../../Css/profile/profile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
