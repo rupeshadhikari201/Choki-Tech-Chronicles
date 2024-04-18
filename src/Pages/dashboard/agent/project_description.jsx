@@ -9,9 +9,9 @@ import { base_url } from "../../../utils/constants/path";
 import { ProjectContext } from "../../../utils/context/project";
 import { ACTION_TYPE } from "../../../reducer/action/action";
 import { AuthContext } from "../../../utils/context/auth";
-import ReactLoading from "react-loading";
 import axios from "axios";
 import TimeAgo from "javascript-time-ago";
+import CircularLoading from "../../../Components/commen/react_loading";
 
 const CheckProject = () => {
   const [project, setProject] = useState(1);
@@ -92,12 +92,7 @@ const CheckProject = () => {
         {loading && (
           <>
             <div className="text-black-variant-2 position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
-              <ReactLoading
-                type="spin"
-                className="text-black-variant-1"
-                height={50}
-                width={50}
-              />
+              <CircularLoading />
             </div>
           </>
         )}
@@ -166,9 +161,10 @@ const CheckProject = () => {
           </div>
           {/* apply button */}
           <button
-            className="btn-custom-white-variant-1"
+            className="btn-custom-secondary bg-green-variant-4 text-white"
             style={{
               minHeight: "50px",
+              maxWidth: "200px",
               borderRadius: "10px",
               height: "55px",
               padding: "5px 15px",
@@ -177,7 +173,7 @@ const CheckProject = () => {
             }}
             onClick={() => applyProject()}
           >
-            apply
+            Apply
           </button>
         </div>
         {/* <div
