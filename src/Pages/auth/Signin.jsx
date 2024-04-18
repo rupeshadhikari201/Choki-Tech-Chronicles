@@ -11,12 +11,13 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { path_to_signup, validateSignInInput } from "../../utils/auth/helper";
 import { AuthContext } from "../../utils/context/auth";
-import { base_url, commonPath } from "../../utils/constants/path";
+import { base_url } from "../../utils/constants/path";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import ReactLoading from "react-loading";
 import { ACTION_TYPE } from "../../reducer/action/action";
 import Cookies from "js-cookie";
+import { ProjectContext } from "../../utils/context/project";
 const Signin = () => {
   const icon_color = "#87A781";
   const [inputData, setInputData] = useState({});
@@ -25,6 +26,7 @@ const Signin = () => {
   const [validPassword, setValidPassword] = useState(true);
   const [loading, setLoading] = useState(false);
   const { userdispatch, userState } = useContext(AuthContext);
+  const { setLoadProject } = useContext(ProjectContext);
   const navigator = useNavigate();
   const onSubmit = () => {
     const valid = validateSignInInput(inputData, {
@@ -41,14 +43,13 @@ const Signin = () => {
         });
         res
           .then((res) => {
-            // console.log(res);
-            // console.log(res.data);
             // console.log("token  ", res.data.token.access);
             // console.log("refresh ", res.data.token.refresh);
             userdispatch({
               type: ACTION_TYPE.SAVE_TO_LOCALE,
               payload: { email: inputData.email },
             });
+
             userdispatch({
               type: ACTION_TYPE.SAVE_REFRESH,
               payload: res.data.token.refresh,
@@ -59,11 +60,21 @@ const Signin = () => {
             });
             // saving token to cookies
             Cookies.set("token", res.data.token.access, { expires: 1 });
-            navigator(`/${commonPath}/dashboard`);
+            //Load project when user log's in
+            setLoadProject((prev) => !prev);
+            if (res.data.user_type === "client") {
+              navigator("/client/dashboard");
+            } else navigator(`/agent/dashboard`);
           })
           .catch((e) => {
-            console.log(e.response.data);
-            toast.error("email or password not valid");
+            console.log(e.message);
+            console.log(e.request.response);
+            const message = JSON.parse(e?.request?.response);
+            console.log(message);
+            if (message?.msg == "User not verified. ") {
+              toast.error("User not verified");
+              navigator("/verify-user");
+            } else toast.error("email or password not valid");
           })
           .finally(() => {
             setLoading(false);
@@ -198,7 +209,7 @@ const Signin = () => {
             />
           </div>
           <span className="d-block mt-2 text-end text-black-variant-1 mb-2">
-            forget password? <Link to={`/${commonPath}/reset`}>reset</Link>
+            forget password? <Link to={`/reset-password`}>reset</Link>
           </span>
           <div className="mt-4">
             <button
