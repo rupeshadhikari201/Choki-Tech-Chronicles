@@ -4,7 +4,7 @@ const DashboardCard = ({ title, number, icon, background }) => {
   return (
     <div
       className={`d-flex flex-column justify-content-between p-3 pb-1 
-      rounded col dashboard-card
+      rounded col dashboard-card border-card
       `}
       style={{
         color: "white",
