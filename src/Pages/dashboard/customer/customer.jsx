@@ -21,8 +21,7 @@ const CustomerDashBoard = () => {
     { title: "May", value: 100 },
     // ...
   ]);
-  const { projectData, projectDispatch, projectLoading } =
-    useContext(ProjectContext);
+  const { projectData, projectLoading } = useContext(ProjectContext);
 
   const [cardState, setCardState] = useState({
     projectCreated: projectData.data.length,
@@ -61,6 +60,8 @@ const CustomerDashBoard = () => {
         created_at: timeAgo.format(new Date(detail.created_at)),
         project_status: detail.project_status === 1 ? "unassigned" : "assigned",
         project_price: detail.project_price,
+        skills_required: detail.skills_required,
+        description: detail.description,
       };
     });
     if (converted.length > 5) return converted.slice(0, 5);
