@@ -80,7 +80,7 @@ const ProjectStatus = () => {
           }}
         >
           <button className="btn" onClick={() => setShowEdit(true)}>
-            <Edit className="" color="white" />
+            <Edit className="text-black-variant-2" />
           </button>
         </div>
         <h4 className="font-weight-400 text-capitalize">
@@ -257,10 +257,10 @@ const EditProjectPortal = ({ setShowPortal, setFetchProject, details }) => {
       onClick={close}
     >
       <ToastContainer />
-      <div className="rounded custom-modal " style={{ overflowY: "scroll" }}>
+      <div className="rounded custom-modal border-card">
         {/* heading for posting project */}
         <div className={"project-portal-header d-flex justify-content-center"}>
-          <h5 className={`text-center  `}>Edit Project</h5>
+          <h5 className={`text-center text-white `}>Edit Project</h5>
           <CloseCircle
             className="ms-auto p-1 cursor-pointer"
             size={35}
@@ -392,13 +392,16 @@ const EditProjectPortal = ({ setShowPortal, setFetchProject, details }) => {
                 align-items-center
                 gap-2
                 text-sm
+                
                 `}
                       style={{
                         whiteSpace: "nowrap",
                         borderRadius: "20px",
                       }}
                     >
-                      {skill}
+                      <span className="text-black-variant-1 text-white">
+                        {skill}
+                      </span>
                       <CloseCircle
                         color="white"
                         onClick={() => {

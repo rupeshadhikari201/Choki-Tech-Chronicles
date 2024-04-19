@@ -1,7 +1,9 @@
 .table-responsive .table-row {
   background: var(--gray-secondary);
 }
-
+.table-responsive {
+  min-height: 50vh;
+}
 .table-responsive-container {
   overflow-x: auto;
 }
@@ -33,7 +35,13 @@
   width: 80%;
   height: 90%;
   z-index: 300;
-  overflow: hidden;
+  overflow-y: auto;
+}
+.custom-modal.modal-delete {
+  background-color: var(--white-variant-4);
+  width: 50%;
+  height: 60%;
+  border: 1px solid var(--border-card);
 }
 .project-portal-header {
   background-color: var(--project-header);
@@ -64,5 +72,9 @@
   .custom-modal {
     width: 95%;
     height: 90%;
+  }
+  .custom-modal.modal-delete {
+    width: 95%;
+    height: 75%;
   }
 }

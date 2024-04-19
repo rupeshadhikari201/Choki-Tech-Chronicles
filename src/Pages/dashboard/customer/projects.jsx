@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import "../../../Css/project/project.css";
 import { ThemeContext } from "../../../App";
 import { ToastContainer, toast } from "react-toastify";
-import { CloseCircle } from "iconsax-react";
+import { CloseCircle, Trash } from "iconsax-react";
 import { skillsList } from "../../../utils/constants/skillsList";
 import { useNavigate } from "react-router-dom";
 import { base_url } from "../../../utils/constants/path";
@@ -13,6 +13,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import TimeAgo from "javascript-time-ago";
 import CircularLoading from "../../../Components/commen/react_loading";
+import { motion } from "framer-motion";
 const CustomerProjectTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRows, setCurrentRows] = useState([]);
@@ -30,9 +31,8 @@ const CustomerProjectTable = () => {
   const timeAgo = new TimeAgo("en-US");
   const navigator = useNavigate();
   const controller = new AbortController();
-  useEffect(() => {
-    //Geting client project
-    setLoading(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const getClientProject = () => {
     axios
       .get(base_url + "/api/user/get-client-project/", {
         signal: controller.signal,
@@ -63,6 +63,11 @@ const CustomerProjectTable = () => {
         }
       })
       .finally(() => setLoading(false));
+  };
+  useEffect(() => {
+    //Geting client project
+    setLoading(true);
+    getClientProject();
 
     return () => {
       controller.abort();
@@ -109,6 +114,9 @@ const CustomerProjectTable = () => {
           <>
             <CircularLoading />
           </>
+        )}
+        {showDeleteModal && (
+          <DeletePortal setShowDeleteModal={setShowDeleteModal} />
         )}
         {showPortal && (
           <ProjectPortal
@@ -170,10 +178,10 @@ const CustomerProjectTable = () => {
             {currentRows.map((project, index) => (
               <tr
                 key={index}
-                className="table-row my-2 p-1 py-2 cursor-pointer"
-                onClick={() => {
-                  gotoProjectDetail(project, index);
-                }}
+                className="table-row my-2 p-1 py-2 "
+                // onClick={() => {
+                //   gotoProjectDetail(project, index);
+                // }}
               >
                 <td>{project?.title}</td>
                 <td>{timeAgo.format(new Date(project?.created_at))}</td>
@@ -194,7 +202,7 @@ const CustomerProjectTable = () => {
                 <td>
                   <div className="dropdown position-relative">
                     <button
-                      className={`btn dropdown-toggle ${
+                      className={`btn dropdown-toggle cursor-pointer ${
                         isDark ? "text-white" : ""
                       }`}
                       type="button"
@@ -208,8 +216,23 @@ const CustomerProjectTable = () => {
                       className="dropdown-menu"
                       aria-labelledby={`dropdownMenuButton${index}`}
                     >
-                      <li className="px-2 py-1">Edit</li>
-                      <li className="px-2 py-1">Check</li>
+                      <li
+                        className="px-3 py-2 cursor-pointer"
+                        onClick={() => {
+                          gotoProjectDetail(project, index);
+                        }}
+                      >
+                        Check{" "}
+                      </li>
+                      <li
+                        className="px-3 py-2 text-error cursor-pointer"
+                        onClick={() => {
+                          setShowDeleteModal(true);
+                        }}
+                      >
+                        Delete <span className="ps-1"></span>
+                        <Trash size={16} />
+                      </li>
                     </ul>
                   </div>
                 </td>
@@ -242,7 +265,73 @@ const CustomerProjectTable = () => {
 };
 
 export default CustomerProjectTable;
-
+const DeletePortal = ({ setShowDeleteModal }) => {
+  const close = () => {
+    const portal = document.getElementById("d_portal");
+    window.onclick = function (event) {
+      if (event.target == portal) {
+        setShowDeleteModal(false);
+      }
+    };
+  };
+  return (
+    <div
+      className={`position-fixed rounded d-flex align-items-center justify-content-center`}
+      style={{
+        top: "0",
+        left: "0",
+        zIndex: "300",
+        width: "100%",
+        height: "100%",
+      }}
+      id="d_portal"
+      onClick={close}
+    >
+      <ToastContainer />
+      <motion.div
+        drag="x"
+        className="rounded bg-white-variant-4 custom-modal modal-delete  "
+      >
+        {/* heading for posting project */}
+        <div className={"project-portal-header d-flex justify-content-center"}>
+          <h5 className={`text-center  text-error`}>Delete Project</h5>
+          <CloseCircle
+            className="ms-auto p-1 cursor-pointer"
+            size={35}
+            onClick={() => {
+              setShowDeleteModal(false);
+            }}
+          />
+        </div>
+        <div
+          className="d-flex flex-column justify-content-center align-items-center flex-wrap"
+          style={{ height: "80%" }}
+        >
+          <p className="mb-0">Are you sure you want to delete this project?</p>
+          <p>
+            Enter the project name below
+            <span className="text-error">Project name</span>{" "}
+          </p>
+          <input
+            type="text"
+            className={`custom-input border-green-variant-1 rounded mx-3`}
+            style={{ maxWidth: "300px" }}
+            name="title"
+            placeholder="project name"
+          />
+          <button
+            className="btn-custom-secondary bg-green-variant-4 text-black-variant-1"
+            onClick={() => {
+              toast.success("Project Delete in future");
+            }}
+          >
+            delete
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 const ProjectPortal = ({ setShowPortal, setAllData, setFetchProject }) => {
   const close = () => {
     const portal = document.getElementById("p_portal");
@@ -337,10 +426,10 @@ const ProjectPortal = ({ setShowPortal, setAllData, setFetchProject }) => {
       onClick={close}
     >
       <ToastContainer />
-      <div className="rounded custom-modal " style={{ overflowY: "scroll" }}>
+      <div className="rounded custom-modal border-card bg-white-variant-4">
         {/* heading for posting project */}
         <div className={"project-portal-header d-flex justify-content-center"}>
-          <h5 className={`text-center  `}>New Project</h5>
+          <h5 className={`text-center  text-white`}>New Project</h5>
           <CloseCircle
             className="ms-auto p-1 cursor-pointer"
             size={35}

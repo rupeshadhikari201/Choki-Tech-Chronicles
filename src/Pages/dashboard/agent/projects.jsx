@@ -216,10 +216,10 @@ const PostedProjects = () => {
             </div>
             {/* Filter projects */}
             <div
-              className="project-filter"
+              className="project-filter text-black-variant-3"
               style={{ maxWidth: "200px", width: "100%" }}
             >
-              <h6>Category</h6>
+              <h6 className="text-black-variant-1">Category</h6>
               <select
                 className="p-2
                   rounded
@@ -230,7 +230,7 @@ const PostedProjects = () => {
               >
                 <option>All</option>
               </select>
-              <h6>Price</h6>
+              <h6 className="text-black-variant-1">Price</h6>
               {priceFilterList.map((price, index) => (
                 <div
                   key={index}
@@ -255,7 +255,7 @@ const PostedProjects = () => {
                   </label>
                 </div>
               ))}
-              <h6 className="mt-2">Applicants</h6>
+              <h6 className="mt-2 text-black-variant-1">Applicants</h6>
               {applicatFilterList.map((applicat, index) => (
                 <div
                   key={index}
