@@ -11,7 +11,7 @@ const CircularAvatar = ({
     <div>
       <div
         className={` d-flex align-items-center justify-content-center text-md font-weight-400
-            icon-wrapper-primary ${className}
+            icon-wrapper-primary ${className} ${bgcolor}
             `}
         style={{
           width: `${size || 20}px`,
@@ -22,7 +22,7 @@ const CircularAvatar = ({
         }}
       >
         {img ? (
-          <img alt="img" src="" />
+          <img alt="img" src={img} />
         ) : (
           <span
             className={`text-uppercase cursor-pointer ${

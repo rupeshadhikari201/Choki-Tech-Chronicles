@@ -7,10 +7,10 @@
 .milestone-section {
   padding-bottom: 30px;
   /* background-color: var(--light-green); */
-  background-color: rgb(29, 29, 29);
+  /* background-color: rgb(255, 255, 255); */
 }
 .milestone-wrapper {
-  background-color: rgb(46, 46, 46);
+  background-color: rgb(213, 213, 213);
   padding: 50px;
   padding-bottom: 20px;
   border-radius: 20px;
@@ -88,8 +88,8 @@
   min-width: 50%;
 }
 .card-2-img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: 1px solid rgb(63, 164, 99);
   overflow: hidden;
   /* margin: 0px auto 10px; */

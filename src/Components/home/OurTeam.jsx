@@ -23,19 +23,25 @@ const OurTeam = () => {
         className="mx-auto  text-black-variant-1 mb-4 position-relative d-flex align-items-center"
         style={{ maxWidth: "1200px", minHeight: "80vh" }}
       >
-        <div
-          className="ms-auto ceo-img-wrapper "
-          style={{ height: "400px", width: "400px", overflow: "hidden" }}
-        >
-          <img
-            src={"assets/ceo.jpeg"}
-            className="w-100 h-100"
-            style={{
-              objectFit: "cover",
-              filter: "grayscale(0)",
-              objectPosition: "right",
-            }}
-          />
+        <div className="ms-auto">
+          <div
+            className=" ceo-img-wrapper "
+            style={{ height: "400px", width: "400px", overflow: "hidden" }}
+          >
+            <img
+              src={"assets/ceo_2.jpeg"}
+              className="w-100 h-100"
+              style={{
+                objectFit: "cover",
+                filter: "grayscale(0)",
+                objectPosition: "right",
+              }}
+            />
+          </div>
+          {/* <h4 className="text-uppercase font-weight-400 mt-2">
+            {" "}
+            Choki dorji, CEO
+          </h4> */}
         </div>
         <div
           className="mx-auto position-absolute team-quote-wrapper "
@@ -51,7 +57,10 @@ const OurTeam = () => {
             </h1>
             <QuoteDown size={40} />
           </div>
-          <h4 className="text-uppercase"> Choki dorji, CEO</h4>
+          <h4 className="text-uppercase mt-3 font-weight-400">
+            {" "}
+            Choki dorji, CEO
+          </h4>
         </div>
       </div>
 

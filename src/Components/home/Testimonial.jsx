@@ -4,6 +4,7 @@ import "../../Css/commen/carousel.css";
 import { useState } from "react";
 
 import "pure-react-carousel/dist/react-carousel.es.css";
+import { FaQuoteLeft } from "react-icons/fa6";
 const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const milestone = [
@@ -27,6 +28,7 @@ const Testimonial = () => {
       text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
       image:
         "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?cs=srgb&dl=pexels-stefan-stefancik-91227.jpg&fm=jpg",
+      title: "Manager",
     },
     {
       id: 1,
@@ -34,6 +36,7 @@ const Testimonial = () => {
       text: " dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
       image:
         "https://images.pexels.com/photos/17120644/pexels-photo-17120644/free-photo-of-a-black-and-white-dog-sitting-in-the-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      title: "HR",
     },
     {
       id: 1,
@@ -41,6 +44,7 @@ const Testimonial = () => {
       text: " dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
       image:
         "https://www.livemint.com/lm-img/img/2024/03/05/600x338/Richest-Billionaires-List-0_1707613033886_1709616207464.jpg",
+      title: "Software Developer",
     },
     {
       id: 1,
@@ -48,6 +52,7 @@ const Testimonial = () => {
       text: " dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
       image:
         "https://t4.ftcdn.net/jpg/03/61/34/27/360_F_361342769_X26dTcofZpukhMGYWFcn1wJNABEFtNLH.jpg",
+      title: "BB CEO",
     },
     // Add more testimonials as needed
   ];
@@ -116,15 +121,19 @@ const Testimonial = () => {
               key={index}
             >
               <div className="card-2  text-black-variant-1 bg-service-card ">
+                <FaQuoteLeft size={30} style={{ color: "green" }} />
                 <p>{item.text}</p>
                 {/* name and image */}
-                <div className="d-flex gap-2 align-items-center justify-content-start">
+                <div className="d-flex gap-2 align-items-center justify-content-start mt-4">
                   <div className="rounded-circle card-2-img">
                     <img src={item.image} alt="" />
                   </div>
-                  <h5 className="mb-0" style={{ color: "green" }}>
-                    {item.name}
-                  </h5>
+                  <div>
+                    <h5 className="mb-0" style={{ color: "green" }}>
+                      {item.name}
+                    </h5>
+                    <p className="mb-0">{item.title}</p>
+                  </div>
                 </div>
               </div>
               {/* 
@@ -145,9 +154,9 @@ const Testimonial = () => {
         {/*  */}
       </section>
       {/* mile stone */}
-      <div className="milestone-section py-4">
+      <div className="milestone-section py-4 bg-white-variant-2">
         <div
-          className="milestone-wrapper  text-white mx-auto w-100 "
+          className="milestone-wrapper bg-service-card  text-black-variant-1 mx-auto w-100 "
           style={{ maxWidth: "1300px" }}
         >
           <h1
