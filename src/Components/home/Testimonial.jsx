@@ -9,7 +9,7 @@ const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const milestone = [
     {
-      number: "200",
+      number: "100+",
       title: "Total Users",
     },
     {
@@ -18,14 +18,14 @@ const Testimonial = () => {
     },
     {
       title: "Project Completed",
-      number: "300+",
+      number: "100+",
     },
   ];
   const testimonials = [
     {
       id: 1,
       name: "Steve Harrington",
-      text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+      text: "Highly recommend GokapInnoTech for their comprehensive services. From software development to freelancer connections, they deliver top-notch results.",
       image:
         "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?cs=srgb&dl=pexels-stefan-stefancik-91227.jpg&fm=jpg",
       title: "Manager",
@@ -33,7 +33,7 @@ const Testimonial = () => {
     {
       id: 1,
       name: "Steve Harrington",
-      text: " dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+      text: "GokapInnoTech's platform for connecting clients with freelancers is seamless and efficient. They helped us find the perfect talent for our project.",
       image:
         "https://images.pexels.com/photos/17120644/pexels-photo-17120644/free-photo-of-a-black-and-white-dog-sitting-in-the-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       title: "HR",
@@ -41,7 +41,7 @@ const Testimonial = () => {
     {
       id: 1,
       name: "Yared",
-      text: " dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+      text: "I'm impressed by GokapInnoTech's UI design expertise. They transformed our ideas into visually stunning and user-friendly interfaces",
       image:
         "https://www.livemint.com/lm-img/img/2024/03/05/600x338/Richest-Billionaires-List-0_1707613033886_1709616207464.jpg",
       title: "Software Developer",
@@ -49,7 +49,7 @@ const Testimonial = () => {
     {
       id: 1,
       name: "Jimmy",
-      text: " dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+      text: "GokapInnoTech exceeded my expectations with their software development services. Their attention to detail and innovative solutions truly set them apart.",
       image:
         "https://t4.ftcdn.net/jpg/03/61/34/27/360_F_361342769_X26dTcofZpukhMGYWFcn1wJNABEFtNLH.jpg",
       title: "BB CEO",

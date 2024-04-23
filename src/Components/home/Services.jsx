@@ -80,24 +80,21 @@ const Sevices = () => {
   return (
     <>
       <div
-        className="service-section pb-4 pb-md-5 pt-3 bg-white-variant-2 "
+        className="service-section pb-4 pb-md-5 justify-content-center bg-white-variant-2 "
         style={{ position: "relative" }}
       >
         {/* <div className="position-absolute color-box-1"></div>
         <div className="position-absolute color-box-2"></div>
         <div className="position-absolute color-box-3"></div> */}
-        <div className="px-4">
-          <h1 className="text-center p-3 text-black-variant-1 b">
-            Our Services
-          </h1>
+        <div className="ps-4 service-header mx-auto">
+          <h1 className=" p-3 text-black-variant-1 b">Our Services</h1>
         </div>
-
         <motion.section
           ref={serviceRef}
           variants={variant}
           initial={"hidden"}
           animate={isInView ? "show" : ""}
-          className="d-flex mx-auto px-4 px-sm-2 mt-4 gap-4 service-card-wrapper flex-column flex-md-row
+          className="d-flex justify-content-center mx-auto px-4 px-sm-2 mt-4 gap-4 service-card-wrapper flex-column flex-md-row
         
         "
         >
@@ -115,8 +112,15 @@ const Sevices = () => {
                 className="rounded service-card  p-2 px-4 d-flex flex-column text-black-variant-1 bg-service-card"
               >
                 <div className="mt-3 mb-3 icon-wrapper">{service.icon}</div>
-                <h5 className="font-weight-500 ">{service.title}</h5>
-                <div className="text-black-variant-3">{service.subtitle}</div>
+                <h5 className="font-weight-400 service-card-title ">
+                  {service.title}
+                </h5>
+                <p
+                  className="text-black-variant-2 mb-0"
+                  style={{ letterSpacing: "0.3px", lineHeight: "24px" }}
+                >
+                  {service.subtitle}
+                </p>
               </motion.div>
             ))}
         </motion.section>

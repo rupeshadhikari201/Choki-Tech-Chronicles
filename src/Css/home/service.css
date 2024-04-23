@@ -1,6 +1,7 @@
 .service-section {
   background-color: var(--light-green);
   position: relative;
+  padding-top: 70px;
 }
 .service-section .color-box-1 {
   filter: blur(230px);
@@ -20,7 +21,9 @@
   top: 65%;
   left: 60%;
 }
-
+.service-section .service-card-title {
+  margin-top: 2.5rem;
+}
 .card-holder {
   overflow-x: scroll;
 }
@@ -28,13 +31,16 @@
   width: 2px;
   height: 3px;
 }
+.service-header {
+  max-width: 1400px;
+}
 .service-card-wrapper {
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 1500px;
 }
 .service-card {
-  height: 300px;
-  max-width: 360px;
+  height: 380px;
+  max-width: 420px;
   backdrop-filter: blur(10px);
 }
 .icon-wrapper {

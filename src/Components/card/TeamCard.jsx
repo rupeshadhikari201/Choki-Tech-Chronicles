@@ -22,7 +22,9 @@ const TeamCard = ({ name, position, description, img }) => {
         >
           {position}
         </h6>
-        <p className="text-black-variant-2">{description}</p>
+        <p className="text-black-variant-2" style={{ minHeight: "70px" }}>
+          {description}
+        </p>
       </div>
       <div className="card-3-icon-wrapper d-flex justify-content-around text-black-variant-1">
         <FaGithub className="icon" size={30} />

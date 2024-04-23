@@ -22,15 +22,34 @@ const Footer = () => {
     "
       >
         <div className="col">
-          <h2 className="">Logo GIT</h2>
+          <h2 className="">
+            <span
+              style={{
+                display: "inline-block",
+                height: "60px",
+                width: "60px",
+                color: "white",
+              }}
+            >
+              <img
+                src="assets/logo_1.jpeg"
+                alt="logo"
+                width={"100%"}
+                height={"100%"}
+                className="rounded-circle"
+              />
+            </span>{" "}
+            GIT
+          </h2>
+
           <div>
             <p className="mb-0">Address:</p>
-            <p>Thempu, Bhutan</p>
+            <p>Thimphu, Bhutan</p>
           </div>
           <div>
             <p className="mb-0">Contact:</p>
-            <p className="mb-0">phone (+9898978798)</p>
-            <p>email gokap@gmail.com</p>
+            <p className="mb-0">phone +97517570958</p>
+            <p>email service@gokapinnotech.com</p>
           </div>
         </div>
         <div className="footer-nav col font-weight-400">

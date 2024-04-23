@@ -22,7 +22,6 @@
 
 .nav-container .center ul > li {
   font-size: large;
-  font-weight: bold;
 }
 .nav-container .center ul > li a {
   color: var(--primary-green);

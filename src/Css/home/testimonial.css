@@ -84,6 +84,13 @@
   scroll-behavior: smooth;
   transition: all 0.3s linear;
 }
+.testimonial-container::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+}
+.testimonial-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
 .testimonial-container .review {
   min-width: 50%;
 }
@@ -100,7 +107,9 @@
   height: 100%;
   object-fit: cover;
 }
-
+.team-quote-wrapper {
+  max-width: 700px;
+}
 @media screen and (max-width: 992px) {
   .img-circle {
     max-height: 250px;

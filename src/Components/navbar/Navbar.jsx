@@ -8,7 +8,6 @@ const Navbar = () => {
 
   const showMenu = () => {
     setPopMenu(!popMenu);
-    console.log("clicked");
   };
   return (
     <Container className="nav-container">
@@ -16,25 +15,33 @@ const Navbar = () => {
         <p className="fw-bolder  ">
           <span
             style={{
+              height: "60px",
+              width: "60px",
               position: "absolute",
               top: "50%",
               transform: "translateY(-50%)",
               color: "white",
             }}
           >
-            LOGO
+            <img
+              src="assets/logo_1.jpeg"
+              alt="logo"
+              width={"100%"}
+              height={"100%"}
+              className="rounded-circle"
+            />
           </span>
         </p>
       </div>
       <div className="center nav-list">
         <ul
-          className={`list-unstyled d-flex align-items-center m-0 ${
+          className={`list-unstyled d-flex align-items-center m-0 font-weight-400 ${
             popMenu ? "active " : ""
           }`}
         >
           <li className=" text-decoration-none">
             <Link
-              to="./"
+              to="/"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -44,7 +51,7 @@ const Navbar = () => {
           </li>
           <li className="">
             <Link
-              to="./services"
+              to="/services"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -74,7 +81,7 @@ const Navbar = () => {
           </li>
           <li className="blogs">
             <Link
-              to="./blogs"
+              to="/blogs"
               className="text-decoration-none"
               style={{}}
               onClick={() => showMenu()}
@@ -89,14 +96,14 @@ const Navbar = () => {
       </div>
       <div className="cta d-lg-flex gap login-btn-wrapper d-none gap-4 ">
         <Link
-          to={"./signin"}
+          to={"/signin"}
           className="buttonlightgreen link
         text-black-variant-1
         "
         >
           Login
         </Link>
-        <Link to={"./signup"} className="buttongreen link">
+        <Link to={"/signup"} className="buttongreen link">
           Sign Up
         </Link>
       </div>

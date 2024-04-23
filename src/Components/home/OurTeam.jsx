@@ -29,12 +29,12 @@ const OurTeam = () => {
             style={{ height: "400px", width: "400px", overflow: "hidden" }}
           >
             <img
-              src={"assets/ceo_2.jpeg"}
+              src={"assets/ceo_22.jpeg"}
               className="w-100 h-100"
               style={{
                 objectFit: "cover",
                 filter: "grayscale(0)",
-                objectPosition: "right",
+                objectPosition: "top",
               }}
             />
           </div>
@@ -43,13 +43,7 @@ const OurTeam = () => {
             Choki dorji, CEO
           </h4> */}
         </div>
-        <div
-          className="mx-auto position-absolute team-quote-wrapper "
-          style={{
-            maxWidth: "1000px",
-            alignSelf: "center",
-          }}
-        >
+        <div className="mx-auto position-absolute team-quote-wrapper ">
           <div className="team-quote">
             <QuoteUp size={40} />
             <h1 className="font-weight-400">
@@ -66,10 +60,15 @@ const OurTeam = () => {
 
       <div className="team-card-holder d-flex justify-content-start gap-4 mt-3">
         <TeamCard
+          name={"Yared"}
+          position={"Designer and Developer"}
+          description={`GokapInnoTech thrives on delivering cutting-edge software solutions, exceeding expectations every time.`}
+          img={yared}
+        />
+        <TeamCard
           name={"Rupesh"}
           position={"Designer and Developer"}
-          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.`}
+          description={`Our platform for connecting clients with freelancers is a game-changer.`}
           img={
             "https://images.pexels.com/photos/7957285/pexels-photo-7957285.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
@@ -77,18 +76,10 @@ const OurTeam = () => {
         <TeamCard
           name={"Sonam"}
           position={"Social Media Manager"}
-          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. `}
+          description={`Our platform is designed to effortlessly link clients with freelancers, promoting effective collaboration and productivity.`}
           img={
             "https://images.pexels.com/photos/18573858/pexels-photo-18573858/free-photo-of-bus-near-building-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           }
-        />
-        <TeamCard
-          name={"Yared"}
-          position={"Designer and Developer"}
-          description={` Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. `}
-          img={yared}
         />
       </div>
     </section>
