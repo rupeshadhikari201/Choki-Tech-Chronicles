@@ -26,6 +26,8 @@ import ResetPassword from "./Pages/auth/reset_password.jsx";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import CheckProject from "./Pages/dashboard/agent/project_description.jsx";
+import Blogs from "./Pages/blog/blog.jsx";
+import HomeRoute from "./utils/routes/home_route.jsx";
 export const ThemeContext = createContext();
 const App = () => {
   TimeAgo.addDefaultLocale(en);
@@ -48,12 +50,9 @@ const App = () => {
             <ProjectContextProvider>
               <BrowserRouter>
                 <Routes>
-                  <Route path={`${commonPath}/`} element={<Home />} />
-                  <Route
-                    path={`${commonPath}/services`}
-                    element={<Services />}
-                  />
-                  <Route path={`${commonPath}/team`} element={<Services />} />
+                  <Route path={`/`} element={<Home />} />
+                  <Route path={`/services`} element={<Services />} />
+                  <Route path={`/team`} element={<Services />} />
                   <Route path={`${commonPath}/signup`} element={<Signup />} />
                   <Route path={`${commonPath}/signin`} element={<Signin />} />
                   <Route
@@ -66,6 +65,11 @@ const App = () => {
                       element={<LetsStart />}
                     />
                   </Route>
+                  <Route path="/blogs" element={<HomeRoute />}>
+                    <Route path="" element={<Blogs />} />
+                    <Route path=":id" element={<Blogs />} />
+                  </Route>
+
                   <Route path={`/reset-password`} element={<ResetPassword />} />
                   {/* client dash board */}
                   <Route
