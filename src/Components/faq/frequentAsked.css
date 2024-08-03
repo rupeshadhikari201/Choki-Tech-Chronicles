@@ -1,0 +1,22 @@
+.section-frequently-wrapper {
+  background-color: var(--light-green);
+}
+.section-frequently {
+}
+.quesiton-list {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.quesiton-list .freq-question {
+  border-bottom: 1px solid var(--gray-200);
+  margin-top: 20px;
+}
+.quesiton-list .freq-question h5 {
+  padding-bottom: 20px;
+}
+
+.quesiton-list .question-ans {
+  transition: all 0.2s linear;
+  max-height: 0px;
+  overflow: hidden;
+}

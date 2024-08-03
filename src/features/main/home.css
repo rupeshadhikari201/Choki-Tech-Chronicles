@@ -1,0 +1,133 @@
+.home {
+  background: var(--home-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+/* .home .color-box-1 {
+  position: absolute;
+  filter: blur(220px);
+  background-color: var(--home-box-1);
+  width: 600px;
+  height: 600px;
+  top: -30%;
+  left: -20%;
+}
+.home .color-box-2 {
+  position: absolute;
+  filter: blur(220px);
+  background-color: var(--home-box-2);
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  right: -30%;
+} */
+.home p {
+  margin-bottom: 0;
+}
+.hero {
+  margin: 0px auto;
+  margin-top: 50px;
+  align-items: center;
+  position: relative;
+  max-width: 1200px;
+}
+
+.hero .hero-img img {
+  object-fit: contain;
+  max-height: 600px;
+  z-index: 20;
+  position: relative;
+}
+.magicpattern {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+}
+
+.heor .hero-img {
+  position: relative;
+}
+.hero-background {
+  position: absolute;
+  height: 100%;
+  right: 0;
+  top: 150px;
+  /* transform: translateX(20px); */
+}
+.hero-background img {
+  width: 100%;
+}
+.hero-text {
+  letter-spacing: -0.04rem;
+  max-width: 650px;
+  font-size: 4.3rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  line-height: 1.1;
+  text-align: start;
+}
+.typer-text {
+  font-size: 1rem;
+  max-width: 600px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  text-align: start;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 992px) {
+  .hero {
+    margin-top: 50px;
+  }
+  .hero-text {
+    padding: 0 5px;
+    min-width: 450px;
+    font-size: 3.5rem;
+  }
+  .typer-text {
+    max-width: 450px;
+  }
+  .btn-custom {
+    font-size: 30px;
+    max-width: 400px;
+    width: 80%;
+    padding: 20px 25px;
+    border-radius: 30px;
+    margin: 10px auto;
+    color: #eff0e1;
+  }
+  .btn-custom p {
+    margin: 0;
+  }
+  .btn-wrapper {
+    padding-bottom: 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .hero-text {
+    padding: 0 5px;
+    min-width: 300px;
+    width: 100%;
+    font-size: 3.3rem;
+    text-wrap: wrap;
+  }
+  .typer-text {
+    max-width: 350px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .hero-background img {
+    width: 90%;
+    transform: translateX(50px);
+    top: 50px;
+  }
+}

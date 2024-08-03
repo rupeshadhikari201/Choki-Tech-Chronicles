@@ -1,0 +1,6 @@
+.text-border {
+  border-radius: 30px;
+  border: 1px solid var(--border-card);
+  padding: 6px 35px;
+  display: inline-block;
+}

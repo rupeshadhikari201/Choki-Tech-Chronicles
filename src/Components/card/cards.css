@@ -1,0 +1,28 @@
+.service-card-container img,
+.img-response {
+  height: 75dvh;
+}
+@media screen and (max-width: 1200px) {
+  .service-card-container img,
+  .img-response {
+    height: 50dvh;
+  }
+}
+@media screen and (max-width: 989px) {
+  .service-card-container img,
+  .img-response {
+    height: 60dvh;
+  }
+}
+@media screen and (max-width: 876px) {
+  .service-card-container img,
+  .img-response {
+    height: 50dvh;
+  }
+}
+@media screen and (max-width: 768px) {
+  .service-card-container img,
+  .img-response {
+    height: 40dvh;
+  }
+}

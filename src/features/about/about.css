@@ -1,0 +1,31 @@
+.section-about-wrapper {
+}
+
+.section-about-heading {
+  height: 350px;
+}
+
+.card-m-v {
+  max-width: 500px;
+  border-radius: 30px;
+  background-color: var(--light-green);
+  border: 1px solid var(--border-card);
+}
+.section-about .about-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  /* justify-content: center; */
+  /* justify-items: center; */
+  align-items: center;
+}
+
+.section-about .about-card .image-wrapper {
+  grid-auto-columns: 60%;
+}
+
+@media screen and (max-width: 876px) {
+  .section-about .about-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

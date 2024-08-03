@@ -1,0 +1,35 @@
+.contact-section-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+}
+
+.contact-section {
+  max-width: 500px;
+  width: 100%;
+}
+.contact-section form {
+  padding: 40px 40px;
+  border-radius: 20px;
+  border: 1px solid var(--gray-200);
+  background-color: var(--white-variant-1);
+}
+.contact-section .form-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.contact-section input {
+  padding: 10px 15px;
+  background-color: transparent;
+}
+@media screen and (max-width: 876px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .contact-section .form-container {
+    grid-template-columns: 1fr;
+  }
+}

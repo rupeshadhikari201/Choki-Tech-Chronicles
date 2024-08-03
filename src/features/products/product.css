@@ -1,0 +1,23 @@
+.product-hero {
+  background-color: var(--home-background);
+  padding-top: 150px;
+}
+.product-hero-text {
+  letter-spacing: -0.04rem;
+  max-width: 600px;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  line-height: 1.1;
+  text-align: start;
+}
+.product-hero-subtitle {
+  max-width: 450px;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 769px) {
+  .product-hero {
+    padding-top: 100px;
+  }
+}

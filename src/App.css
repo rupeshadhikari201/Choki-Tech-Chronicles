@@ -8,11 +8,13 @@
 }
 
 :root {
-  --home-background: url("./assets/background2.svg");
-  --nav-bg: rgba(230, 255, 227, 0.69);
-  --light-green: rgb(245, 252, 245);
-  --light-green-border: rgb(191, 235, 190);
-  --primary-green: #5ecc5c;
+  /* --home-background: url("./assets/background2.svg"); */
+  --home-background: #eefff5;
+  --nav-bg: white;
+  --light-green: #ecfef4;
+  --light-green-border: #4f744e;
+  --primary-green: #00bc5a;
+  --bg-green-v-1: #029349;
   --green-hover: rgba(94, 204, 92, 0.456);
   --light-lime: rgb(158, 224, 157);
   --light-lime-secondary: rgb(158, 224, 157);
@@ -32,7 +34,8 @@
   --white-variant-2: rgb(255, 255, 255);
   --white-variant-3: rgb(240, 247, 255);
   --white-variant-4: rgb(247, 252, 255);
-  --gray-200: rgb(255, 255, 255);
+  --white-smoke: whitesmoke;
+  --gray-200: rgb(222, 222, 222);
   --gray-secondary: #ffffff;
   --gray-400: rgba(0, 135, 20, 0.448);
   --gray-dark-shade: rgb(243, 243, 243);
@@ -42,6 +45,9 @@
   --text-lg: 25px;
   --text-xlg: 36px;
   --text-xxlg: 50px;
+  --height-xsm: 50px;
+  --height-sm: 70px;
+  --max-width: 1200px;
   --text-black-variant-1: rgb(0, 0, 0);
   --text-black-variant-2: rgb(43, 43, 43);
   --text-black-variant-3: rgb(43, 43, 43);
@@ -49,8 +55,6 @@
   --text-white-variant-1: rgb(255, 255, 255);
   --text-white-variant-2: white;
   --text-gray-secondary: rgb(39, 39, 39);
-  --height-xsm: 50px;
-  --height-sm: 70px;
   --black-variant-1: rgb(0, 0, 0);
   --black-variant-2: rgb(32, 32, 32);
   --black-variant-3: rgb(9, 114, 37);
@@ -61,25 +65,30 @@
   --service-card: rgb(247, 248, 251);
   --border-card: rgb(211, 211, 211);
   --project-header: rgb(60, 81, 108);
+  --dark-gray-light-gray: rgb(230, 230, 230);
 }
 .dark-theme {
-  --home-background: rgb(36, 36, 36);
-  --nav-bg: rgba(70, 70, 70, 0.445);
+  --home-background: rgb(19, 19, 19);
+  --nav-bg: rgb(19, 19, 19);
   --home-box-1: #071f0e;
   --home-box-2: #05251c;
-  --light-green: rgb(41, 41, 41);
+  --bg-green-v-1: rgb(19, 19, 19);
+  --primary-green: #3e9359;
+  --light-green: rgb(33, 33, 33);
   --light-lime: rgb(58, 58, 58);
   --white-variant-1: var(--black-variant-2);
-  --white-variant-2: rgb(36, 36, 36);
+  --white-variant-2: rgb(0, 0, 0);
   --white-variant-3: rgb(47, 47, 47);
   --white-variant-4: rgb(58, 58, 58);
+  --white-smoke: rgb(19, 19, 19);
   --gray-secondary: #434343;
+  --gray-200: rgb(51, 51, 51);
   --gray-400: rgba(144, 144, 144, 0.448);
   --gray-dark-shade: rgb(60, 60, 60);
   --light-green-border: var(--gray-200);
   --dark-blue: rgb(41, 41, 41);
   --dark-blue-hover: rgb(63, 63, 63);
-  --text-black-variant-1: rgb(218, 218, 218);
+  --text-black-variant-1: rgb(255, 255, 255);
   --text-black-variant-2: rgb(194, 194, 194);
   --text-black-variant-3: rgb(156, 156, 156);
   --text-blue-variant-1: rgb(218, 218, 218);
@@ -96,9 +105,10 @@
   --font-weight-var-normal: 500;
   --border-variant-1: rgba(255, 255, 255, 0.214);
   --mile-stone-bg: rgb(20, 26, 24);
-  --service-card: rgb(39, 39, 39);
-  --border-card: rgb(82, 82, 82);
+  --service-card: rgb(12, 12, 12);
+  --border-card: rgb(44, 44, 44);
   --project-header: #00bf6f;
+  --dark-gray-light-gray: rgb(48, 48, 48);
 }
 html {
   scroll-behavior: smooth;
@@ -145,6 +155,42 @@ section {
   /* inset: 0;
 	margin-top: auto; */
 }
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.max-width {
+  max-width: var(--max-width);
+}
+.max-w-1200 {
+  max-width: var(--max-width);
+}
+.pt-100 {
+  padding-top: 100px;
+}
+.pb-100 {
+  padding-bottom: 100px;
+}
+.pb-50 {
+  padding-bottom: 50px;
+}
+.pt-50 {
+  padding-top: 50px;
+}
+.mt-100 {
+  margin-top: 100px;
+}
+.mb-100 {
+  margin-bottom: 100px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
 .bg-black-variant-1 {
   background-color: var(--text-black-variant-1);
 }
@@ -163,6 +209,9 @@ section {
 .bg-green-primary {
   background-color: var(--primary-green);
 }
+.bg-green-v-1 {
+  background-color: var(--bg-green-v-1);
+}
 .bg-light-violet {
   background-color: rgb(121, 63, 245);
 }
@@ -179,6 +228,9 @@ section {
 }
 .bg-light-lime {
   background-color: var(--light-lime);
+}
+.bg-white-smoke {
+  background-color: var(--white-smoke);
 }
 /* for dark lime */
 .bg-light-lime-secondary {
@@ -291,15 +343,13 @@ section {
 .border-black-variant-2 {
   border: 1px solid var(--white-variant-4);
 }
-.border-green-variant-1 {
-  border: 1px solid var(--primary-green);
-}
-.border-green-variant-3 {
-  border: 1px solid var(--green-variant-3);
-}
 .border-card {
   border: 1px solid var(--border-card);
 }
+.border-light-bottom {
+  border-bottom: 1px solid var(--border-card);
+}
+
 .w-0 {
   width: 0% !important;
 }

@@ -1,0 +1,110 @@
+button {
+  outline: none;
+  border: none;
+}
+
+.btn-green-outline-1 {
+  border: 1px solid var(--primary-green);
+  border-radius: 30px;
+  color: black;
+  display: flex;
+  font-weight: 400;
+  padding: 10px 25px;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1rem;
+  max-width: 250px;
+  width: 100%;
+  padding: 15px 10px;
+  background-color: var(--primary-green);
+  color: #fffffb;
+}
+.btn-custom-outline {
+  font-size: 1rem;
+  max-width: 250px;
+  width: 100%;
+  padding: 15px 10px;
+  background-color: transparent;
+  border: 1px solid var(--border-card);
+}
+.btn-green-v-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 18px;
+  max-width: 200px;
+  width: 100%;
+  padding: 15px 15px;
+  border-radius: 30px;
+  background-color: var(--primary-green);
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.btn-custom-white:hover {
+  background-color: #046734;
+}
+.btn-custom-white-variant-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 24px;
+  max-width: 250px;
+  width: 100%;
+  padding: 10px 25px;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+  background-color: transparent;
+  color: var(--primary-green);
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: all 0.3s linear;
+  min-height: 70px;
+}
+.btn-custom-white-variant-1:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-custom-secondary {
+  display: block;
+  border: 1px solid gray;
+  width: 80%;
+  max-width: 300px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin: 10px auto;
+  background-color: #ffffff;
+  color: var(--primary-green);
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn-custom-secondary:hover {
+  background-color: var(--dark-blue-hover);
+}
+
+@media screen and (max-width: 992px) {
+  .btn-custom {
+    max-width: 200px;
+    color: #eff0e1;
+  }
+  .btn-custom p {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 512px) {
+  .btn-custom {
+    padding: 10px 15px;
+  }
+}
