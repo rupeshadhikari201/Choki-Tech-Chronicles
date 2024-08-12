@@ -13,6 +13,7 @@ const Navbar = () => {
     else if (path === "/products") setActiveLink(2);
     else if (path === "/about-us") setActiveLink(3);
     else if (path === "/blogs") setActiveLink(4);
+    else if (path === "/contact-us") setActiveLink(5);
   }, [location.pathname]);
   const showMenu = () => {
     setPopMenu(!popMenu);
@@ -92,7 +93,11 @@ const Navbar = () => {
         >
           {popMenu ? <MdClose size={30} /> : <MdMenu size={30} />}
         </div>
-        <div className="d-lg-flex gap align-items-center login-btn-wrapper d-none ms-2">
+        <div
+          className={`d-lg-flex gap align-items-center d-none ms-2 nav-link-c ${
+            activeLink === 5 ? "active" : ""
+          }`}
+        >
           <Link
             to={"/contact-us"}
             className="btn-green-outline-1 link
