@@ -4,13 +4,9 @@ import { Star1 } from "iconsax-react";
 import { MdArrowForward } from "react-icons/md";
 import { TypeAnimation } from "react-type-animation";
 import { heroImg } from "../../../utils/constants/image_constant.js";
-import { useNavigate } from "react-router-dom";
+
 const HeroSection = () => {
-  const navigate = useNavigate();
   const iconSize = 18;
-  const change = () => {
-    navigate("./contact-us");
-  };
 
   const heroVariant = {
     hide: {
@@ -83,13 +79,15 @@ const HeroSection = () => {
           viewport={{ once: true }}
           className="btn-wrapper d-flex flex-column flex-sm-row flex-md-row gap-4  align-items-center"
         >
-          <div
+          <a
             className="btn-green-v-1 text-white-variant-1 "
-            onClick={() => change()}
+            target="_blank"
+            rel="noreferrer"
+            href="https://freelance.gokapinnotech.com/"
           >
             <p>Get Started</p>
             <MdArrowForward size={30} />
-          </div>
+          </a>
         </motion.div>
         {/*  */}
       </motion.div>
