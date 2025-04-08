@@ -15,12 +15,27 @@ const Navbar = () => {
     else if (path === "/blogs") setActiveLink(4);
     else if (path === "/contact-us") setActiveLink(5);
   }, [location.pathname]);
+
   const showMenu = () => {
     setPopMenu(!popMenu);
   };
   return (
-    <div className="nav-container border-light-bottom ">
-      <div className="max-width mx-auto px-1 px-md-4 d-flex  align-items-center h-100">
+    <div className="nav-container border-light-bottom " id="_nav_container">
+      <div className="d-flex p-1 notice">
+        <div className="max-width mx-auto w-100 text-center">
+          <p className="m-0">
+            Unlock the power of coding{" "}
+            <span className="d-none d-sm-inline">
+              and launch your tech career with Gokap Web devlopment and Python
+              course
+            </span>{" "}
+            <Link to={"https://forms.gle/ZPFr9WtjERJSuUWg8"} target="_blank">
+              Enroll Now
+            </Link>{" "}
+          </p>
+        </div>
+      </div>
+      <div className="max-width mx-auto px-1 py-2 px-md-4 d-flex  align-items-center h-100">
         <GITLogo />
         <div className="center ms-auto">
           <ul

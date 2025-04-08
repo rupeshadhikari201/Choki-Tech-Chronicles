@@ -13,7 +13,7 @@ const Blogs = () => {
       const res = posted.findIndex((post) => {
         return post.title == id;
       });
-      console.log(res);
+      // console.log(res);
       setCurrentBlog(res);
     }
   }, [id]);

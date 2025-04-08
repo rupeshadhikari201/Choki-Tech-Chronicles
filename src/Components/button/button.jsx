@@ -1,14 +1,16 @@
-const ButtonPrimary = ({ type, onClick, title, radius }) => {
+const ButtonPrimary = ({ type, onClick, title, radius, className }) => {
   return (
     <button
-      className="btn-custom 
+      className={`
+        btn-custom 
             green-varient-2
             green-varient-2-hover
             height-xsm
             mb-2
             mt-3
             text-capitalize
-            "
+            ${className}
+            `}
       style={{ maxWidth: "100%", borderRadius: `${radius}px` }}
       type={type}
       onClick={onClick}
