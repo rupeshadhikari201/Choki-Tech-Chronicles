@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./contact.css";
-import TextField from "../../Components/text_input/textField";
+import TextField from "../../components/text_input/textField";
 import { Call, Sms, User } from "iconsax-react";
 import FrequentAsked from "../../components/faq/FrequentAsked";
 import { ThemeContext } from "../../App";
