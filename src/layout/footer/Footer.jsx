@@ -81,8 +81,8 @@ const Footer = () => {
 					</div>
 					<div>
 						<p className="mb-0">Contact:</p>
-						<p className="mb-0">phone: +97517570958</p>
-						<p>email: GIT@gokapinnotech.com</p>
+						<p className="mb-0">Phone: +97517570958</p>
+						<p>Email: GIT@gokapinnotech.com</p>
 					</div>
 				</div>
 				<div className="footer-nav col font-weight-400">
